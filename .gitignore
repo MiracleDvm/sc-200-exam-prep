@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Secrets (scrape.js reads credentials from env vars, never from a file — but just in case)
+.env
+.env.*
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+
+# Logs
+*.log
