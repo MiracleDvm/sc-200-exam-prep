@@ -1,0 +1,110 @@
+[
+  {
+    "id": "spt-SCD3-D3-03",
+    "correctLetters": ["A"],
+    "explanation": "DeviceNetworkInfo is the advanced hunting table that stores network configuration details for devices, including NetworkAdapterName, MacAddress, IP addresses, DNS server settings, and connected network/domain information. DeviceNetworkEvents instead logs discrete network connection events (not static configuration), DeviceInfo holds machine-level metadata like OS version and risk level, and DeviceEvents covers a broad range of endpoint activity events, none of which focus on adapter/IP/DNS configuration.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicenetworkinfo-table"
+  },
+  {
+    "id": "spt-SCD3-D3-04",
+    "correctLetters": ["A"],
+    "explanation": "IdentityLogonEvents consolidates authentication activity captured on-premises by Microsoft Defender for Identity (Active Directory logons) together with sign-ins to Microsoft online services, giving a unified authentication evidence trail. DeviceLogonEvents only covers local/network logons on endpoints, IdentityQueryEvents captures query actions like DNS or SAM lookups rather than authentication, and CloudAppEvents records cloud app activity from Defender for Cloud Apps, not authentication specifically.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-identitylogonevents-table"
+  },
+  {
+    "id": "spt-SCD3-D3-05",
+    "correctLetters": ["A", "B"],
+    "explanation": "EmailUrlInfo lists the URLs contained within an email message or its attachments, letting a hunter enumerate every link a phishing message carried. UrlClickEvents records what happened when a user actually clicked a link, including the Safe Links verdict (ActionType) and workload. EmailAttachmentInfo covers file attachments rather than URLs, DeviceNetworkInfo is endpoint network configuration, and IdentityQueryEvents relates to identity queries, so none of those answer the \"URLs in the email\" plus \"click outcome\" requirement.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-urlclickevents-table"
+  },
+  {
+    "id": "spt-SCD3-D3-06",
+    "correctLetters": ["A"],
+    "explanation": "EmailAttachmentInfo is purpose-built to store attachment metadata from Defender for Office 365, including FileName, FileType/FileExtension, and hash values (SHA1/SHA256), which is exactly what's needed to track a recurring malicious attachment across many messages. EmailEvents describes the message delivery itself, not the attachment, AlertEvidence surfaces entities tied to generated alerts rather than raw attachment telemetry, and DeviceFileEvents tracks file activity on endpoints, not the email pipeline.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-emailattachmentinfo-table"
+  },
+  {
+    "id": "spt-SCD3-D3-07",
+    "correctLetters": ["A"],
+    "explanation": "Guided mode in Microsoft Defender XDR advanced hunting provides a visual query builder where an analyst selects a data domain, filters, and conditions from dropdowns, without needing to know KQL or the underlying schema. Advanced mode is the free-form KQL editor that assumes query-language proficiency, and \"Graph mode\" and \"Detection mode\" are not recognized advanced hunting modes.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-modes"
+  },
+  {
+    "id": "spt-SCD3-D3-08",
+    "correctLetters": ["A"],
+    "explanation": "Saving a query under Shared queries makes it visible and runnable by every analyst within the same tenant, which matches the requirement that the whole team can find and use it from the portal. My queries keeps it private to the author only, Community queries refers to query samples shared publicly on the Microsoft Sentinel GitHub repository rather than a tenant save location, and Saved functions is not an advanced hunting query-saving category.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-shared-queries"
+  },
+  {
+    "id": "spt-SCD3-D3-09",
+    "correctLetters": ["A"],
+    "explanation": "A custom function in advanced hunting packages reusable KQL logic (including normalization/enrichment steps and, with tabular parameters, dynamic inputs) so it can be invoked like a command across multiple queries instead of being copy-pasted. A hunting bookmark just preserves a specific result for later reference, a summary rule aggregates Sentinel log data on a schedule rather than acting as a reusable query building block, and an incident task is a workflow checklist item unrelated to query logic.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-custom-functions"
+  },
+  {
+    "id": "spt-SCD3-D3-10",
+    "correctLetters": ["A"],
+    "explanation": "When a query's results include a Timestamp (or TimeGenerated) column, the advanced hunting results experience automatically renders a timeline chart above the grid showing event counts over time, helping hunters spot spikes or unusual trends without writing any extra charting code. A Sentinel Graph path and a process tree are visualizations that require explicit entity/graph actions, and a geographic heat map is not an automatic default rendering in advanced hunting.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-query-results"
+  },
+  {
+    "id": "spt-SCD3-D3-11",
+    "correctLetters": ["A"],
+    "explanation": "The extend operator appends one or more calculated columns to the existing result set while preserving all current columns, which is exactly what's needed to add a computed AccountKey field. distinct removes duplicate rows rather than adding columns, summarize collapses rows into aggregated groups (dropping non-grouped/non-aggregated columns), and project-away removes specified columns instead of adding one.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/kusto/query/extend-operator"
+  },
+  {
+    "id": "spt-SCD3-D3-12",
+    "correctLetters": ["A"],
+    "explanation": "The distinct operator returns only the unique combinations of the specified columns, so distinct AccountUpn, DeviceName directly produces the unique pairs the hunter wants. extend adds new columns rather than deduplicating, sort only reorders rows without removing duplicates, and take simply returns an arbitrary subset of rows without regard to uniqueness.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/kusto/query/distinct-operator"
+  },
+  {
+    "id": "spt-SCD3-D3-13",
+    "correctLetters": ["A"],
+    "explanation": "dcount() computes an efficient approximate count of distinct values (here, distinct AccountUpn values) within each group, which scales well for large datasets like authentication logs grouped by source IP. count() just returns the total number of rows per group regardless of uniqueness, make_list() collects all values into an array rather than counting them, and arg_max() returns the row with the maximum value of an expression, not a distinct count.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/kusto/query/dcount-aggfunction"
+  },
+  {
+    "id": "spt-SCD3-D3-14",
+    "correctLetters": ["A"],
+    "explanation": "In the advanced hunting graph, selecting a node and choosing \"Explore connected assets\" (or the \"+\" expand icon) reveals the next hop of related entities, letting the investigation expand outward from the initial device. The other options are not graph expansion actions: \"Create summary rule\" and \"Convert to shared query\" relate to Sentinel log aggregation and query management, and \"Promote to analytics tier\" refers to moving data lake query results into the analytics tier.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-graph"
+  },
+  {
+    "id": "spt-SCD3-D3-15",
+    "correctLetters": ["A"],
+    "explanation": "Microsoft Sentinel graph (which includes the identity attack graph) models identities, Azure resources, and the role assignments/group memberships that connect them, letting an analyst visually trace the potential lateral-movement or privilege-escalation paths a compromised account could follow to reach a critical resource. A Sentinel workbook only visualizes pre-aggregated data without native relationship traversal, the Defender XDR Action center tracks remediation actions rather than access paths, and a Purview Audit export provides raw audit records without graph-based path analysis.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/datalake/identity-attack-graph"
+  },
+  {
+    "id": "spt-SCD3-D3-16",
+    "correctLetters": ["A"],
+    "explanation": "A hunt in Microsoft Sentinel is the dedicated construct for proactive investigations: it lets an analyst record a hypothesis, run and bookmark related queries, keep notes, and have new analytic rules or incidents created from the hunt automatically linked back to it for tracking. A workbook only visualizes data, an automation rule orchestrates incident handling actions, and a data collection rule governs how telemetry is ingested — none of these track a hypothesis-driven investigation lifecycle.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/hunts"
+  },
+  {
+    "id": "spt-SCD3-D3-17",
+    "correctLetters": ["A"],
+    "explanation": "When a bookmarked finding from a hunt turns out to be severe, Microsoft Sentinel lets the analyst escalate that bookmark directly into an incident (via the Incident actions button), pulling the bookmark's evidence into the incident-response queue. The other options don't apply: bookmarks aren't converted into data connectors, custom log tables, or ingestion-time transformations — those are unrelated Sentinel data-pipeline constructs.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/hunts"
+  },
+  {
+    "id": "spt-SCD3-D3-18",
+    "correctLetters": ["A", "B"],
+    "explanation": "A Microsoft Sentinel data lake KQL job can query historical data with a query time range of up to 12 years, and it supports nearly the full KQL operator set — including joins and unions across multiple workspaces/tables — which fits a complex multi-table query. It is not limited to a single source table (that's closer to a search job's scope), it requires data lake onboarding rather than running purely against the analytics tier, and the restricted operator set described belongs to search jobs, not KQL jobs, which support the broader KQL surface.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/datalake/kql-jobs"
+  },
+  {
+    "id": "spt-SCD3-D3-19",
+    "correctLetters": ["A"],
+    "explanation": "A summary rule aggregates data in the background on a configurable schedule (including short intervals) directly from any log tier, including Basic/Auxiliary-tier data, and writes the summarized results into an Analytics-tier table — all without requiring data lake onboarding. A KQL job is the data lake feature and explicitly requires the workspace to be onboarded to the Sentinel data lake, a hunting bookmark just preserves a single result rather than running recurring aggregation, and a live response session is an endpoint remote-investigation tool unrelated to log aggregation.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/summary-rules"
+  },
+  {
+    "id": "spt-SCD3-D3-20",
+    "correctLetters": ["A"],
+    "explanation": "MSTICPy is the Python package built specifically for Microsoft Sentinel Jupyter notebooks, bundling cybersecurity-focused tools for data retrieval/querying, threat intelligence enrichment, anomaly detection, and visualization tailored to hunting and investigation. pandas, scikit-learn, and Matplotlib are general-purpose data manipulation, machine learning, and plotting libraries used alongside MSTICPy, but none of them are security-hunting-specific like MSTICPy is.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/notebooks"
+  }
+]

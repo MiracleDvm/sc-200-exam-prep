@@ -1,0 +1,110 @@
+[
+  {
+    "id": "spt-SCM2-D2-06",
+    "correctLetters": ["A"],
+    "explanation": "Microsoft Graph activity logs provide an audit trail of every HTTP request that Microsoft Graph receives and processes for a tenant, including the calling app, user, IP address, and endpoint invoked, and can be streamed via Azure Monitor diagnostic settings to Log Analytics, Event Hubs, or Storage for investigation of misbehaving or malicious applications. Defender for Endpoint's device timeline tracks device-centric events, not Graph API calls; the Sentinel SecurityEvent table holds Windows security events; and Purview eDiscovery content search is for mailbox/site content, not API telemetry. Microsoft Graph activity logs are the purpose-built data source for this scenario.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/graph/microsoft-graph-activity-logs-overview"
+  },
+  {
+    "id": "spt-SCM2-D2-07",
+    "correctLetters": ["A"],
+    "explanation": "The unified Action center in Microsoft Defender XDR lists pending and completed remediation actions recommended by automated investigations across devices, identities, and email/collaboration content, letting analysts approve, reject, or undo them from one place. Workbooks only visualize data and cannot approve actions; the threat analytics dashboard is a reporting view on tracked threats, not a remediation queue; and Purview Audit search records activity logs rather than hosting approval workflows. The Action center is specifically designed for this approval gate.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/m365d-action-center"
+  },
+  {
+    "id": "spt-SCM2-D3-01",
+    "correctLetters": ["A"],
+    "explanation": "The KQL join operator merges rows from two tables by matching values in specified columns (here DeviceId), producing a combined result set, which is exactly the correlation needed between DeviceProcessEvents and DeviceNetworkEvents. summarize aggregates rows into groups rather than combining two tables; project and extend only select or add columns within a single table and cannot pull rows in from another table. join is the only operator purpose-built for this cross-table correlation.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/kusto/query/join-operator"
+  },
+  {
+    "id": "spt-SCM2-D3-02",
+    "correctLetters": ["A"],
+    "explanation": "Microsoft Sentinel summary rules run a scheduled KQL query over high-volume/low-cost tier data and write precomputed aggregated results, such as hourly counts, into a new or existing Analytics-plan custom table that analysts can query quickly instead of re-scanning raw data each time. Alert tuning only adjusts which Defender alerts surface and has no bearing on Log Analytics tables; Purview retention labels govern information lifecycle for M365 content, not telemetry aggregation; and incident tasks are simple checklist items, not data-processing features. Summary rules are the feature built for this precompute pattern.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/summary-rules"
+  },
+  {
+    "id": "spt-SCM2-D3-03",
+    "correctLetters": ["A"],
+    "explanation": "Microsoft Sentinel's Jupyter notebooks combine KQL (via tools like Kqlmagic and MSTICPy) with full Python programmability, machine-learning libraries, and rich visualizations, enabling complex, reusable, iterative investigations that go beyond a single portal query. Automation rules only orchestrate incident handling (assignment, tagging, playbooks) and perform no analysis themselves; incident tags are simple labels; and data collection rules configure ingestion pipelines rather than investigation logic. Notebooks are the dedicated capability for this kind of advanced hunting workflow.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/notebooks"
+  },
+  {
+    "id": "spt-SCM2-D3-04",
+    "correctLetters": ["A"],
+    "explanation": "The shown query first applies a where clause to filter PowerShell events containing \"-enc\" and only afterward uses project to return the four specified columns, so filtering before projecting correctly describes both the query's execution order and KQL best practice of narrowing rows before selecting fields. The other options describe operations (hourly aggregation, a join to network telemetry, extend with a constant) that do not appear in the query and would change its output. Option A is the only shape that matches the actual query.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/kusto/query/best-practices"
+  },
+  {
+    "id": "spt-SCM3-D1-01",
+    "correctLetters": ["A"],
+    "explanation": "Microsoft Defender XDR lets admins create incident email notification rules that filter by alert/incident severity and by specific detection (service) sources, so only matching High-severity incidents from selected sources trigger email to the on-call team. Workbooks only display data and cannot send notifications; alert tuning suppresses or hides alerts rather than notifying anyone; and Defender for Endpoint device groups control policy/RBAC scoping, not notification delivery. The incident email notification rule is built exactly for this requirement.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/m365d-notifications-incidents"
+  },
+  {
+    "id": "spt-SCM3-D1-02",
+    "correctLetters": ["A", "B"],
+    "explanation": "Keeping the table on the Analytics plan with analytics (interactive) retention set to 60 days preserves fast, interactive access for analytics rules and hunting, while setting the table's total retention to 5 years keeps the older data mirrored into the lower-cost data lake tier for long-term compliance without manual export. Moving the table immediately to the Data Lake tier with no analytics retention would remove the required 60-day interactive access; a workbook-driven file export and Defender XDR advanced hunting retention are unrelated mechanisms that don't manage Sentinel table tiering. A and B together reflect Sentinel's interactive-retention-plus-total-retention model.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/manage-data-overview"
+  },
+  {
+    "id": "spt-SCM3-D1-03",
+    "correctLetters": ["A"],
+    "explanation": "Microsoft Sentinel workbooks provide interactive dashboards built on KQL queries against Log Analytics data, supporting charts, grids, and parameters such as a time-range picker, so shift leads can monitor trends without creating detections. Scheduled analytics rules generate alerts and incidents rather than dashboards; data collection rules configure ingestion; and automation rules only orchestrate incident response. Only workbooks provide this visual, parameterized monitoring experience.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-time"
+  },
+  {
+    "id": "spt-SCM3-D1-04",
+    "correctLetters": ["A"],
+    "explanation": "SOC optimization recommendations analyze ingested tables and existing analytics rules to produce tailored, Microsoft-generated guidance, such as adding detections that use underutilized data, changing a table's data plan, or reducing unnecessary ingestion, without weakening security coverage. Secure Score addresses configuration/posture hardening rather than log cost-versus-coverage tradeoffs; Purview Data Explorer is a compliance data-search tool; and Defender for Endpoint exposure management focuses on vulnerability and attack-surface reduction, not Sentinel ingestion cost. SOC optimization is purpose-built for exactly this scenario.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/soc-optimization/soc-optimization-reference"
+  },
+  {
+    "id": "spt-SCM3-D1-05",
+    "correctLetters": ["A"],
+    "explanation": "The current supported pipeline for Azure subscription control-plane (Azure Activity log) data into Sentinel is the Azure Activity connector built on Azure Monitor diagnostic settings; to scale across many subscriptions, an Azure Policy assignment (for example at management-group scope) automatically deploys and remediates those diagnostic settings so logs flow consistently, including to future subscriptions. AMA-based Windows Security Events applies to VM OS telemetry, not subscription-level control-plane logs; Defender XDR custom detections cannot copy Azure control-plane data; and polling via a workbook is not a supported ingestion method. Option A matches Microsoft's documented scalable approach.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/data-connectors/azure-activity"
+  },
+  {
+    "id": "spt-SCM3-D1-06",
+    "correctLetters": ["A"],
+    "explanation": "The Threat Intelligence - TAXII data connector is Sentinel's built-in TAXII 2.x client, designed to poll a TAXII server/collection and ingest STIX-formatted indicators directly into the workspace's threat intelligence store. The Azure Activity connector ingests Azure control-plane logs, Defender XDR incidents ingest alert/incident data, and Windows Security Events via AMA ingests endpoint OS telemetry, none of which handle STIX/TAXII feeds. The TAXII connector is the only option matching this standards-based threat-intel ingestion requirement.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/connect-threat-intelligence-taxii"
+  },
+  {
+    "id": "spt-SCM3-D1-07",
+    "correctLetters": ["A"],
+    "explanation": "Sentinel's MITRE ATT&CK coverage view builds a heatmap of techniques covered by active analytics/NRT rules and overlays simulated coverage from available-but-unconfigured analytics rule templates, hunting queries, and anomaly rules, letting a detection engineer compare current versus potential coverage. The incident queue, Action center, and device inventory are operational/triage views unrelated to technique-level coverage mapping. Only the MITRE coverage matrix is built for this gap analysis.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/mitre-coverage"
+  },
+  {
+    "id": "spt-SCM3-D1-08",
+    "correctLetters": ["A"],
+    "explanation": "Configuring a scheduled analytics rule's incident settings to group alerts by matching mapped entities (such as the same account and host) consolidates multiple related alerts from one attack into a single incident instead of leaving every alert as its own incident. \"Event grouping to create a separate alert for every result\" is the opposite behavior; suppression stops the rule's query from running altogether rather than merging alerts; and a workbook parameter is unrelated to incident-creation logic. Entity-based alert grouping is the documented mechanism for this consolidation.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/create-analytics-rules"
+  },
+  {
+    "id": "spt-SCM3-D2-01",
+    "correctLetters": ["A"],
+    "explanation": "Defender for Cloud's security alert details view shows the affected resource, alert description, severity, activity time, and a Take action tab with Microsoft-recommended remediation and prevention steps, which is exactly what an analyst needs before acting on a workload-protection alert. The Sentinel workbook gallery only offers visualization templates rather than individual alert investigation; Defender XDR email notification settings configure alerting, not alert content; and Purview eDiscovery is unrelated to infrastructure security alerts. The alert details page is the correct first stop.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/alerts-overview"
+  },
+  {
+    "id": "spt-SCM3-D2-02",
+    "correctLetters": ["A"],
+    "explanation": "The Risky sign-ins report in Microsoft Entra ID Protection shows per-attempt detail, including application, device, location, Conditional Access outcome, and the risk level evaluated for that specific authentication event. The Risky users report instead aggregates risk at the account level over time rather than focusing on one sign-in; Defender for Endpoint device inventory and Purview Audit cover device and M365 activity logs, not sign-in risk detail. Because the analyst needs attempt-level detail rather than accumulated account risk, Risky sign-ins is correct.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks"
+  },
+  {
+    "id": "spt-SCM3-D2-03",
+    "correctLetters": ["A"],
+    "explanation": "The identity entity page's Timeline tab in Microsoft Defender XDR gives a chronological, identity-centric view that correlates alerts, directory/Entra changes, Defender for Cloud Apps activity, and device logons for a user across connected Microsoft security products, exactly the reconstruction the analyst needs. The data connector health workbook monitors ingestion pipelines, the Action center tracks remediation actions, and the Purview retention policy page manages data lifecycle, none of which provide a per-identity activity timeline. The Timeline tab is purpose-built for this cross-product identity investigation.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/investigate-users"
+  },
+  {
+    "id": "spt-SCM3-D2-04",
+    "correctLetters": ["A"],
+    "explanation": "The embedded Security Copilot incident summary automatically generates, when an analyst opens an incident, an AI overview covering when the attack started, the likely originating asset, the attack timeline, involved assets, and indicators of compromise, directly matching the described need. Sentinel summary rules only precompute KQL aggregates and have no AI narrative capability; Defender XDR alert tuning adjusts which alerts surface; and Purview Content search is a compliance eDiscovery tool unrelated to incident analysis. Only the Copilot-generated incident summary provides this AI overview.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/security-copilot-m365d-incident-summary"
+  }
+]

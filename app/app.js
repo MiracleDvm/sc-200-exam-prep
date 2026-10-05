@@ -53,23 +53,15 @@ function renderQuestionBody(q) {
 }
 
 function renderCommunityBlock(q) {
-  const comm = q.communityTop;
-  const disputedHtml = q.disputed
-    ? `<div class="disputed-note">⚠️ La réponse officielle est contestée par la communauté.</div>`
+  if (!q.explanation) return '';
+  const link = q.referenceUrl
+    ? `<div class="ref-link"><a href="${escapeHtml(q.referenceUrl)}" target="_blank" rel="noopener">En savoir plus (Microsoft Learn) ↗</a></div>`
     : '';
-  const hasVotes = typeof comm?.upvotes === 'number';
-  const label = hasVotes
-    ? `💬 Commentaire le plus voté (${comm.upvotes} vote${comm.upvotes === 1 ? '' : 's'})`
-    : '📝 Explication';
-  const commHtml = comm
-    ? `<div class="community-comment">
-        <div class="meta">${label}${
-          comm.selectedAnswer ? ' — réponse proposée : ' + escapeHtml(comm.selectedAnswer) : ''
-        }</div>
-        ${escapeHtml(comm.text)}
-      </div>`
-    : '';
-  return disputedHtml + commHtml;
+  return `<div class="community-comment">
+      <div class="meta">📝 Explication</div>
+      ${escapeHtml(q.explanation)}
+      ${link}
+    </div>`;
 }
 
 // ---------- Routing ----------

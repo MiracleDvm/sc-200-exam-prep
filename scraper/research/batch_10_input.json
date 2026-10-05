@@ -1,0 +1,517 @@
+[
+  {
+    "id": "spt-SCM4-D2-02",
+    "text": "Investigation confirms that a user-consented OAuth application is malicious and should no longer access organizational cloud data. Which Defender for Cloud Apps action most directly removes the application's granted access?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Ban or revoke the OAuth application"
+      },
+      {
+        "letter": "B",
+        "text": "Dismiss the activity alert as benign"
+      },
+      {
+        "letter": "C",
+        "text": "Add the application to a Sentinel workbook"
+      },
+      {
+        "letter": "D",
+        "text": "Collect an endpoint investigation package"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D2-03",
+    "text": "A malicious executable is currently running on several known endpoints. The SOC needs to terminate it and quarantine the file on those devices immediately, then plans to create a longer-lived block afterward. Which Defender for Endpoint response action should be used first?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Stop and quarantine file"
+      },
+      {
+        "letter": "B",
+        "text": "Collect investigation package"
+      },
+      {
+        "letter": "C",
+        "text": "Restrict app execution"
+      },
+      {
+        "letter": "D",
+        "text": "Run antivirus quick scan"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D2-04",
+    "text": "An analyst finishes a Defender XDR investigation and resolves the incident. The SOC wants the record to show both whether the incident was a true or false positive and, for a true positive, what kind of threat it represented. Which incident properties capture those two judgments?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Classification and determination"
+      },
+      {
+        "letter": "B",
+        "text": "Severity and the assigned incident owner"
+      },
+      {
+        "letter": "C",
+        "text": "Status and device risk"
+      },
+      {
+        "letter": "D",
+        "text": "Tags and detection source"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D2-05",
+    "text": "A junior responder opens a complex incident and needs contextual recommendations for triage, containment, further investigation, and remediation. The analyst wants suggested actions that can be reviewed before being applied rather than an opaque automatic response. Which embedded capability best fits?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Security Copilot guided responses"
+      },
+      {
+        "letter": "B",
+        "text": "Microsoft Sentinel summary rules"
+      },
+      {
+        "letter": "C",
+        "text": "Defender XDR incident email notifications"
+      },
+      {
+        "letter": "D",
+        "text": "Microsoft Purview retention policies"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D2-06",
+    "text": "A Defender for Cloud Apps activity alert shows a user repeatedly accessing cloud resources from a risky source, and the SOC wants to contain the account while it determines whether the behavior is malicious. Which response is designed for this immediate identity containment?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Suspend the user account from the investigation workflow"
+      },
+      {
+        "letter": "B",
+        "text": "Delete the Sentinel workspace containing the alert"
+      },
+      {
+        "letter": "C",
+        "text": "Disable endpoint network protection across the tenant"
+      },
+      {
+        "letter": "D",
+        "text": "Convert the activity alert into a Purview retention label"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D2-07",
+    "text": "A workstation is compromised and the responder wants to prevent most untrusted programs from launching while keeping the device available for further investigation. Which Defender for Endpoint action applies a code integrity policy that permits only Microsoft-signed files to run?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Restrict app execution"
+      },
+      {
+        "letter": "B",
+        "text": "Collect investigation package"
+      },
+      {
+        "letter": "C",
+        "text": "Run antivirus scan"
+      },
+      {
+        "letter": "D",
+        "text": "Add a device tag"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D3-01",
+    "text": "A hunter needs endpoint telemetry showing outbound connections, including RemoteIP, RemotePort, RemoteUrl, Protocol, and the initiating process. Which Microsoft Defender XDR Advanced Hunting table is the best starting point?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "DeviceNetworkEvents"
+      },
+      {
+        "letter": "B",
+        "text": "DeviceNetworkInfo"
+      },
+      {
+        "letter": "C",
+        "text": "DeviceProcessEvents"
+      },
+      {
+        "letter": "D",
+        "text": "EmailUrlInfo"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D3-02",
+    "text": "A hunter has many records per device and wants the complete most recent row for each DeviceId, not merely the latest timestamp value. Which KQL pattern best meets the requirement?\n\nDeviceInfo | summarize arg_max(Timestamp, *) by DeviceId",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Returns the full row with the greatest Timestamp for each DeviceId"
+      },
+      {
+        "letter": "B",
+        "text": "Returns only the largest Timestamp value across the entire table"
+      },
+      {
+        "letter": "C",
+        "text": "Joins each DeviceId to every row having a different timestamp"
+      },
+      {
+        "letter": "D",
+        "text": "Counts how many rows each DeviceId produced during the query window"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D3-03",
+    "text": "During a Sentinel hunt, an analyst finds a suspicious query result that may become evidence in a later incident. Which THREE items are preserved with a hunting bookmark so the analyst can revisit the finding in context?",
+    "type": "multi-select",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "The selected result data"
+      },
+      {
+        "letter": "B",
+        "text": "The source KQL query"
+      },
+      {
+        "letter": "C",
+        "text": "The query time range"
+      },
+      {
+        "letter": "D",
+        "text": "The user's Defender licensing assignment"
+      },
+      {
+        "letter": "E",
+        "text": "The workspace pricing tier history"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A",
+      "B",
+      "C"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D3-04",
+    "text": "A hunter is building a long KQL query and wants to define a suspicious-IP list once, give that expression a name, and reuse the name in several later parts of the query. Which KQL construct is intended for this?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "A let statement"
+      },
+      {
+        "letter": "B",
+        "text": "A project operator"
+      },
+      {
+        "letter": "C",
+        "text": "A distinct operator"
+      },
+      {
+        "letter": "D",
+        "text": "A render operator"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM5-D1-01",
+    "text": "A responder can run signed PowerShell scripts during a Defender for Endpoint live response session, but an internally written unsigned script is rejected. Which tenant setting most directly enables that script to run?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Allow unsigned script execution in live response"
+      },
+      {
+        "letter": "B",
+        "text": "Enable endpoint attack notifications"
+      },
+      {
+        "letter": "C",
+        "text": "Turn on authenticated telemetry"
+      },
+      {
+        "letter": "D",
+        "text": "Share endpoint alerts with Microsoft Purview"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM5-D1-02",
+    "text": "An insider-risk team wants endpoint security alerts and their triage status to contribute context to Microsoft Purview insider risk investigations. Which Defender for Endpoint advanced feature provides this integration?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Share endpoint alerts with Microsoft Compliance Center"
+      },
+      {
+        "letter": "B",
+        "text": "Enable web content filtering"
+      },
+      {
+        "letter": "C",
+        "text": "Restrict correlation to scoped device groups"
+      },
+      {
+        "letter": "D",
+        "text": "Enable streamlined device connectivity"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM5-D1-03",
+    "text": "A company wants Microsoft Intune compliance and Conditional Access decisions to use device risk calculated by Defender for Endpoint. The Defender portal connection is enabled, but no risk information reaches Intune. What configuration should the engineer verify next?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "The Defender for Endpoint integration is also enabled in Microsoft Intune"
+      },
+      {
+        "letter": "B",
+        "text": "Every Sentinel analytics rule maps a Device entity"
+      },
+      {
+        "letter": "C",
+        "text": "A Defender live response session is active on each managed device"
+      },
+      {
+        "letter": "D",
+        "text": "The devices are assigned to the highest Defender automation level"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM5-D1-04",
+    "text": "A Sentinel administrator searches the Data connectors page for a supported third-party product, but the connector is not listed even though Microsoft documents it as available through Sentinel. What should the administrator check first?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Install the solution that provides the connector from Content hub"
+      },
+      {
+        "letter": "B",
+        "text": "Whether all existing incidents have been resolved"
+      },
+      {
+        "letter": "C",
+        "text": "Whether the workspace has at least one custom workbook"
+      },
+      {
+        "letter": "D",
+        "text": "Whether threat intelligence indicators have been imported"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM5-D1-05",
+    "text": "A large enterprise frequently adds and removes Windows workstations. Security events from those workstations must be forwarded to central Windows Event Collectors without administrators maintaining an explicit source-computer list in each subscription. Which WEF subscription model best fits?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Source-initiated subscription"
+      },
+      {
+        "letter": "B",
+        "text": "Collector-initiated subscription"
+      },
+      {
+        "letter": "C",
+        "text": "Near-real-time analytics subscription"
+      },
+      {
+        "letter": "D",
+        "text": "Microsoft Sentinel automation subscription"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM5-D1-06",
+    "text": "A team creates a new destination table for the Microsoft Sentinel Custom Logs via AMA connector to ingest a text application log directly from the host. Which TWO requirements apply to the initial custom table?",
+    "type": "multi-select",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "The table name ends with _CL"
+      },
+      {
+        "letter": "B",
+        "text": "The table includes a TimeGenerated datetime field"
+      },
+      {
+        "letter": "C",
+        "text": "The table name ends with _SecurityEvent"
+      },
+      {
+        "letter": "D",
+        "text": "The table includes an AlertId GUID field"
+      },
+      {
+        "letter": "E",
+        "text": "The table must use the CommonSecurityLog schema"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A",
+      "B"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM5-D1-07",
+    "text": "A Defender XDR custom detection query joins DeviceProcessEvents to DeviceNetworkEvents. The author wants to select Continuous (NRT) frequency, but the rule is not eligible. Which query characteristic explains the restriction?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Continuous custom detections must reference only one table"
+      },
+      {
+        "letter": "B",
+        "text": "Continuous rules cannot include any time filter"
+      },
+      {
+        "letter": "C",
+        "text": "Continuous rules require a Microsoft Sentinel workbook"
+      },
+      {
+        "letter": "D",
+        "text": "Continuous rules can use only email-related tables"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM5-D1-08",
+    "text": "An analyst opens a Sentinel scheduled analytics rule template from an installed solution. The template lists a required data source that is not connected, and the Create rule action is unavailable. What is the most appropriate next step?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Enable the required data source before creating the rule"
+      },
+      {
+        "letter": "B",
+        "text": "Convert the template into a hunting bookmark"
+      },
+      {
+        "letter": "C",
+        "text": "Assign every incident to the analyst"
+      },
+      {
+        "letter": "D",
+        "text": "Move the workspace to the Data lake tier"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  }
+]

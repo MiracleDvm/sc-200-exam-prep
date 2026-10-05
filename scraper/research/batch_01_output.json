@@ -1,0 +1,110 @@
+[
+  {
+    "id": "813328",
+    "correctLetters": [],
+    "explanation": "Cette question est de type drag-drop (schéma visuel non analysable automatiquement), donc la réponse actuelle est conservée telle quelle. Sur le fond, ce type de requête repose sur la table DeviceLogonEvents du schéma Advanced Hunting de Microsoft Defender XDR : il faut filtrer sur DeviceName in (\"CFOLaptop\", \"CEOLaptop\", \"COOLaptop\"), ActionType == \"LogonFailed\", puis utiliser summarize count() by DeviceName pour compter les échecs d'authentification par appareil. Le point testé est la bonne utilisation des colonnes DeviceName et ActionType ainsi que la syntaxe KQL summarize/count.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicelogonevents-table"
+  },
+  {
+    "id": "813329",
+    "correctLetters": ["C"],
+    "explanation": "La politique \"Activity from infrequent country\" (anciennement new/infrequent location) s'appuie sur le moteur UEBA de Defender for Cloud Apps, qui apprend les emplacements déjà utilisés par l'ensemble des utilisateurs de l'organisation et déclenche une alerte lorsqu'une connexion provient d'un pays jamais ou rarement visité par quiconque dans le tenant. \"Impossible travel\" détecte au contraire deux connexions du même utilisateur depuis des lieux géographiquement incompatibles dans un délai trop court, ce qui ne correspond pas à l'énoncé. \"Activity from anonymous IP addresses\" cible les IP de proxys/Tor, et \"Malware detection\" ne concerne pas les emplacements de connexion. La bonne réponse est donc C.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/anomaly-detection-policy"
+  },
+  {
+    "id": "813330",
+    "correctLetters": ["D"],
+    "explanation": "Pour qu'une règle DLP de Microsoft Purview détecte un identifiant structuré comme un numéro de compte de 32 caractères alphanumériques, il faut créer un type d'information sensible (SIT) personnalisé basé sur une expression régulière (RegEx), par exemple [A-Za-z0-9]{32}. La recherche SharePoint ne fait pas de classification de sensibilité, Azure Information Protection sert à étiqueter/chiffrer des documents déjà identifiés comme sensibles (pas à les détecter par motif), et une requête de chasse dans Microsoft 365 Defender n'est pas liée au moteur DLP. La bonne réponse est donc D.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/purview/sit-create-a-custom-sensitive-information-type"
+  },
+  {
+    "id": "813332",
+    "correctLetters": ["B", "D", "E"],
+    "explanation": "Pour qu'une règle de suppression puisse être créée dans Microsoft Defender for Endpoint, l'alerte doit d'abord être générée (E), puisqu'une règle de suppression se crée toujours à partir d'une alerte existante dans la file d'alertes. On choisit ensuite l'action \"Hide alert\" (B) plutôt que \"Resolve\" pour qu'elle soit totalement masquée du portail et des API, et on scope la règle à un groupe d'appareils (D) — celui de l'équipe comptabilité — plutôt qu'à \"any device\" (C), afin de ne pas supprimer ce signal légitime sur le reste du parc et ainsi préserver la posture de sécurité globale. B, D et E sont donc les trois actions correctes.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/manage-alerts"
+  },
+  {
+    "id": "813333",
+    "correctLetters": [],
+    "explanation": "Question drag-drop (réponse visuelle non vérifiable) ; la réponse actuelle (vide) est conservée telle quelle. Le concept testé est la gouvernance des applications découvertes dans Microsoft Defender for Cloud Apps/Cloud Discovery sans Defender for Endpoint : on évalue le score de risque de l'application dans le tableau de bord Cloud Discovery, on la marque comme \"Unsanctioned\", puis on génère un script de blocage (\"Generate block script\") à importer manuellement dans l'appliance de sécurité (proxy/pare-feu) existante, puisque sans Defender for Endpoint le blocage automatique par groupe d'appareils n'est pas disponible.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/governance-discovery"
+  },
+  {
+    "id": "813334",
+    "correctLetters": [],
+    "explanation": "Question hotspot (réponse visuelle non vérifiable) ; la réponse actuelle (vide) est conservée telle quelle. Le concept testé est une investigation cross-domaine dans Microsoft 365 Defender/Defender XDR : on part de la table EmailAttachmentInfo pour identifier la pièce jointe malveillante (via son SHA256), puis on effectue une jointure (join) avec DeviceFileEvents sur ce même SHA256 afin de retrouver les appareils sur lesquels le fichier a été exécuté ou écrit, ce qui permet de relier un événement de messagerie à un impact sur les terminaux.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-emailattachmentinfo-table"
+  },
+  {
+    "id": "813335",
+    "correctLetters": ["A", "E"],
+    "explanation": "Pour transformer une requête Advanced Hunting en alerte automatique récurrente, il faut créer une règle de détection personnalisée (A, \"Create a detection rule\"), qui s'exécute périodiquement et génère des alertes/actions sans intervention manuelle. Microsoft exige que la requête renvoie certaines colonnes obligatoires pour les tables liées aux appareils, notamment Timestamp, DeviceId et ReportId (E), afin que l'alerte soit correctement rattachée au bon appareil et au bon groupe de périphériques. Une règle de suppression (B) masque des alertes au lieu d'en créer, trier les résultats (C) ou changer de table (D, DeviceNetworkEvents ne contient pas d'événements System Restore) ne répond pas au besoin. A et E sont donc les deux actions correctes.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/custom-detection-rules"
+  },
+  {
+    "id": "813336",
+    "correctLetters": ["A", "C", "D"],
+    "explanation": "Pour regrouper temporairement des appareils provenant de plusieurs groupes existants afin d'y appliquer des actions automatisées, on ajoute d'abord une balise (tag) directement sur les machines concernées (C), puis on crée un nouveau groupe d'appareils basé sur cette balise (A, \"Assign a tag to the device group\" correspond à la configuration du critère d'appartenance du groupe sur ce tag). Ce nouveau groupe doit avoir un rang de 1 (D), car dans Microsoft Defender for Endpoint un appareil n'est affecté qu'au groupe de rang le plus élevé (rang 1 = priorité la plus haute) parmi tous les groupes dont il remplit les critères, ce qui garantit que les machines taguées rejoignent bien ce groupe temporaire plutôt qu'un des trois groupes existants. Ajouter les utilisateurs à un rôle admin ou créer un nouveau rôle admin (B, E) n'a aucun rapport avec le regroupement de machines, et un rang de 4 (F) serait une priorité plus basse que les groupes existants.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-endpoint/machine-groups"
+  },
+  {
+    "id": "813337",
+    "correctLetters": ["A"],
+    "explanation": "Les comptes Honeytoken dans Microsoft Defender for Identity sont par définition des comptes-leurres, dormants et sans accès réel, configurés pour paraître intéressants aux yeux d'un attaquant : toute authentification ou activité sur ces comptes déclenche automatiquement une alerte, ce qui correspond exactement à l'objectif de \"configurer des comptes pour que les attaquants les exploitent\". Les taguer via Entity tags > Honeytoken accounts est la méthode officielle documentée par Microsoft pour ce scénario. La solution atteint donc bien l'objectif (réponse A, Yes).",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-for-identity/entity-tags"
+  },
+  {
+    "id": "813348",
+    "correctLetters": ["A", "B"],
+    "explanation": "Pour réduire les faux positifs d'impossible travel et de connexions depuis des IP à risque sur des plages IP d'agences légitimes, il faut d'abord classer ces plages dans la catégorie \"Corporate\" (B) dans la gestion des plages d'adresses IP de Defender for Cloud Apps : un tag personnalisé Corporate prime sur les tags intégrés (comme Risky) et signale au moteur que ces emplacements sont sûrs. Il faut ensuite activer l'enrichissement automatique des données (A, \"Configure automatic data enrichment\"), qui permet au moteur de machine learning d'utiliser ces informations de catégorisation pour exclure correctement ces emplacements connus du calcul des anomalies. Augmenter la sensibilité (C) aggraverait le problème, et une politique d'activité avec exclusion (E) ou un tag \"other\" (D) ne s'appliquent pas aux détections d'anomalie basées sur le ML. A et B sont donc les deux bonnes réponses.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/ip-tags"
+  },
+  {
+    "id": "813349",
+    "correctLetters": ["B"],
+    "explanation": "Un compte \"Sensitive\" dans Microsoft Defender for Identity sert à signaler un compte réel et important (comme un compte admin ou un cadre dirigeant) afin d'affiner certaines détections (par exemple les changements de groupes sensibles) — ce n'est pas un leurre destiné à être compromis. Il ne déclenche donc pas d'alerte automatique en cas d'authentification, contrairement à un Honeytoken, et ne répond pas à l'objectif de \"configurer des comptes pour que les attaquants les exploitent\". Cette solution ne permet donc pas d'atteindre l'objectif (réponse B, No).",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-for-identity/entity-tags"
+  },
+  {
+    "id": "813350",
+    "correctLetters": ["A"],
+    "explanation": "Le Threat Protection Status report dans Microsoft Defender for Office 365 inclut une vue dédiée aux actions de Zero-hour auto purge (ZAP), montrant les messages qui ont été déplacés après livraison (par exemple vers le dossier Courrier indésirable ou mis en quarantaine) suite à une détection rétroactive de phishing ou de malware. Le journal d'audit de boîte aux lettres (B) trace les actions utilisateur et administratives mais pas spécifiquement les actions ZAP, le rapport sur les types de fichiers Safe Attachments (C) concerne les pièces jointes analysées en bac à sable, et le rapport de flux de messagerie (D) ne détaille pas les actions post-livraison de ZAP. La bonne réponse est donc A.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-office-365/zero-hour-auto-purge"
+  },
+  {
+    "id": "813351",
+    "correctLetters": ["B"],
+    "explanation": "Les règles de réduction de la surface d'attaque (Attack Surface Reduction, ASR) de Microsoft Defender for Endpoint ciblent précisément ces trois comportements à risque : elles peuvent bloquer les macros Office qui lancent du contenu téléchargé depuis Internet, empêcher Outlook de créer des processus enfants (pièces jointes exécutables) et bloquer les abus des règles/formulaires Outlook utilisés comme technique de persistance. L'antivirus Defender (A) et le pare-feu (C) agissent sur d'autres vecteurs (signatures de malware, trafic réseau) sans cibler ces comportements applicatifs précis, et l'adaptive application control d'Azure Defender (D) vise les serveurs, pas les postes Windows 10 avec Office. La bonne réponse est donc B.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction"
+  },
+  {
+    "id": "813352",
+    "correctLetters": ["B"],
+    "explanation": "Pour envoyer les événements de connexion Azure AD/Microsoft Entra ID vers un SIEM tiers en quasi temps réel, il faut configurer les paramètres de diagnostic (Diagnostic settings) du tenant Microsoft Entra ID pour diffuser (stream) les journaux de connexion vers un Event Hub, auquel le SIEM peut ensuite se connecter en continu. Créer un espace de travail Sentinel (A, C) n'est pas nécessaire puisque la cible est un SIEM tiers, et archiver vers un compte de stockage (D) ne permet qu'une consultation différée, pas un flux en temps quasi réel. La bonne réponse est donc B.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/entra/identity/monitoring-health/howto-stream-logs-to-event-hub"
+  },
+  {
+    "id": "813353",
+    "correctLetters": [],
+    "explanation": "Question drag-drop (réponse visuelle non vérifiable) ; la réponse actuelle (vide) est conservée telle quelle. Le concept testé est l'attribution des rôles Azure RBAC au niveau de l'abonnement selon le principe du moindre privilège pour Microsoft Defender for Cloud (ex-Azure Defender) : Security Reader pour une consultation en lecture seule des recommandations/alertes, Security Admin pour pouvoir en plus modifier les politiques de sécurité et classer les alertes/recommandations, tandis que Owner/Contributor donnent des droits plus larges que nécessaire pour de simples tâches de sécurité.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/permissions"
+  },
+  {
+    "id": "813354",
+    "correctLetters": [],
+    "explanation": "Question hotspot (réponse visuelle non vérifiable) ; la réponse actuelle (vide) est conservée telle quelle. Le concept testé est le contrôle d'accès basé sur les rôles (RBAC) unifié de Microsoft Defender pour la fonctionnalité Live Response : il faut accorder uniquement la permission \"Basic live response\" (qui permet d'ouvrir une session et de réaliser des actions en lecture) plutôt que \"Advanced live response\" (qui autorise en plus l'upload de fichiers et l'exécution de scripts), afin de respecter le principe du moindre privilège tout en permettant la connexion shell distante aux appareils depuis le portail.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-endpoint/live-response"
+  },
+  {
+    "id": "813355",
+    "correctLetters": [],
+    "explanation": "Question hotspot (réponse visuelle non vérifiable) ; la réponse actuelle (vide) est conservée telle quelle. Le concept testé est une requête Advanced Hunting cross-tables dans Microsoft 365 Defender : on identifie d'abord les appareils sur lesquels User1 s'est connecté via DeviceLogonEvents (filtrage sur AccountName/AccountUpn), puis on effectue une jointure sur DeviceId avec les tables d'alertes (AlertInfo/AlertEvidence) afin de ne récupérer que les alertes déclenchées sur ces appareils précis, ce qui permet de circonscrire l'investigation au périmètre du compte compromis.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicelogonevents-table"
+  },
+  {
+    "id": "813356",
+    "correctLetters": ["D"],
+    "explanation": "Le modèle de politique \"Data theft by departing users\" de la gestion des risques internes (Insider Risk Management) de Microsoft Purview est conçu précisément pour ce scénario : il corrèle les indicateurs d'exfiltration (téléchargements massifs depuis SharePoint Online, copie vers du stockage personnel, etc.) sur une fenêtre de temps avant et après la date de départ d'un utilisateur, même après la suppression du compte. Une politique de file policy de Defender for Cloud Apps (A) ou une politique d'alerte de Defender for Office 365 (C) ne couvrent pas cette corrélation temporelle liée au départ, et une revue d'accès (B) sert à valider des droits, pas à détecter un comportement d'exfiltration passé. La bonne réponse est donc D.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/purview/insider-risk-management-policy-templates"
+  }
+]

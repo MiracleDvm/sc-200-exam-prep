@@ -1,0 +1,110 @@
+[
+  {
+    "id": "spt-SCM4-D2-02",
+    "correctLetters": ["A"],
+    "explanation": "In Microsoft Defender for Cloud Apps, banning (revoking) an OAuth app immediately removes its ability to access organizational data by invalidating its existing refresh and access tokens, rather than just flagging the alert. Dismissing the alert leaves the app's permissions intact, a Sentinel workbook is only for visualization and has no enforcement effect, and collecting an endpoint investigation package is an unrelated Defender for Endpoint device action, not a cloud-app governance control.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/governance-actions"
+  },
+  {
+    "id": "spt-SCM4-D2-03",
+    "correctLetters": ["A"],
+    "explanation": "Stop and quarantine file is the Defender for Endpoint action built specifically to terminate a running process and remove the malicious file from disk on one or more devices in a single step, which is what's needed before a broader, longer-lived block is set up later (e.g., via indicators). Collect investigation package only gathers forensic data without stopping the threat, Restrict app execution is a device-wide containment measure (code integrity policy) rather than targeting the specific running file, and an antivirus quick scan is a detection action, not an immediate termination/removal action.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-endpoint/respond-machine-alerts"
+  },
+  {
+    "id": "spt-SCM4-D2-04",
+    "correctLetters": ["A"],
+    "explanation": "Defender XDR incidents expose a Classification property (True positive, Informational/expected activity, or False positive) and, only when classification is True positive, a Determination property that records the specific threat type (e.g., malware, phishing, compromised account, multi-staged attack). Severity and owner describe priority/assignment rather than the outcome of the investigation, status and device risk track workflow/risk state, and tags/detection source are metadata that don't capture the true/false-positive verdict or threat category.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/api-update-incidents"
+  },
+  {
+    "id": "spt-SCM4-D2-05",
+    "correctLetters": ["A"],
+    "explanation": "Security Copilot's guided response in the Defender portal generates AI-based recommendations across triage, containment, investigation, and remediation for an incident, each with a rationale the analyst can review before choosing to apply it, matching the \"reviewable, not opaque automatic\" requirement. Sentinel summary rules only aggregate query results, incident email notifications merely alert staff without giving actionable recommendations, and Purview retention policies govern data lifecycle and have nothing to do with incident triage guidance.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/security-copilot-m365d-guided-response"
+  },
+  {
+    "id": "spt-SCM4-D2-06",
+    "correctLetters": ["A"],
+    "explanation": "The Suspend user governance action in Defender for Cloud Apps immediately locks the account out of the application while the investigation continues, making it the correct identity-containment response to a risky activity alert. Deleting the Sentinel workspace or disabling tenant-wide endpoint network protection are drastic, unrelated, and disproportionate actions, and converting the alert into a Purview retention label only affects data retention, not account access.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/governance-actions"
+  },
+  {
+    "id": "spt-SCM4-D2-07",
+    "correctLetters": ["A"],
+    "explanation": "Restrict app execution applies a code integrity policy on the device that allows only files signed by a Microsoft certificate to run, containing the threat while keeping the machine online for further analysis. Collect investigation package just gathers forensic artifacts, running an antivirus scan only looks for known malware signatures without blocking unsigned executables, and adding a device tag is purely organizational metadata with no enforcement effect.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-endpoint/respond-machine-alerts"
+  },
+  {
+    "id": "spt-SCM4-D3-01",
+    "correctLetters": ["A"],
+    "explanation": "DeviceNetworkEvents is the Advanced Hunting table that logs outbound/inbound network connection events per device, including RemoteIP, RemotePort, RemoteUrl, Protocol, and the InitiatingProcessFileName, making it the right starting point for this hunt. DeviceNetworkInfo instead describes the device's own network configuration (adapters, IP addresses) rather than connection events, DeviceProcessEvents tracks process creation without the specific network columns listed, and EmailUrlInfo is about URLs found in email messages, unrelated to endpoint network telemetry.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicenetworkevents-table"
+  },
+  {
+    "id": "spt-SCM4-D3-02",
+    "correctLetters": ["A"],
+    "explanation": "summarize arg_max(Timestamp, *) by DeviceId returns, for each DeviceId group, the complete row (all columns, via the * wildcard) belonging to the record with the greatest Timestamp value - exactly the \"latest full row per device\" requirement. It does not collapse everything to one global maximum (that would omit the by DeviceId grouping), it isn't a join producing multiple rows per device, and it performs no counting; those behaviors would require different operators like max() alone, join, or count().",
+    "referenceUrl": "https://learn.microsoft.com/en-us/kusto/query/arg-max-aggregation-function"
+  },
+  {
+    "id": "spt-SCM4-D3-03",
+    "correctLetters": ["A", "B", "C"],
+    "explanation": "A Microsoft Sentinel hunting bookmark preserves the selected result data from the log query, the source KQL query that produced it, and the query's time range, so the analyst (and teammates) can revisit the exact finding in context later, alongside optional notes/tags and entity mappings. A user's Defender license assignment and the workspace's pricing-tier history are tenant/billing metadata that bookmarks don't track at all, since bookmarks are scoped to query evidence, not licensing or cost configuration.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/bookmarks"
+  },
+  {
+    "id": "spt-SCM4-D3-04",
+    "correctLetters": ["A"],
+    "explanation": "A let statement binds a name to a scalar value, tabular expression, or function so it can be referenced repeatedly later in the same query, which is exactly what's needed to define a suspicious-IP list once and reuse it. The project operator only selects/renames columns in the current pipeline, distinct removes duplicate rows, and render is purely for visualizing results - none of them create a reusable named definition.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/kusto/query/let-statement"
+  },
+  {
+    "id": "spt-SCM5-D1-01",
+    "correctLetters": ["A"],
+    "explanation": "By default, Defender for Endpoint live response only allows signed PowerShell scripts to run; the \"Allow unsigned script execution\" (Live Response unsigned script execution) advanced feature toggle in the Defender portal must be enabled for an internally written, unsigned script to execute during a session. Enabling attack notifications, authenticated telemetry, or sharing alerts with Purview are unrelated settings that have no bearing on live response script signing requirements.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-endpoint/advanced-features"
+  },
+  {
+    "id": "spt-SCM5-D1-02",
+    "correctLetters": ["A"],
+    "explanation": "The \"Share endpoint alerts with Microsoft Compliance Center\" advanced feature in Defender for Endpoint forwards endpoint alerts and their triage/remediation status into the Microsoft Purview compliance portal, where they enrich insider risk management policies and investigations. Web content filtering controls site access and is unrelated to insider risk, scoping correlation to device groups only limits automated investigation grouping, and streamlined device connectivity is a networking/onboarding optimization with no Purview integration role.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-endpoint/advanced-features"
+  },
+  {
+    "id": "spt-SCM5-D1-03",
+    "correctLetters": ["A"],
+    "explanation": "Device risk flows from Defender for Endpoint to Intune compliance/Conditional Access only when the connection is enabled on both sides: in the Defender portal and also under Intune's own Defender for Endpoint integration setting (Endpoint security > Microsoft Defender for Endpoint). If only the Defender-side connection is on, Intune never receives the risk signal, so compliance policies can't act on it. Sentinel entity mappings, live response sessions, and Defender automation levels have no bearing on whether Intune receives device risk scores.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/intune/device-security/microsoft-defender/configure-integration"
+  },
+  {
+    "id": "spt-SCM5-D1-04",
+    "correctLetters": ["A"],
+    "explanation": "Most data connectors, including many third-party ones, ship as part of a packaged solution in the Microsoft Sentinel Content hub and are not visible on the Data connectors page until that solution is installed into the workspace. Resolving incidents, adding a custom workbook, or importing threat intelligence indicators have no effect on which connectors are listed; the fix is specifically to find and install the relevant solution (with its dependencies) from Content hub.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/sentinel-solutions-deploy"
+  },
+  {
+    "id": "spt-SCM5-D1-05",
+    "correctLetters": ["A"],
+    "explanation": "A source-initiated subscription lets the Windows Event Collector accept forwarded events from any computer configured (via Group Policy) to push to it, without the administrator having to enumerate each source computer, which scales well as workstations are added and removed. A collector-initiated subscription requires the collector to explicitly list every source machine, making it impractical to maintain in a dynamic, large environment; the other two options aren't real WEF subscription types.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/windows/win32/wec/setting-up-a-source-initiated-subscription"
+  },
+  {
+    "id": "spt-SCM5-D1-06",
+    "correctLetters": ["A", "B"],
+    "explanation": "When creating a new custom table for the Custom Logs via AMA (DCR-based) connector, the table name must end in the _CL suffix and the table must include a TimeGenerated column of type datetime, which Sentinel/Log Analytics requires to timestamp ingested rows. There's no _SecurityEvent naming convention, an AlertId GUID field isn't a schema requirement for generic custom text logs, and the CommonSecurityLog schema applies to CEF/syslog ingestion, not arbitrary custom application logs.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/connect-custom-logs-ama"
+  },
+  {
+    "id": "spt-SCM5-D1-07",
+    "correctLetters": ["A"],
+    "explanation": "Continuous (NRT) frequency for Defender XDR custom detections is only available to queries that reference a single table and use a supported subset of KQL operators; because this query joins DeviceProcessEvents to DeviceNetworkEvents (two tables), it's ineligible for Continuous frequency and must instead run on a scheduled interval. The restriction isn't about time filters, needing a Sentinel workbook, or being limited to email tables - those aren't real constraints on NRT eligibility.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/custom-detection-rules"
+  },
+  {
+    "id": "spt-SCM5-D1-08",
+    "correctLetters": ["A"],
+    "explanation": "When an analytics rule template's required data source isn't connected, Microsoft Sentinel automatically detects this and disables (or warns on) the Create rule button, so the correct next step is to connect/enable that data source first and then create the rule, ensuring the underlying data actually exists for the rule to query. Converting the template into a hunting bookmark, assigning incidents, or moving the workspace to the Data lake tier don't address the missing data source and wouldn't make the Create rule action available.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/create-analytics-rule-from-template"
+  }
+]

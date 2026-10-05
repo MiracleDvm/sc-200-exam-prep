@@ -134,6 +134,9 @@ input[type="number"], select {
 .disputed-note { color: var(--warn); font-size: 0.85rem; margin-top: 8px; }
 .community-comment { margin-top: 10px; padding: 10px 12px; background: #11182a; border-radius: 8px; font-size: 0.9rem; white-space: pre-wrap; }
 .community-comment .meta { color: var(--text-dim); font-size: 0.8rem; margin-bottom: 4px; }
+.ref-link { margin-top: 8px; }
+.ref-link a { color: var(--accent); text-decoration: none; font-size: 0.85rem; }
+.ref-link a:hover { text-decoration: underline; }
 
 .toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
 .topic-pill {

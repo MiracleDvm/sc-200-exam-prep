@@ -1,0 +1,110 @@
+[
+  {
+    "id": "ed-64-596f7520",
+    "correctLetters": ["D"],
+    "explanation": "Content search (in Microsoft Purview eDiscovery) lets you search Exchange mailboxes using KQL-style conditions such as subject:\"Project1\", and you can scope the search to specific mailbox locations by choosing only the mailboxes of the users who worked on Project1 instead of searching the entire organization. A user data search is an older/less precise concept and isn't the named Purview tool; a records management disposition only handles retention/deletion of declared records, not keyword search; and an audit search queries the unified audit log for activities (who did what), not message subject-line content.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/purview/ediscovery-content-search-overview"
+  },
+  {
+    "id": "ed-65-596f7520",
+    "correctLetters": ["B", "C"],
+    "explanation": "A custom alert tuning rule in Microsoft Defender XDR can take one of three actions on matching alerts: Hide alert (suppresses it and prevents incident creation; Defender for Endpoint alerts only), Resolve alert (automatically marks the alert and its incident as resolved), or Set as behavior (converts it to a non-alerting behavior record). Of the given options, only \"hide\" and \"resolve\" correspond to real tuning-rule actions; delete, merge, and assign are not actions that an alert tuning rule can perform.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/investigate-alerts"
+  },
+  {
+    "id": "ed-66-4e6f7465",
+    "correctLetters": ["A"],
+    "explanation": "Endpoint detection and response (EDR) in block mode is specifically designed for this exact scenario: Microsoft Defender Antivirus is not the primary AV and runs in passive mode (because a third-party AV is active), and EDR in block mode lets Defender Antivirus take post-breach remediation actions on malicious artifacts that the primary, non-Microsoft antivirus product missed. Since the devices are already onboarded to Defender for Endpoint, enabling EDR in block mode directly satisfies the requirement, so the answer is Yes.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-endpoint/edr-in-block-mode"
+  },
+  {
+    "id": "ed-69-596f7520",
+    "correctLetters": ["B"],
+    "explanation": "When you create a deception rule in Microsoft Defender XDR, the rule's Scope section lets you plant lures on either all Windows client devices or only on devices that carry specific tags. To limit a deception rule to a subset of devices, you must therefore create and apply device tags to those devices first, before the tag can be selected as the rule's scope. Device groups are a Defender for Endpoint RBAC/permissions construct used for role-based access, and honeytoken/sensitive entity tags are unrelated identity-classification tags, not the mechanism used to scope deception rules.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/configure-deception"
+  },
+  {
+    "id": "ed-79-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "This is a hotspot question whose exact selections are only visible in an image, so the recorded answer is kept unchanged. Conceptually, the scenario tests how to validate a remediation Logic App inside Microsoft Defender for Cloud (formerly Security Center): you open an existing alert's \"Take action\" tab and use the \"Trigger automated response\" section to manually fire LA1 against that alert (or use the Workflow automation blade's \"Trigger logic app\" option), which lets you confirm the app runs correctly without waiting for a real detection.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/manage-respond-alerts"
+  },
+  {
+    "id": "ed-80-596f7520",
+    "correctLetters": ["C"],
+    "explanation": "Applying a quick fix (the \"Fix\" action on a security recommendation) in Microsoft Defender for Cloud requires the Contributor (or Owner) role, because Security Admin only grants permission to edit security policies and dismiss alerts/recommendations, not to remediate them. Assigning Contributor scoped to RG1 alone (rather than at the subscription level) follows least privilege, since SecAdmin1 only needs to fix recommendations on the 100 VMs that live in that resource group. Security Reader is read-only and cannot apply fixes, and Contributor/Owner at the subscription level would grant unnecessary broader access.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/permissions"
+  },
+  {
+    "id": "ed-81-596f7520",
+    "correctLetters": ["A", "D"],
+    "explanation": "Microsoft's documented Linux alert-validation procedure is to first copy a harmless executable (like /bin/echo) to a file specifically named ./asc_alerttest_662jfi039n, and then execute that renamed file with the arguments \"testing eicar pipe\". Defender for Cloud recognizes this specific filename-and-argument pattern as a built-in test signal and raises a sample alert within about 5-10 minutes. The generic name \"alerttest\" (used in options B and C) is not the recognized test string, so those commands won't trigger a validation alert.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/alert-validation"
+  },
+  {
+    "id": "ed-82-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "In Microsoft Defender for Cloud (classic Log Analytics agent-based experience), raw Windows security event logs are stored in the connected Log Analytics workspace only if you explicitly turn on the Data collection setting (choosing a tier such as Common, Minimal, or All Events) from Defender for Cloud's Pricing & settings / Environment settings. The Log Analytics agent itself still evaluates security events for threat detection regardless of this setting, but storing/collecting the raw events for search and investigation in workspace1 requires enabling data collection. Registering a resource provider, creating a workbook, or configuring workflow automation do not control whether security events are ingested into the workspace.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/data-collection-rule"
+  },
+  {
+    "id": "ed-83-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "This is a drag-and-drop question whose exact ordered steps are only visible in an image, so the recorded answer is kept unchanged. Conceptually, the scenario tests the end-to-end flow for detecting suspicious sign-ins to Azure VMs and validating it: enable Microsoft Defender for Cloud (the Defender for Servers plan, which ingests sign-in/security data), ensure the VM is onboarded/monitored, and then generate a sample or simulated alert to confirm the suspicious-IP sign-in detection is actually working end-to-end rather than just assuming the configuration is correct.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/alert-validation"
+  },
+  {
+    "id": "ed-84-596f7572",
+    "correctLetters": ["C"],
+    "explanation": "In the classic Azure Security Center experience, email notifications for security alerts (who receives them and at which severity) are configured from the Pricing & settings blade for the subscription, under its Email notifications tab, not from Security policy (which governs which policies/initiatives apply) or Security alerts (which only lists/manages existing alerts). In the modern Defender for Cloud portal this same capability has moved to Environment settings > Email notifications, but it remains a subscription-level settings/pricing area rather than a policy or alerts blade.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/configure-email-notifications"
+  },
+  {
+    "id": "ed-85-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "This is a drag-and-drop question whose exact ordered steps are only visible in an image, so the recorded answer is kept unchanged. Conceptually, ingesting GCP data into Microsoft Defender for Cloud follows a fixed sequence: from Environment settings, add a new GCP environment/connector, configure the connector's project or organization scope, select which Defender plans to enable, configure access by running the generated onboarding script in GCP (which creates the required service accounts/permissions), and finally review and create the connector so Defender for Cloud starts discovering and scanning GCP resources.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-gcp"
+  },
+  {
+    "id": "ed-88-596f7520",
+    "correctLetters": ["C"],
+    "explanation": "Continuous export in Microsoft Defender for Cloud can stream security alerts and recommendations to Log Analytics or to Azure Event Hubs; to make that data retrievable by a third-party SIEM, you export to an Azure Event Hub, which the SIEM then reads from (directly or via a connector/forwarder). Cosmos DB and Data Lake are general-purpose storage services with no built-in continuous-export integration in Defender for Cloud, and Event Grid is an eventing/pub-sub service, not the mechanism Defender for Cloud uses to stream alert data to SIEM tools.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/export-to-siem"
+  },
+  {
+    "id": "ed-89-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "An alert showing access attempts to a key vault from a Tor exit node indicates the vault is reachable from an untrusted/anonymized public network path, so the correct mitigation is to restrict network-level access by configuring the Key Vault firewall and virtual network rules (allowing only trusted networks/private endpoints). Microsoft Entra ID permissions, RBAC for the key vault, and the vault's access policy settings all control who/what identity can authenticate and what operations they can perform once a connection is allowed, but they don't address the underlying issue of the vault being exposed to any public IP, including Tor nodes.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/alerts-azure-key-vault"
+  },
+  {
+    "id": "ed-90-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "Just-in-time (JIT) VM access and network-layer threat detections are capabilities of the Microsoft Defender for Servers plan, which is enabled/priced at the subscription level in Microsoft Defender for Cloud, not at the Log Analytics workspace or individual resource level. Enabling Defender for Cloud only at the workspace level does not turn on JIT access, adaptive application controls, or network detections for the subscription's Azure resources; the plan must be enabled on the subscription itself.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/enable-just-in-time-access"
+  },
+  {
+    "id": "ed-91-596f7520",
+    "correctLetters": ["A", "C"],
+    "explanation": "To automatically run a PowerShell script when Defender for Cloud detects suspicious access to the storage account, you first build an Azure Logic App whose trigger is \"When a Defender for Cloud alert is created or triggered\" (so it fires on the matching alert and can then call the PowerShell script/runbook), and then register that Logic App with Defender for Cloud by adding it as a workflow automation scoped to the relevant alert type/severity. A manual-trigger or HTTP-trigger Logic App would need to be invoked explicitly and wouldn't fire automatically on the alert, and an Entra ID app registration is unrelated to wiring an alert to an automated response.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/workflow-automation"
+  },
+  {
+    "id": "ed-92-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "This is a hotspot question whose exact Yes/No selections are only visible in the exhibit images, so the recorded answer is kept unchanged. Conceptually, the scenario tests how Secure Score is calculated from Azure Policy assignments: a recommendation only contributes to (or is counted against) a resource's Secure Score if the underlying policy definition for that recommendation is actually assigned and enabled (not excluded/disabled) at the scope containing that resource, so vm1 and vm2 can be affected differently depending on which policy/initiative assignments apply to each of them.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/secure-score-security-controls"
+  },
+  {
+    "id": "ed-93-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "This is a drag-and-drop question whose exact ordered steps are only visible in an image, so the recorded answer is kept unchanged. Conceptually, the workflow for requesting remediation of a newly disclosed CVE with a known active exploit is: locate the CVE in Vulnerability management > Weaknesses and confirm it shows a documented/active exploit, open the associated security recommendation to see the exposed/affected devices, and then select \"Request remediation\" on that recommendation to send a remediation request (optionally creating an Intune ticket) to the team responsible for those devices.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-vulnerability-management/tvm-remediation"
+  },
+  {
+    "id": "ed-94-596f7520",
+    "correctLetters": ["B"],
+    "explanation": "On a security alert's details pane in Azure Security Center / Defender for Cloud, the \"Take action\" tab's \"Mitigate the threat\" section provides the manual remediation/investigation steps specifically meant to resolve that alert, which is exactly what's being asked for. \"Prevent future attacks\" is a different section on the same tab that surfaces hardening recommendations to reduce the attack surface going forward, not steps to resolve the current alert; Regulatory compliance reports and Recommendations CSV exports are unrelated to an individual alert's remediation guidance.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/manage-respond-alerts"
+  }
+]

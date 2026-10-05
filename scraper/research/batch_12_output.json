@@ -1,0 +1,110 @@
+[
+  {
+    "id": "spt-SCD1-D1-07",
+    "correctLetters": ["A", "B"],
+    "explanation": "Audit mode logs what an ASR rule would have blocked without actually blocking the activity, which is exactly how a pilot is run before enforcement. Warn mode behaves like Block but shows the end user a notification with an Unblock option; selecting it bypasses the block for that device/user/file/process combination for 24 hours, after which the block resumes. Audit mode does not create a permanent file exclusion (exclusions are a separate, explicit list), Warn mode does not disable the rule itself (the rule stays active and simply re-blocks after the 24-hour window), and Block mode stops the activity outright rather than letting it continue.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-deployment-implement"
+  },
+  {
+    "id": "spt-SCD1-D1-08",
+    "correctLetters": ["A"],
+    "explanation": "Microsoft Sentinel automation rules support an optional expiration date/time, after which the rule is automatically disabled with no manual cleanup required. This is the documented pattern for handling short, predictable noise such as a multi-day penetration test: the rule applies only while the test is running and then stops on its own. Changing the analytics rule's lookback period affects query timing rather than incident handling, switching the incident provider is unrelated to suppressing known noise, and a workbook parameter only affects visualization, not automated incident actions.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/create-manage-use-automation-rules"
+  },
+  {
+    "id": "spt-SCD1-D1-09",
+    "correctLetters": ["A"],
+    "explanation": "An automation rule's Run playbook action only lists playbooks whose Logic App trigger type matches the automation rule's own trigger (alert-trigger rules can only run alert-triggered playbooks; incident-trigger rules can only run incident-triggered playbooks). Since the rule uses the alert trigger but the existing playbook starts with an incident trigger, the playbook is hidden from the picker; using or rebuilding the playbook with an alert trigger is the direct fix. Reordering the rule, converting the playbook to a workbook, or moving it to the Sentinel resource group do not address the trigger mismatch that is actually hiding it.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/automation/run-playbooks"
+  },
+  {
+    "id": "spt-SCD1-D1-10",
+    "correctLetters": ["A", "B"],
+    "explanation": "Microsoft Sentinel Responder grants the ability to view, triage, and manage incidents (including opening one), while Microsoft Sentinel Playbook Operator specifically grants permission to manually trigger a playbook run; the two roles together cover exactly the two capabilities described. Microsoft Sentinel Reader is read-only and grants neither action, Log Analytics Contributor manages workspace data but not incident or playbook execution rights, and \"Microsoft Sentinel Automation Contributor\" is not an actual built-in Azure role.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/roles"
+  },
+  {
+    "id": "spt-SCD1-D1-11",
+    "correctLetters": ["A"],
+    "explanation": "Content hub is the central catalog for all of Microsoft Sentinel's out-of-the-box content, including workbooks; a workbook template only shows up under Workbooks > Templates in a given workspace once the solution package (or the standalone workbook item) that contains it has been installed from Content hub. Creating an NRT analytics rule, changing a table's plan to Data Lake, or granting every analyst Global Administrator do nothing to make a Content-hub-delivered workbook template appear.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/sentinel-solutions-deploy"
+  },
+  {
+    "id": "spt-SCD1-D1-12",
+    "correctLetters": ["A"],
+    "explanation": "The Data Lake (Auxiliary) tier is built for low-cost long-term retention and on-demand KQL/Spark jobs, not for Microsoft Sentinel's real-time analytics engine, so scheduled analytics rules and custom detections cannot run directly against data that lives only in the lake. Moving a table out of the Analytics tier therefore stops real-time rule matching on that table. The table is not deleted when Analytics retention ends, it can still be queried through lake KQL jobs (just not with real-time analytics or hunting), and there is no automatic daily promotion of lake data back into the Analytics tier.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/manage-data-overview"
+  },
+  {
+    "id": "spt-SCD1-D1-13",
+    "correctLetters": ["B"],
+    "explanation": "SOC optimization recommendations can be marked Complete, left in progress, or Dismissed; Dismiss is the action meant for recommendations the team has reviewed and deliberately decided not to act on, such as when regulatory requirements justify keeping the ingestion as-is. Dismiss removes it from the active list while preserving a record that can be reactivated later if circumstances change. Complete would incorrectly imply the recommended action was carried out, \"mark as in progress\" implies ongoing work toward implementing it, and \"trigger evaluation\" merely recalculates the recommendation rather than recording a decision.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/soc-optimization/soc-optimization-access"
+  },
+  {
+    "id": "spt-SCD1-D1-14",
+    "correctLetters": ["C"],
+    "explanation": "The Windows Security Events via AMA connector offers four collection tiers: All Events, Common, Minimal, and Custom. Minimal is explicitly the smallest, threat-focused set, covering only events that may indicate a successful breach plus a few very-low-frequency important events, and it does not provide a full sign-in/sign-out audit trail. Common still aims to preserve a fuller audit capability (just trimmed down from All), so it does not fit a requirement to drop the complete sign-in/out trail, while All Events and a fully custom selection of every event ID both reproduce the full, high-volume data set.",
+    "referenceUrl": "https://techcommunity.microsoft.com/blog/microsoftdefendercloudblog/how-to-configure-security-events-collection-with-azure-monitor-agent/3770719"
+  },
+  {
+    "id": "spt-SCD1-D1-15",
+    "correctLetters": ["A"],
+    "explanation": "A generic Azure Monitor Agent DCR built directly against the Windows Event Log sends Security log events to the generic Event table, whereas Microsoft Sentinel's purpose-built \"Windows Security Events via AMA\" connector uses its own DCR template to route the same underlying events into the SecurityEvent table, which is the schema Sentinel's built-in analytics rules query. Switching to that connector is the direct fix. Aliasing Event to SecurityEvent in a workbook doesn't change what the analytics rule engine itself queries, moving the table to Data Lake would remove it from real-time analytics entirely, and a TI TAXII connector is unrelated to Windows event ingestion.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/securityevent"
+  },
+  {
+    "id": "spt-SCD1-D1-16",
+    "correctLetters": ["A"],
+    "explanation": "For Azure resource (platform) logs to be queryable with KQL by Microsoft Sentinel's analytics rules and hunting queries, the diagnostic setting must send them to the Log Analytics workspace where Sentinel is enabled — that is the only destination among the options that lands the data in a Sentinel-queryable table. Archiving to Azure Storage or streaming to Event Hubs are meant for long-term retention or external/third-party consumption and do not by themselves make the logs queryable in the workspace, and sending only to an outside partner solution keeps the data outside Azure Monitor and Sentinel altogether.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/connect-services-diagnostic-setting-based"
+  },
+  {
+    "id": "spt-SCD1-D1-17",
+    "correctLetters": ["A"],
+    "explanation": "Microsoft Sentinel moved to an enhanced, STIX-aligned threat intelligence data model built around the new ThreatIntelIndicators (and companion ThreatIntelObjects) tables; ingestion into the legacy ThreatIntelligenceIndicator table was discontinued, so any detection still querying that old table silently stops seeing newly ingested indicators. SecurityAlert stores generated alerts rather than raw TI indicators, CommonSecurityLog holds CEF-formatted device logs, and SentinelHealth tracks platform health records — none of these hold STIX indicator data.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/work-with-stix-objects-indicators"
+  },
+  {
+    "id": "spt-SCD1-D1-18",
+    "correctLetters": ["A"],
+    "explanation": "For a scheduled analytics rule, the query lookback period (query period) must be greater than or equal to the run frequency, so that each run's search window fully covers the time elapsed since the previous run and no events are skipped. With the rule running every 15 minutes but only looking back 5 minutes, each run would miss roughly 10 minutes of events between executions, so the lookback period needs to be raised to at least 15 minutes. Reducing the period further widens the gap, switching to an anomaly template changes the rule type unnecessarily, and the claim that frequency can exceed period describes the relationship backwards from how Sentinel actually validates it.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/scheduled-rules-overview"
+  },
+  {
+    "id": "spt-SCD1-D1-19",
+    "correctLetters": ["A"],
+    "explanation": "The custom alert details (\"alert details override\") feature lets a scheduled rule populate properties such as AlertSeverity directly from a column in the query results — for example a SeverityFromQuery field — for each generated alert instance, overriding the single static severity configured on the rule's General tab. Entity mapping only maps query columns to investigation entities and has no effect on severity, incident grouping controls how multiple alerts combine into one incident, and query suppression only controls whether and for how long the query pauses after a match; none of these three change per-alert severity.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/customize-alert-details"
+  },
+  {
+    "id": "spt-SCD1-D1-20",
+    "correctLetters": ["A"],
+    "explanation": "Microsoft Sentinel's customizable, machine-learning-based anomaly rule templates are tuned by Microsoft's data science team to deliver value \"right out of the box,\" meaning they run actively by default and write their results — including the triggering rule name and an anomaly score — into the queryable Anomalies table, letting an analyst review real output before changing any threshold. They do not require uploading a custom model, their results are not confined to SecurityAlert only (they are directly queryable in their own table), and no playbook is a prerequisite for a template to generate a result.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/sentinel/soc-ml-anomalies"
+  },
+  {
+    "id": "spt-SCD2-D2-01",
+    "correctLetters": ["A"],
+    "explanation": "Selecting an incident row without opening the full incident page opens a summary side pane that Microsoft documents as showing \"the priority assessment and the factors influencing the priority score,\" along with incident details and recommended actions — content specifically designed to help an analyst triage and choose which incident to work on before committing to a full investigation. Raw analytics-rule KQL, complete per-device timelines, and data-source retention policies are all deeper investigation details surfaced elsewhere in the incident, not in this triage-focused summary pane.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/incident-queue"
+  },
+  {
+    "id": "spt-SCD2-D2-02",
+    "correctLetters": ["A"],
+    "explanation": "The Defender XDR attack story lets an analyst open an entity's pane directly from the incident graph and take a remediation action, such as isolating a device or deleting a file, \"without losing context\" — the full attack graph and timeline stay visible throughout. This is the documented workflow advantage of acting from this view rather than leaving it. It does not split the incident into separate Sentinel incidents, it does not itself create any permanent alert suppression (that is a distinct, explicit action), and it has no automatic eDiscovery export behavior.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/investigate-incidents"
+  },
+  {
+    "id": "spt-SCD2-D2-03",
+    "correctLetters": ["A"],
+    "explanation": "In the Defender for Cloud alert/incident Take action tab, \"Trigger automated response\" is the specific option that lets an analyst select and run an Azure Logic App as the response to the alert. \"Mitigate the threat\" only surfaces manual remediation steps, \"Prevent future attacks\" surfaces hardening security recommendations, and \"Suppress similar alerts\" creates a suppression rule — none of the other three launches a Logic App.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/manage-respond-alerts"
+  },
+  {
+    "id": "spt-SCD2-D2-04",
+    "correctLetters": ["A", "B"],
+    "explanation": "When an alert is confirmed to reflect expected activity, \"Suppress similar alerts\" lets the analyst create a suppression rule so future alerts matching the same characteristics stop generating noise, while \"Prevent future attacks\" surfaces the related security recommendations that reduce exposure to that same attack pattern going forward — matching both stated goals. Collecting a Defender for Endpoint investigation package is a device-level action unrelated to a Defender for Cloud incident's Take action tab, and creating a Purview eDiscovery hold or moving alerts into MicrosoftGraphActivityLogs are not options offered there at all.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/manage-respond-alerts"
+  }
+]

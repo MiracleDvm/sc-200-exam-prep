@@ -1,0 +1,511 @@
+[
+  {
+    "id": "spt-SCD2-D2-05",
+    "text": "A user triggers a sign-in risk level covered by a risk-based Conditional Access policy. The activity is legitimate, and the user successfully completes the required multifactor authentication challenge. What should happen to that sign-in risk?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "It is remediated after the successful multifactor authentication"
+      },
+      {
+        "letter": "B",
+        "text": "It stays at risk until an administrator resets the user's password"
+      },
+      {
+        "letter": "C",
+        "text": "It becomes confirmed compromised because MFA was required"
+      },
+      {
+        "letter": "D",
+        "text": "It is converted into a Microsoft Defender for Identity alert"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD2-D2-06",
+    "text": "A password-based user is subject to a Conditional Access user-risk policy that requires risk remediation. The user knows the current password and is already registered for MFA. Which sequence remediates the user risk through the policy?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Complete MFA, then perform a secure password change"
+      },
+      {
+        "letter": "B",
+        "text": "Perform self-service password reset without first authenticating"
+      },
+      {
+        "letter": "C",
+        "text": "Dismiss the user risk, then continue using the existing password"
+      },
+      {
+        "letter": "D",
+        "text": "Approve the risky sign-in from the Defender XDR Action center"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD2-D2-07",
+    "text": "A company uses Defender for Identity sensors on domain controllers and wants analysts to disable compromised on-premises Active Directory users from Defender. Why should the managed action account be separate from the Directory Service account?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "It needs write permissions for remediation; the Directory Service account is read-only"
+      },
+      {
+        "letter": "B",
+        "text": "The Directory Service account can change passwords but cannot read identity information"
+      },
+      {
+        "letter": "C",
+        "text": "The managed action account is used only to query Microsoft Graph activity logs"
+      },
+      {
+        "letter": "D",
+        "text": "The Directory Service account must be a Global Administrator in Microsoft Entra ID"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD2-D2-08",
+    "text": "An email security analyst reviews a message in Threat Explorer and confirms that Microsoft incorrectly classified the message as malicious. The analyst wants to provide that verdict back to Microsoft from the investigation workflow. Which action fits?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Submit the message to Microsoft as confirmed clean"
+      },
+      {
+        "letter": "B",
+        "text": "Hard delete the message from every recipient mailbox"
+      },
+      {
+        "letter": "C",
+        "text": "Create an alert suppression rule for all messages from the sender"
+      },
+      {
+        "letter": "D",
+        "text": "Move the message to the Recoverable Items folder"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD2-D2-09",
+    "text": "An administrator submits a manual email remediation from Threat Explorer and the action is approved. Where should another responder go to track the remediation status and review its approval ID and history?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "The Microsoft Defender XDR Action center History tab"
+      },
+      {
+        "letter": "B",
+        "text": "The Microsoft Sentinel Anomalies table"
+      },
+      {
+        "letter": "C",
+        "text": "The Microsoft Entra risky users report"
+      },
+      {
+        "letter": "D",
+        "text": "The Purview eDiscovery review set statistics page"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD2-D2-10",
+    "text": "A Sentinel responder finishes an investigation and changes the incident status to Closed. Which additional item is required as part of closing the incident?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "A closing classification reason"
+      },
+      {
+        "letter": "B",
+        "text": "A new analytics rule for the incident"
+      },
+      {
+        "letter": "C",
+        "text": "A Microsoft Graph application ID"
+      },
+      {
+        "letter": "D",
+        "text": "A downloadable investigation package"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD2-D2-11",
+    "text": "An endpoint alert shows that a suspicious PowerShell process started shortly after a document viewer launched. The analyst wants to inspect the parent-child process relationship around that event. Which device-timeline capability is most useful?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Open the event's process tree view"
+      },
+      {
+        "letter": "B",
+        "text": "Export the incident classification history"
+      },
+      {
+        "letter": "C",
+        "text": "Start an eDiscovery Content search"
+      },
+      {
+        "letter": "D",
+        "text": "Create a Defender for Cloud suppression rule"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD2-D2-12",
+    "text": "During a long endpoint investigation, an analyst marks several timeline events for follow-up and later wants the timeline to show only those marked events. What should the analyst do?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Enable the Flagged events timeline filter"
+      },
+      {
+        "letter": "B",
+        "text": "Change the incident severity to High"
+      },
+      {
+        "letter": "C",
+        "text": "Move the device into a new device group"
+      },
+      {
+        "letter": "D",
+        "text": "Run a full antivirus scan from Action center"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD2-D2-13",
+    "text": "A responder is in a Defender for Endpoint Live Response session and confirms that a malicious scheduled task provides persistence. Which Live Response command family is intended to remove a confirmed malicious entity such as a scheduled task?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "remediate"
+      },
+      {
+        "letter": "B",
+        "text": "putfile"
+      },
+      {
+        "letter": "C",
+        "text": "library"
+      },
+      {
+        "letter": "D",
+        "text": "collect"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD2-D2-14",
+    "text": "An incident responder uploads a trusted diagnostic utility to the Live Response library and needs to place that utility onto an affected device for the current session. Which command is designed for this transfer?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "putfile"
+      },
+      {
+        "letter": "B",
+        "text": "analyze"
+      },
+      {
+        "letter": "C",
+        "text": "release"
+      },
+      {
+        "letter": "D",
+        "text": "undo"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD2-D2-15",
+    "text": "A responder downloads a Defender for Endpoint investigation package and wants evidence of persistence configured through known Windows auto-start entry points. Which package folder is most directly relevant?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Autoruns"
+      },
+      {
+        "letter": "B",
+        "text": "NetworkConnections"
+      },
+      {
+        "letter": "C",
+        "text": "PrefetchFiles"
+      },
+      {
+        "letter": "D",
+        "text": "BrowserHistory"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD2-D2-16",
+    "text": "An analyst realizes that a completed Defender response action should be reversed. The action type supports reversal. Where should the analyst review the completed action and initiate the undo operation?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Action center History"
+      },
+      {
+        "letter": "B",
+        "text": "Microsoft Sentinel Content hub"
+      },
+      {
+        "letter": "C",
+        "text": "Microsoft Entra risky sign-ins"
+      },
+      {
+        "letter": "D",
+        "text": "Purview eDiscovery search statistics"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD2-D2-17",
+    "text": "A compromised endpoint uses a third-party antivirus product, so Microsoft Defender Antivirus is running in passive mode. The responder wants to use the Defender for Endpoint device action to scan the host for malware. What should the responder expect?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "A Defender Antivirus scan can still be started on the device"
+      },
+      {
+        "letter": "B",
+        "text": "The scan action is unavailable whenever Defender Antivirus is passive"
+      },
+      {
+        "letter": "C",
+        "text": "The device must first be removed from Defender for Endpoint"
+      },
+      {
+        "letter": "D",
+        "text": "Only a Purview Audit search can inspect malware on that host"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD2-D2-18",
+    "text": "A responder exports Microsoft Purview Audit search results to CSV and needs to sort on individual event properties that are embedded inside the AuditData column. What is the recommended next processing step?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Transform the AuditData JSON into separate columns"
+      },
+      {
+        "letter": "B",
+        "text": "Rename AuditData to SecurityEvent before importing the file"
+      },
+      {
+        "letter": "C",
+        "text": "Convert every audit record into a Sentinel incident"
+      },
+      {
+        "letter": "D",
+        "text": "Hash the AuditData value and group by the resulting digest"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD2-D2-19",
+    "text": "An investigator runs a Microsoft Purview eDiscovery search and wants a quick sense of how much content matched, which locations hold most of it, and examples of the returned items before exporting the full results. Which search outputs provide that view?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Search statistics and a representative sample"
+      },
+      {
+        "letter": "B",
+        "text": "Defender XDR evidence verdicts and remediation status"
+      },
+      {
+        "letter": "C",
+        "text": "Microsoft Graph response codes and request URIs"
+      },
+      {
+        "letter": "D",
+        "text": "Defender for Endpoint device-timeline process trees"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD2-D2-20",
+    "text": "A responder is hunting suspicious Microsoft Graph API activity and needs to identify both the resource path that was requested and whether the API returned an authorization failure. Which TWO MicrosoftGraphActivityLogs fields directly provide those details?",
+    "type": "multi-select",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "RequestUri"
+      },
+      {
+        "letter": "B",
+        "text": "ResponseStatusCode"
+      },
+      {
+        "letter": "C",
+        "text": "DurationMs"
+      },
+      {
+        "letter": "D",
+        "text": "ResponseSizeBytes"
+      },
+      {
+        "letter": "E",
+        "text": "Location"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A",
+      "B"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD3-D3-01",
+    "text": "A threat hunter suspects DLL side-loading on Windows endpoints and needs to identify which libraries were loaded by suspicious processes. Which Advanced Hunting table is the most appropriate starting point?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "DeviceImageLoadEvents"
+      },
+      {
+        "letter": "B",
+        "text": "DeviceNetworkInfo"
+      },
+      {
+        "letter": "C",
+        "text": "IdentityLogonEvents"
+      },
+      {
+        "letter": "D",
+        "text": "EmailAttachmentInfo"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCD3-D3-02",
+    "text": "An analyst is hunting for repeated interactive and remote logons to a specific workstation and wants endpoint authentication events tied to that device. Which table best fits the hunt?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "DeviceLogonEvents"
+      },
+      {
+        "letter": "B",
+        "text": "DeviceProcessEvents"
+      },
+      {
+        "letter": "C",
+        "text": "CloudAppEvents"
+      },
+      {
+        "letter": "D",
+        "text": "DeviceFileEvents"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  }
+]

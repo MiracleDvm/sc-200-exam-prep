@@ -1,0 +1,110 @@
+[
+  {
+    "id": "ed-43-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "This is a drag-and-drop question whose answer is shown only in an image, so the lettered answer cannot be independently re-verified here and is kept as originally recorded. Conceptually, the scenario tests least-privilege role assignment in Microsoft Defender for Cloud: enabling a Defender plan (Defender for Servers) on resources requires a role with write access at the subscription/resource level (such as Contributor or Owner), while reviewing recommendations and configuring vulnerability scanning can be done with the narrower Security Admin / Security Reader-type roles built for Defender for Cloud. The task is to match each built-in Azure role to the minimum privilege needed for each action rather than over-granting Owner/Contributor to everyone.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/permissions"
+  },
+  {
+    "id": "ed-44-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "This is a hotspot question whose answer options are only visible in an image, so the recorded answer is kept as-is. Conceptually, the query needs to search the EmailAttachmentInfo (or EmailEvents joined with EmailAttachmentInfo) table for FileName == \"Document.pdf\", and for performance it must apply the time filter (where Timestamp > ago(1h)) as early as possible in the query so Advanced Hunting/KQL can prune data before evaluating the more expensive string filter. Placing broad, indexed filters like time range first is the standard KQL performance optimization pattern used throughout Microsoft Defender XDR hunting guidance.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-best-practices"
+  },
+  {
+    "id": "ed-45-596f7572",
+    "correctLetters": ["C"],
+    "explanation": "The Microsoft Defender for Identity \"Unsecure Kerberos delegation\" security assessment flags computer (or user) objects configured for unconstrained or risky constrained Kerberos delegation. The official remediation is to open the exposed entity's AD object properties and change the delegation setting — for example, selecting \"Trust this computer for delegation to specified services only\" instead of unconstrained delegation, or removing delegation entirely — which is exactly what \"modify the properties of the computer objects\" (C) describes. Disabling legacy protocols (A), enforcing LDAP signing (B), and deploying LAPS (D) address unrelated Secure Score findings (legacy auth, clear-text credentials, and local admin password reuse, respectively), not delegation risk.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-for-identity/security-posture-assessments/accounts"
+  },
+  {
+    "id": "ed-46-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "In the Microsoft Defender XDR Action center, the History tab logs every automated or manual remediation action, including file quarantine events, and lets an admin select the action and choose Undo to revert it across all affected devices at once. This directly removes the file from quarantine and marks it as not-malicious going forward, which is what the scenario requires. Reviewing AIR processes (B) or Threat tracker queries (D) only shows investigation details without reversing the action, and the Quarantine settings under the Review page (C) control policy, not individual file restoration.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/m365d-autoir-actions"
+  },
+  {
+    "id": "ed-47-596f7520",
+    "correctLetters": ["B"],
+    "explanation": "Threat analytics is Microsoft Defender XDR's built-in threat-intelligence dashboard, curated by Microsoft security researchers, that surfaces active threat actors, newly observed attack techniques, critical vulnerabilities, and prevalent malware, and automatically correlates each report with your tenant's incidents, impacted assets, and exposed/vulnerable devices. Because the reports and exposure data are generated automatically by Microsoft, this blade requires minimal administrative effort compared to manually building custom queries in Advanced hunting (A) or triaging individual Incidents & alerts (C); Learning hub (D) only provides training content, not threat or vulnerability data.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/threat-analytics"
+  },
+  {
+    "id": "ed-48-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "This is a hotspot question with the real answer only visible in an image, so the recorded letter is kept unchanged. Conceptually, to get the 100 most recent sign-ins across both devices and on-premises AD DS domain controllers, the query must union two Advanced Hunting tables — DeviceLogonEvents (endpoint sign-ins) and IdentityLogonEvents (which, once Defender for Identity sensors are deployed on domain controllers, captures AD authentication events) — sort the combined results by Timestamp in descending order, and limit the output with take 100 (or top 100 by Timestamp).",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-identitylogonevents-table"
+  },
+  {
+    "id": "ed-50-596f7520",
+    "correctLetters": ["C"],
+    "explanation": "To investigate activity using the unified audit log inside Microsoft Defender for Cloud Apps, you must first connect Microsoft 365 as an API-connected app (the \"Microsoft 365 connector\", formerly the Office 365 connector) under Settings > Cloud Apps > Connected apps. This connector uses the Office 365 Management API to pull admin, user, and sign-in activity into Defender for Cloud Apps so it becomes available for investigation and policy correlation. User enrichment (A) only adds HR attributes to identities, the Azure connector (B) covers Azure platform activity rather than Microsoft 365 audit data, and automatic log upload (D) is used for discovering Shadow IT from firewall/proxy logs, not for Microsoft 365 audit events.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/enable-instant-visibility-protection-and-governance-actions-for-your-apps"
+  },
+  {
+    "id": "ed-51-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "This hotspot question's true/false answers are only visible in an image that cannot be inspected, so the recorded value is retained unchanged. The question is testing the ability to read a custom Microsoft Defender XDR detection rule's KQL and determine behavior such as which entities trigger alerts, how frequently the rule runs, and what actions or exclusions apply — concepts fully documented in Microsoft's custom detection rules guidance (rule logic, scheduling frequency, lookback period, and impacted entities).",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/custom-detection-rules"
+  },
+  {
+    "id": "ed-52-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "Microsoft Defender for Cloud lets you exclude specific machines from agentless scanning by configuring an exclusion tag (a tag name:value pair) in the Defender for Servers/Defender CSPM plan settings; any machine carrying that tag is skipped during the periodic agentless discovery and scan cycle, with no code or policy changes required — satisfying the \"minimize administrative effort\" requirement. Upgrading to Plan 2 (B) is unnecessary and moves in the wrong direction since agentless scanning is already enabled, and \"exclusion group\" (D) and \"governance rule\" (C) are not the mechanisms Microsoft documents for excluding machines from agentless scanning.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/exclude-machines-agentless-scanning"
+  },
+  {
+    "id": "ed-54-596f7572",
+    "correctLetters": ["A"],
+    "explanation": "This hotspot question's answer options are only visible in an image, so the recorded letter is kept unchanged. Conceptually, to find interactive sign-ins by finance-department users, the query would hunt in IdentityLogonEvents (for on-premises AD DS authentications synced via Defender for Identity) and/or DeviceLogonEvents, filtering on LogonType == \"Interactive\" and joining or filtering on the AccountName/department attribute for the finance users, which is the standard pattern Microsoft documents for identity logon hunting.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-identitylogonevents-table"
+  },
+  {
+    "id": "ed-55-596f7520",
+    "correctLetters": ["D"],
+    "explanation": "Advanced hunting lets an analyst write a custom KQL query (for example, against the AlertInfo/AlertEvidence or DeviceEvents tables) to list every device that triggered a malware alert, and because the results include the DeviceId column, the analyst can select matching rows directly in the results grid and use the built-in \"Take action\" wizard to isolate those devices or collect an investigation package without leaving the query view. Incidents (A) group related alerts but don't let you bulk-select arbitrary query-derived device lists, Remediation (B) only shows actions already taken, and Investigations (C) tracks automated investigation status rather than letting you build a custom device list and act on it.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-take-action"
+  },
+  {
+    "id": "ed-56-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "This hotspot question's exact configuration is only visible in an image, so the recorded answer is retained unchanged. Conceptually, this scenario is about using Microsoft Purview Content search / eDiscovery to locate a specific file shared externally: the search must be scoped to the OneDrive location of the sharing user (or the relevant SharePoint/OneDrive content source) and filtered by file type/name (Power BI .pbix report) and the sharing activity, rather than searching mailboxes, since the file was shared from OneDrive via Teams.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/purview/ediscovery-search-for-content"
+  },
+  {
+    "id": "ed-57-596f7520",
+    "correctLetters": ["C"],
+    "explanation": "Microsoft Purview content search (and eDiscovery) uses Keyword Query Language, not Kusto KQL, and supports a condition-card shorthand where (c:c) scopes the search to a specific content location/site and a date range is expressed with the \"..\" range operator, e.g. date=2023-02-01..2023-02-10. Option C, Project1(c:c)(date=2023-02-01..2023-02-10), follows this exact keyword-search syntax to find files named/containing \"Project1\" on the team site within the date window. Options B and D use Kusto-style \"AuditLogs | where ...\" syntax, which is not valid Purview content-search query syntax, and option A reverses the correct token order and malforms the date range with duplicated \"date=\" tokens.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/purview/ediscovery-keyword-queries-and-search-conditions"
+  },
+  {
+    "id": "ed-58-596f7520",
+    "correctLetters": ["B"],
+    "explanation": "The Kusto union operator \"takes two or more tables and returns the rows of all of them\" regardless of the kind parameter — kind=inner vs kind=outer only changes which columns are kept in the result (common columns only vs. all columns from all tables), not which rows are returned. So union kind=inner still returns every row from AlertInfo, AlertEvidence, and DeviceLogonEvents, satisfying the requirement to link the tables and return all rows. join kind=inner (C) would instead match rows on a key and drop non-matching rows, search * (A) searches across tables for a term rather than linking them, and evaluate hint.remote (D) is unrelated to combining tables.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/kusto/query/union-operator"
+  },
+  {
+    "id": "ed-59-596f7520",
+    "correctLetters": ["D"],
+    "explanation": "Initiating a live response (remote shell) session in Microsoft Defender for Endpoint requires both that the Live response advanced feature be turned on and that the requesting analyst holds the appropriate role permissions, since live response commands (basic or advanced) are gated by role-based access control assigned per device group. Among the given choices, configuring RBAC (D) is the control that determines whether a user is authorized to open a live response session at all, which is why it is treated as the necessary first step here; creating a device group (B) alone grants no capability, enabling automated investigation (C) governs AIR playbooks rather than live response, and modifying generic portal permissions (A) is not how Defender for Endpoint's live response authorization model works.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-endpoint/live-response"
+  },
+  {
+    "id": "ed-60-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "This hotspot question's exact query fragments are only visible in an image, so the recorded answer is kept unchanged. Conceptually, a custom detection rule meeting these requirements would filter DeviceTvmSoftwareVulnerabilities (or a join with it) for critical severity, combine it with recent device activity using where Timestamp > ago(1h) (or LastSeen within the last hour), and apply a summarize/distinct (or arg_max by DeviceId) step to collapse duplicate rows per device, since Microsoft's custom detection documentation specifically recommends deduplication for rules that would otherwise generate one alert per matching row.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/custom-detection-rules"
+  },
+  {
+    "id": "ed-61-596f7520",
+    "correctLetters": ["A"],
+    "explanation": "This hotspot question's configuration is only visible in an image, so the recorded answer is kept unchanged. Conceptually, to minimize the scope of a Microsoft Purview content search for one user's Teams chats, the search should target that specific user's mailbox/Teams location (where 1:1 and group chat content is stored) and scope the condition to the Teams chat content type rather than searching all mailboxes or all of Exchange/SharePoint, consistent with Purview's guidance on locating Teams conversation content through content search.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/purview/ediscovery-search-for-content"
+  },
+  {
+    "id": "ed-62-596f7520",
+    "correctLetters": ["C"],
+    "explanation": "\"Collect investigation package\" is a Defender for Endpoint response action, explicitly documented as supported on Linux and macOS devices, that downloads a forensic .zip package (processes, network connections, persistence mechanisms, logs, etc.) from the device to help understand the attacker's tools and techniques. Initiating a live response session (D) opens an interactive shell rather than collecting a packaged forensic bundle in one action, running an antivirus scan (A) only triggers a malware scan, and \"Initiate Automated Investigation\" (B) starts an AIR playbook rather than gathering a forensic package.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-endpoint/respond-machine-alerts"
+  }
+]

@@ -1,0 +1,516 @@
+[
+  {
+    "id": "spt-SCM1-D3-02",
+    "text": "A hunter runs the following KQL query against endpoint process telemetry. What does the query return?\n\nDeviceProcessEvents | summarize Executions=count() by bin(Timestamp, 1h)",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "A count of process events grouped into one-hour time buckets"
+      },
+      {
+        "letter": "B",
+        "text": "The single most common process name for the previous hour"
+      },
+      {
+        "letter": "C",
+        "text": "A list of devices sorted by the time of their latest process event"
+      },
+      {
+        "letter": "D",
+        "text": "Every process event with its timestamp rounded to the nearest hour"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM1-D3-03",
+    "text": "An analyst has a hypothesis about credential misuse and wants to run a query proactively across Sentinel data, review matches, and refine the idea before deciding whether it deserves continuous alerting. Which feature best fits this first step?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "A Microsoft Sentinel hunting query"
+      },
+      {
+        "letter": "B",
+        "text": "A near-real-time analytics rule"
+      },
+      {
+        "letter": "C",
+        "text": "A Defender for Endpoint device isolation action"
+      },
+      {
+        "letter": "D",
+        "text": "A Microsoft Purview retention policy"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM1-D3-04",
+    "text": "A newly reported campaign is affecting organizations in the same sector. The SOC wants Microsoft-provided analysis of the tracked threat, related incidents, impacted assets in its environment, and recommended mitigation actions. Which Defender XDR capability should it use?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Threat analytics"
+      },
+      {
+        "letter": "B",
+        "text": "Device inventory"
+      },
+      {
+        "letter": "C",
+        "text": "Microsoft Purview eDiscovery"
+      },
+      {
+        "letter": "D",
+        "text": "Sentinel data collection rules"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM1-D3-05",
+    "text": "An incident begins with one compromised account. The analyst wants an interactive graph showing the current impact and possible propagation paths toward critical assets so the team can estimate how far the breach could spread. Which capability best matches this goal?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Blast radius analysis powered by Microsoft Sentinel graph"
+      },
+      {
+        "letter": "B",
+        "text": "A Microsoft Sentinel workbook time chart"
+      },
+      {
+        "letter": "C",
+        "text": "A Microsoft Purview audit retention policy"
+      },
+      {
+        "letter": "D",
+        "text": "A Defender for Endpoint software inventory view"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM2-D1-01",
+    "text": "A sanctioned administration tool repeatedly generates a known-benign Defender for Endpoint alert. The SOC wants matching alerts removed from the alert queue and prevented from creating incidents, while still retaining the underlying alert data for hunting. Which alert tuning action best fits?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Hide the alert when the defined evidence conditions match"
+      },
+      {
+        "letter": "B",
+        "text": "Resolve the alert and its related incident after creation"
+      },
+      {
+        "letter": "C",
+        "text": "Convert the alert into a Microsoft Sentinel workbook item"
+      },
+      {
+        "letter": "D",
+        "text": "Disable automated investigation and response for the device"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM2-D1-02",
+    "text": "A Tier 1 analyst must view Microsoft Sentinel data and incidents, assign incidents to owners, change incident status, and add investigation notes. The analyst must not create analytics rules or modify Sentinel resources. Which role is the best fit?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Microsoft Sentinel Reader"
+      },
+      {
+        "letter": "B",
+        "text": "Microsoft Sentinel Responder"
+      },
+      {
+        "letter": "C",
+        "text": "Microsoft Sentinel Contributor"
+      },
+      {
+        "letter": "D",
+        "text": "Microsoft Sentinel Playbook Operator"
+      }
+    ],
+    "currentCorrectLetters": [
+      "B"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM2-D1-03",
+    "text": "A Microsoft Sentinel workspace ingests standard Syslog messages from Linux servers and Common Event Format (CEF) events from network security appliances through Azure Monitor Agent. Which TWO tables should an analyst expect to query for those records?",
+    "type": "multi-select",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Syslog for the standard Syslog records"
+      },
+      {
+        "letter": "B",
+        "text": "CommonSecurityLog for the CEF records"
+      },
+      {
+        "letter": "C",
+        "text": "SecurityEvent for all Linux and appliance records"
+      },
+      {
+        "letter": "D",
+        "text": "DeviceNetworkEvents for the CEF records"
+      },
+      {
+        "letter": "E",
+        "text": "OfficeActivity for the standard Syslog records"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A",
+      "B"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM2-D1-04",
+    "text": "A legacy security application writes one-line records to a rotating text file on a Linux server. No built-in Microsoft Sentinel connector exists for the application, but the SOC needs selected file records ingested into a queryable custom table. Which ingestion approach is most appropriate?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Custom Logs via AMA with a data collection rule"
+      },
+      {
+        "letter": "B",
+        "text": "Windows Security Events via AMA with a security event set"
+      },
+      {
+        "letter": "C",
+        "text": "Microsoft Defender XDR alert tuning with a file condition"
+      },
+      {
+        "letter": "D",
+        "text": "A Microsoft Sentinel workbook that reads the file directly"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM2-D1-05",
+    "text": "The SOC wants Microsoft Sentinel to automatically compare supported domain, IP, and URL threat indicators with ingested security logs and create high-fidelity detections when matches occur. Which built-in capability most directly provides this matching?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Microsoft Defender Threat Intelligence Analytics rule"
+      },
+      {
+        "letter": "B",
+        "text": "A Microsoft Sentinel workbook with threat charts"
+      },
+      {
+        "letter": "C",
+        "text": "A Defender for Endpoint device inventory filter"
+      },
+      {
+        "letter": "D",
+        "text": "A Microsoft Purview Audit search template"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM2-D1-06",
+    "text": "A scheduled Microsoft Sentinel analytics rule detects suspicious sign-ins, but incidents show only raw query columns and do not expose the affected account and IP address as investigation entities. What should the security engineer configure in the rule?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Entity mapping from query fields to account and IP entities"
+      },
+      {
+        "letter": "B",
+        "text": "A longer query scheduling interval to enrich each result"
+      },
+      {
+        "letter": "C",
+        "text": "A workbook parameter for the account and IP columns"
+      },
+      {
+        "letter": "D",
+        "text": "A data collection rule transformation that removes unused fields"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM2-D1-07",
+    "text": "A built-in Microsoft Sentinel anomaly rule is useful but too sensitive for one environment. The team wants to change its thresholds, compare the adjusted behavior during testing, and then promote the tuned version to production. What should the team do?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Duplicate the anomaly rule and tune the duplicate"
+      },
+      {
+        "letter": "B",
+        "text": "Edit the original out-of-box anomaly rule in place"
+      },
+      {
+        "letter": "C",
+        "text": "Replace the anomaly rule with a workbook visualization"
+      },
+      {
+        "letter": "D",
+        "text": "Disable User and Entity Behavior Analytics for the workspace"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM2-D1-08",
+    "text": "A security engineer creates a Defender for Endpoint custom data collection rule that captures nearly every process event. Microsoft recommends targeting only a small pilot group first. What is the primary reason for that recommendation?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Comprehensive collection can generate very high event volumes per device"
+      },
+      {
+        "letter": "B",
+        "text": "Custom data collection works only on devices in evaluation mode"
+      },
+      {
+        "letter": "C",
+        "text": "The collected events cannot be queried until every device is targeted"
+      },
+      {
+        "letter": "D",
+        "text": "Pilot targeting is required before Defender XDR can create incidents"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM2-D1-09",
+    "text": "A security engineer wants to reduce common Office-based intrusion paths on Windows endpoints by blocking behaviors such as Office applications creating child processes. Which Defender for Endpoint control family should the engineer configure?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Attack surface reduction rules"
+      },
+      {
+        "letter": "B",
+        "text": "Endpoint detection alert tuning"
+      },
+      {
+        "letter": "C",
+        "text": "Microsoft Sentinel hunting queries"
+      },
+      {
+        "letter": "D",
+        "text": "Microsoft Purview retention policies"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM2-D2-01",
+    "text": "An incident contains suspicious files, processes, IP addresses, and email artifacts. The analyst wants one Defender XDR view that shows supported evidence with verdicts such as Malicious, Suspicious, or Clean and also shows remediation status. Which incident tab should be used?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Evidence and Response"
+      },
+      {
+        "letter": "B",
+        "text": "Assets inventory"
+      },
+      {
+        "letter": "C",
+        "text": "Secure Score recommendations"
+      },
+      {
+        "letter": "D",
+        "text": "Threat analytics report"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM2-D2-02",
+    "text": "A SOC handles several investigations related to the same internal red-team exercise. Analysts want to label those incidents so the queue can later be filtered to that exercise without changing the detection logic. Which incident-management feature should they use?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Incident tags"
+      },
+      {
+        "letter": "B",
+        "text": "Incident severity"
+      },
+      {
+        "letter": "C",
+        "text": "Alert tuning"
+      },
+      {
+        "letter": "D",
+        "text": "Threat indicators"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM2-D2-03",
+    "text": "Several users received a phishing message that was later confirmed malicious. The analyst needs to find matching delivered messages across the organization, inspect message details, and initiate remediation actions on the affected mail. Which Defender for Office 365 capability best fits?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Threat Explorer"
+      },
+      {
+        "letter": "B",
+        "text": "Microsoft Sentinel workbook gallery"
+      },
+      {
+        "letter": "C",
+        "text": "Defender for Endpoint device timeline"
+      },
+      {
+        "letter": "D",
+        "text": "Microsoft Purview retention labels"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM2-D2-04",
+    "text": "An OAuth application has unusual tenant-wide permissions and was recently granted admin consent. The analyst wants to review the app's granted permissions, consent activity, and related cloud activity before deciding whether the app is risky. Which capability should be used?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "OAuth app investigation in Defender for Cloud Apps"
+      },
+      {
+        "letter": "B",
+        "text": "Device inventory in Defender for Endpoint"
+      },
+      {
+        "letter": "C",
+        "text": "Microsoft Sentinel data collection rules"
+      },
+      {
+        "letter": "D",
+        "text": "Secure Score improvement actions"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM2-D2-05",
+    "text": "A user account is confirmed compromised and the attacker may still have valid cloud sessions. Which TWO containment actions most directly cut off both new sign-ins and existing refresh-token-backed access?",
+    "type": "multi-select",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Block or disable the user account"
+      },
+      {
+        "letter": "B",
+        "text": "Revoke the user's active sessions"
+      },
+      {
+        "letter": "C",
+        "text": "Add the incident to a Sentinel workbook"
+      },
+      {
+        "letter": "D",
+        "text": "Increase Microsoft 365 audit retention"
+      },
+      {
+        "letter": "E",
+        "text": "Create a new device group for the user's workstation"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A",
+      "B"
+    ],
+    "images": [],
+    "answerImage": null
+  }
+]

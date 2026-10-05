@@ -1,0 +1,516 @@
+[
+  {
+    "id": "spt-SCM3-D2-05",
+    "text": "A SOC manager wants every analyst on every shift to follow and record the same triage and containment checklist for a recurring Sentinel incident type, while still allowing analysts to mark each step complete. Which capability best meets the requirement?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Microsoft Sentinel incident tasks"
+      },
+      {
+        "letter": "B",
+        "text": "Microsoft Sentinel bookmarks"
+      },
+      {
+        "letter": "C",
+        "text": "Defender XDR device groups"
+      },
+      {
+        "letter": "D",
+        "text": "Microsoft Purview retention labels"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM3-D2-06",
+    "text": "An analyst confirms that a workstation is actively attempting lateral movement. The analyst wants to cut the device off from normal network communication while keeping Defender for Endpoint able to monitor and manage the device. Which response action is designed for this?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Isolate device"
+      },
+      {
+        "letter": "B",
+        "text": "Collect investigation package"
+      },
+      {
+        "letter": "C",
+        "text": "Run antivirus quick scan"
+      },
+      {
+        "letter": "D",
+        "text": "Add an indicator for the device name"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM3-D2-07",
+    "text": "A phishing alert, a compromised-user alert, and a suspicious endpoint-process alert occur minutes apart and involve the same employee. Which TWO Defender XDR capabilities most directly help an analyst understand them as one multi-stage attack?",
+    "type": "multi-select",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Automatic correlation of related alerts into a shared incident"
+      },
+      {
+        "letter": "B",
+        "text": "The attack story graph linking related users, devices, mailboxes, and alerts"
+      },
+      {
+        "letter": "C",
+        "text": "A Purview retention label applied to the employee mailbox"
+      },
+      {
+        "letter": "D",
+        "text": "A Secure Score recommendation for endpoint hardening"
+      },
+      {
+        "letter": "E",
+        "text": "An Action center filter that shows only completed remediation actions"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A",
+      "B"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM3-D2-08",
+    "text": "A phishing message was delivered to several Exchange Online mailboxes before Microsoft had enough evidence to classify it as malicious. New intelligence identifies it 2 hours later, and the organization wants Defender for Office 365 to neutralize the already-delivered copies automatically. Which capability addresses this scenario?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Zero-hour auto purge"
+      },
+      {
+        "letter": "B",
+        "text": "Safe Attachments dynamic delivery"
+      },
+      {
+        "letter": "C",
+        "text": "Tenant Allow/Block List"
+      },
+      {
+        "letter": "D",
+        "text": "Exchange message trace"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM3-D3-01",
+    "text": "A hunter wants to query Microsoft Defender for Office 365 telemetry for sender addresses, recipients, filtering verdicts, and the final delivery action taken on messages. Which Advanced Hunting table is the most appropriate starting point?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "EmailEvents"
+      },
+      {
+        "letter": "B",
+        "text": "DeviceNetworkEvents"
+      },
+      {
+        "letter": "C",
+        "text": "IdentityInfo"
+      },
+      {
+        "letter": "D",
+        "text": "AlertEvidence"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM3-D3-02",
+    "text": "A hunter wants one result set containing rows from 2 compatible telemetry tables and does not need to correlate matching keys between individual rows. What does the following KQL operator accomplish?\n\nunion EmailEvents, UrlClickEvents",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Returns rows from both input tables in one result set"
+      },
+      {
+        "letter": "B",
+        "text": "Matches rows from both tables on a shared identifier"
+      },
+      {
+        "letter": "C",
+        "text": "Aggregates both tables into one count per time bucket"
+      },
+      {
+        "letter": "D",
+        "text": "Removes rows that do not exist identically in both tables"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM3-D3-03",
+    "text": "A hunter has an account, an IP address, several cloud resources, and a device that may be connected to one campaign. The hunter wants to traverse and visualize the relationships among these entities rather than analyze each as an isolated table row. Which capability best fits?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Microsoft Sentinel Graph"
+      },
+      {
+        "letter": "B",
+        "text": "A Sentinel data collection rule"
+      },
+      {
+        "letter": "C",
+        "text": "Defender XDR email notifications"
+      },
+      {
+        "letter": "D",
+        "text": "A Purview eDiscovery export"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM3-D3-04",
+    "text": "A security team wants an AI-enabled client to use a standardized interface for natural-language security tasks such as finding relevant Sentinel tables, retrieving data, analyzing entities, triaging incidents, and hunting for threats under the user's existing permissions. Which component is designed for this?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Microsoft Sentinel MCP Server"
+      },
+      {
+        "letter": "B",
+        "text": "Microsoft Sentinel workbook templates"
+      },
+      {
+        "letter": "C",
+        "text": "Defender for Endpoint attack surface reduction rules"
+      },
+      {
+        "letter": "D",
+        "text": "Microsoft Purview Data Lifecycle Management"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D1-01",
+    "text": "An organization uses a non-Microsoft antivirus product as the primary antivirus solution, while Microsoft Defender Antivirus remains in passive mode. The SOC wants Defender for Endpoint to remediate malicious artifacts detected by post-breach EDR signals even when the primary antivirus misses them. Which advanced feature should be enabled?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Endpoint detection and response in block mode"
+      },
+      {
+        "letter": "B",
+        "text": "Automatic sample submission"
+      },
+      {
+        "letter": "C",
+        "text": "Network protection in audit mode"
+      },
+      {
+        "letter": "D",
+        "text": "Tamper protection for endpoint security settings"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D1-02",
+    "text": "A Defender for Endpoint tenant has the advanced feature Automatically resolve alerts enabled. An analyst manually changes one alert to In progress, and the associated automated investigation later reports that no threats were found. Why might the alert remain In progress instead of being auto-resolved?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Manual analyst status prevents auto-resolution from overwriting that alert"
+      },
+      {
+        "letter": "B",
+        "text": "Auto-resolution works only for alerts generated through Microsoft Sentinel analytics"
+      },
+      {
+        "letter": "C",
+        "text": "No-threat verdicts require a separate Microsoft Purview approval"
+      },
+      {
+        "letter": "D",
+        "text": "Auto-resolution changes device risk but never changes alert status"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D1-03",
+    "text": "A Sentinel automation rule is configured to run an incident-triggered playbook, but the playbook is unavailable because Sentinel itself lacks permission on the playbook resource group. Which Azure role should be granted to the Microsoft Sentinel service account on that resource group?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Microsoft Sentinel Automation Contributor"
+      },
+      {
+        "letter": "B",
+        "text": "Microsoft Sentinel Reader"
+      },
+      {
+        "letter": "C",
+        "text": "Microsoft Sentinel Responder"
+      },
+      {
+        "letter": "D",
+        "text": "Log Analytics Reader"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D1-04",
+    "text": "A custom network appliance sends verbose JSON records to Microsoft Sentinel. Before the records are stored, the SOC wants to drop low-value rows and mask a sensitive identifier while preserving the useful fields for later detections. Which mechanism is designed for this?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "A data collection rule transformation applied during ingestion"
+      },
+      {
+        "letter": "B",
+        "text": "A workbook parameter applied when the dashboard loads"
+      },
+      {
+        "letter": "C",
+        "text": "An incident automation rule applied after an alert fires"
+      },
+      {
+        "letter": "D",
+        "text": "A scheduled analytics rule that deletes matching records after they are stored"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D1-05",
+    "text": "Threat indicators from several feeds are already present in Microsoft Sentinel, and firewall events are flowing from connected data sources. The SOC wants Sentinel to generate incidents when those indicators match observed network activity. Which detection approach most directly fits the requirement?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Enable an appropriate TI map analytics rule"
+      },
+      {
+        "letter": "B",
+        "text": "Create a workbook that lists active indicators"
+      },
+      {
+        "letter": "C",
+        "text": "Assign a Sentinel incident responder role"
+      },
+      {
+        "letter": "D",
+        "text": "Run an endpoint investigation package collection"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D1-06",
+    "text": "A team has onboarded Microsoft Sentinel to the Microsoft Defender portal and cannot enable the older Fusion Advanced multistage attack detection analytics rule. What best explains this behavior in the current unified experience?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Microsoft Defender XDR correlation replaces Fusion for onboarded workspaces"
+      },
+      {
+        "letter": "B",
+        "text": "Fusion requires all telemetry to be stored only in the Data Lake tier"
+      },
+      {
+        "letter": "C",
+        "text": "Fusion can run only when all contributing alerts originate from scheduled analytics rules"
+      },
+      {
+        "letter": "D",
+        "text": "Fusion was replaced by Microsoft Purview Audit for multi-stage attacks"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D1-07",
+    "text": "A security engineer wants Defender for Endpoint file-hash indicators to block a harmful portable executable on supported Windows endpoints. Which TWO prerequisites are specifically required for the Allow or block file feature?",
+    "type": "multi-select",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Microsoft Defender Antivirus is the active antimalware solution"
+      },
+      {
+        "letter": "B",
+        "text": "Cloud-delivered protection is enabled"
+      },
+      {
+        "letter": "C",
+        "text": "Microsoft Defender Antivirus is permanently disabled"
+      },
+      {
+        "letter": "D",
+        "text": "All endpoints are isolated from the network first"
+      },
+      {
+        "letter": "E",
+        "text": "Microsoft Sentinel is configured as the primary SIEM platform for the organization"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A",
+      "B"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D1-08",
+    "text": "Three Sentinel automation rules can all match the same newly created incident. The SOC requires a tagging rule to run before an assignment rule, and both must run before a playbook is called. Which automation-rule setting controls that sequence?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Order"
+      },
+      {
+        "letter": "B",
+        "text": "Expiration date"
+      },
+      {
+        "letter": "C",
+        "text": "Analytics rule template"
+      },
+      {
+        "letter": "D",
+        "text": "Incident severity"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D1-09",
+    "text": "An external assessor must review Microsoft Sentinel data and configuration but should not change incidents, create analytics rules, or modify content. Which built-in Sentinel role best matches this least-privilege requirement?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Microsoft Sentinel Reader"
+      },
+      {
+        "letter": "B",
+        "text": "Microsoft Sentinel Responder"
+      },
+      {
+        "letter": "C",
+        "text": "Microsoft Sentinel Contributor"
+      },
+      {
+        "letter": "D",
+        "text": "Microsoft Sentinel Automation Contributor"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  },
+  {
+    "id": "spt-SCM4-D2-01",
+    "text": "A data loss prevention policy flags a user for sending regulated data to an external destination. The analyst needs to investigate the DLP alert together with related security context, while the compliance engineer separately maintains the policy definition. Where should the analyst primarily investigate the alert?",
+    "type": "single-choice",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "The Microsoft Defender XDR dashboard"
+      },
+      {
+        "letter": "B",
+        "text": "The Microsoft Purview policy creation page"
+      },
+      {
+        "letter": "C",
+        "text": "The Microsoft Entra application registrations page"
+      },
+      {
+        "letter": "D",
+        "text": "The Defender for Endpoint device inventory"
+      }
+    ],
+    "currentCorrectLetters": [
+      "A"
+    ],
+    "images": [],
+    "answerImage": null
+  }
+]
