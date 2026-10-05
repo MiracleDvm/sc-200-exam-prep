@@ -1,4 +1,4 @@
-// Auto-generated — questions merged with researched/verified answers, explanations and Microsoft Learn references. Do not edit by hand.
+// Auto-generated — includes interactive drag-drop/hotspot data (scraper/interactive/). Do not edit by hand.
 const QUESTIONS = [
   {
     "id": "813328",
@@ -13,8 +13,27 @@ const QUESTIONS = [
     "correctLetters": [],
     "answerImage": "https://www.examtopics.com/assets/media/exam-media/04261/0001200001.png",
     "source": "examtopics.com",
-    "explanation": "Cette question est de type drag-drop (schéma visuel non analysable automatiquement), donc la réponse actuelle est conservée telle quelle. Sur le fond, ce type de requête repose sur la table DeviceLogonEvents du schéma Advanced Hunting de Microsoft Defender XDR : il faut filtrer sur DeviceName in (\"CFOLaptop\", \"CEOLaptop\", \"COOLaptop\"), ActionType == \"LogonFailed\", puis utiliser summarize count() by DeviceName pour compter les échecs d'authentification par appareil. Le point testé est la bonne utilisation des colonnes DeviceName et ActionType ainsi que la syntaxe KQL summarize/count.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicelogonevents-table"
+    "explanation": "Ce type de requête repose sur la table DeviceLogonEvents du schéma Advanced Hunting de Microsoft Defender XDR : il faut filtrer sur DeviceName in (\"CFOLaptop\", \"CEOLaptop\", \"COOLaptop\"), ActionType == \"LogonFailed\", puis utiliser summarize count() by DeviceName pour compter les échecs d'authentification par appareil. Le point testé est la bonne utilisation des colonnes DeviceName et ActionType ainsi que la syntaxe KQL summarize/count.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicelogonevents-table",
+    "interactive": {
+      "kind": "order-items",
+      "pool": [
+        "| project LogonFailures=count()",
+        "| summarize LogonFailures=count()\nby DeviceName, LogonType",
+        "| where ActionType == FailureReason",
+        "| where DeviceName in (\"CFOLaptop\", \"CEOLaptop\", \"COOLaptop\")",
+        "ActionType == \"LogonFailed\"",
+        "ActionType == FailureReason",
+        "DeviceEvents",
+        "DeviceLogonEvents"
+      ],
+      "correctOrder": [
+        "DeviceLogonEvents",
+        "| where DeviceName in (\"CFOLaptop\", \"CEOLaptop\", \"COOLaptop\")",
+        "ActionType == FailureReason",
+        "| summarize LogonFailures=count()\nby DeviceName, LogonType"
+      ]
+    }
   },
   {
     "id": "813329",
@@ -135,8 +154,25 @@ const QUESTIONS = [
     "correctLetters": [],
     "answerImage": "https://www.examtopics.com/assets/media/exam-media/04261/0001700001.png",
     "source": "examtopics.com",
-    "explanation": "Question drag-drop (réponse visuelle non vérifiable) ; la réponse actuelle (vide) est conservée telle quelle. Le concept testé est la gouvernance des applications découvertes dans Microsoft Defender for Cloud Apps/Cloud Discovery sans Defender for Endpoint : on évalue le score de risque de l'application dans le tableau de bord Cloud Discovery, on la marque comme \"Unsanctioned\", puis on génère un script de blocage (\"Generate block script\") à importer manuellement dans l'appliance de sécurité (proxy/pare-feu) existante, puisque sans Defender for Endpoint le blocage automatique par groupe d'appareils n'est pas disponible.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/governance-discovery"
+    "explanation": "La gouvernance des applications découvertes dans Microsoft Defender for Cloud Apps/Cloud Discovery sans Defender for Endpoint : on évalue le score de risque de l'application dans le tableau de bord Cloud Discovery, on la marque comme \"Unsanctioned\", puis on génère un script de blocage (\"Generate block script\") à importer manuellement dans l'appliance de sécurité (proxy/pare-feu) existante, puisque sans Defender for Endpoint le blocage automatique par groupe d'appareils n'est pas disponible.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/governance-discovery",
+    "interactive": {
+      "kind": "order-items",
+      "pool": [
+        "Tag the app as Unsanctioned.",
+        "Run the script on the source appliance.",
+        "Run the script in Azure Cloud Shell.",
+        "Select the app.",
+        "Tag the app as Sanctioned.",
+        "Generate a block script."
+      ],
+      "correctOrder": [
+        "Select the app.",
+        "Tag the app as Unsanctioned.",
+        "Generate a block script.",
+        "Run the script on the source appliance."
+      ]
+    }
   },
   {
     "id": "813334",
@@ -151,8 +187,62 @@ const QUESTIONS = [
     "correctLetters": [],
     "answerImage": "https://www.examtopics.com/assets/media/exam-media/04261/0001900001.png",
     "source": "examtopics.com",
-    "explanation": "Question hotspot (réponse visuelle non vérifiable) ; la réponse actuelle (vide) est conservée telle quelle. Le concept testé est une investigation cross-domaine dans Microsoft 365 Defender/Defender XDR : on part de la table EmailAttachmentInfo pour identifier la pièce jointe malveillante (via son SHA256), puis on effectue une jointure (join) avec DeviceFileEvents sur ce même SHA256 afin de retrouver les appareils sur lesquels le fichier a été exécuté ou écrit, ce qui permet de relier un événement de messagerie à un impact sur les terminaux.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-emailattachmentinfo-table"
+    "explanation": "Une investigation cross-domaine dans Microsoft 365 Defender/Defender XDR : on part de la table EmailAttachmentInfo pour identifier la pièce jointe malveillante (via son SHA256), puis on effectue une jointure (join) avec DeviceFileEvents sur ce même SHA256 afin de retrouver les appareils sur lesquels le fichier a été exécuté ou écrit, ce qui permet de relier un événement de messagerie à un impact sur les terminaux.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-emailattachmentinfo-table",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "EmailAttachmentInfo\n| where SenderFromAddress =~ \"MaliciousSender@example.com\"\n| where isnotempty (SHA256)\n| "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "extend",
+            "join",
+            "project",
+            "union"
+          ],
+          "correct": "join"
+        },
+        {
+          "type": "text",
+          "value": " (\nDeviceFileEvents\n| "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "extend",
+            "join",
+            "project",
+            "union"
+          ],
+          "correct": "project"
+        },
+        {
+          "type": "text",
+          "value": " FileName, SHA256\n) on SHA256\n| "
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "options": [
+            "extend",
+            "join",
+            "project",
+            "union"
+          ],
+          "correct": "project"
+        },
+        {
+          "type": "text",
+          "value": " Timestamp, FileName, SHA256, DeviceName, DeviceId, NetworkMessageId, SenderFromAddress, RecipientEmailAddress"
+        }
+      ]
+    }
   },
   {
     "id": "813335",
@@ -438,8 +528,43 @@ const QUESTIONS = [
     "correctLetters": [],
     "answerImage": "https://www.examtopics.com/assets/media/exam-media/04261/0003700001.png",
     "source": "examtopics.com",
-    "explanation": "Question drag-drop (réponse visuelle non vérifiable) ; la réponse actuelle (vide) est conservée telle quelle. Le concept testé est l'attribution des rôles Azure RBAC au niveau de l'abonnement selon le principe du moindre privilège pour Microsoft Defender for Cloud (ex-Azure Defender) : Security Reader pour une consultation en lecture seule des recommandations/alertes, Security Admin pour pouvoir en plus modifier les politiques de sécurité et classer les alertes/recommandations, tandis que Owner/Contributor donnent des droits plus larges que nécessaire pour de simples tâches de sécurité.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/permissions"
+    "explanation": "L'attribution des rôles Azure RBAC au niveau de l'abonnement selon le principe du moindre privilège pour Microsoft Defender for Cloud (ex-Azure Defender) : Security Reader pour une consultation en lecture seule des recommandations/alertes, Security Admin pour pouvoir en plus modifier les politiques de sécurité et classer les alertes/recommandations, tandis que Owner/Contributor donnent des droits plus larges que nécessaire pour de simples tâches de sécurité.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/permissions",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "User1: "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "Contributor",
+            "Owner",
+            "Security administrator",
+            "Security reader"
+          ],
+          "correct": "Owner"
+        },
+        {
+          "type": "text",
+          "value": "\nUser2: "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "Contributor",
+            "Owner",
+            "Security administrator",
+            "Security reader"
+          ],
+          "correct": "Contributor"
+        }
+      ]
+    }
   },
   {
     "id": "813354",
@@ -454,8 +579,41 @@ const QUESTIONS = [
     "correctLetters": [],
     "answerImage": "https://img.examtopics.com/sc-200/image411.png",
     "source": "examtopics.com",
-    "explanation": "Question hotspot (réponse visuelle non vérifiable) ; la réponse actuelle (vide) est conservée telle quelle. Le concept testé est le contrôle d'accès basé sur les rôles (RBAC) unifié de Microsoft Defender pour la fonctionnalité Live Response : il faut accorder uniquement la permission \"Basic live response\" (qui permet d'ouvrir une session et de réaliser des actions en lecture) plutôt que \"Advanced live response\" (qui autorise en plus l'upload de fichiers et l'exécution de scripts), afin de respecter le principe du moindre privilège tout en permettant la connexion shell distante aux appareils depuis le portail.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-endpoint/live-response"
+    "explanation": "Le contrôle d'accès basé sur les rôles (RBAC) unifié de Microsoft Defender pour la fonctionnalité Live Response : il faut accorder uniquement la permission \"Basic live response\" (qui permet d'ouvrir une session et de réaliser des actions en lecture) plutôt que \"Advanced live response\" (qui autorise en plus l'upload de fichiers et l'exécution de scripts), afin de respecter le principe du moindre privilège tout en permettant la connexion shell distante aux appareils depuis le portail.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-endpoint/live-response",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "To configure Microsoft Defender for Endpoint: "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "Turn on endpoint detection and response (EDR) in block mode",
+            "Turn on Live Response",
+            "Turn off Tamper Protection"
+          ],
+          "correct": "Turn on Live Response"
+        },
+        {
+          "type": "text",
+          "value": "\nTo configure the devices: "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "Add a network assessment job",
+            "Create a device group that contains the devices and set Automation level to Full",
+            "Create a device group that contains the devices and set Automation level to No automated response"
+          ],
+          "correct": "Create a device group that contains the devices and set Automation level to Full"
+        }
+      ]
+    }
   },
   {
     "id": "813355",
@@ -470,8 +628,45 @@ const QUESTIONS = [
     "correctLetters": [],
     "answerImage": "https://www.examtopics.com/assets/media/exam-media/04261/0004100001.jpg",
     "source": "examtopics.com",
-    "explanation": "Question hotspot (réponse visuelle non vérifiable) ; la réponse actuelle (vide) est conservée telle quelle. Le concept testé est une requête Advanced Hunting cross-tables dans Microsoft 365 Defender : on identifie d'abord les appareils sur lesquels User1 s'est connecté via DeviceLogonEvents (filtrage sur AccountName/AccountUpn), puis on effectue une jointure sur DeviceId avec les tables d'alertes (AlertInfo/AlertEvidence) afin de ne récupérer que les alertes déclenchées sur ces appareils précis, ce qui permet de circonscrire l'investigation au périmètre du compte compromis.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicelogonevents-table"
+    "explanation": "Une requête Advanced Hunting cross-tables dans Microsoft 365 Defender : on identifie d'abord les appareils sur lesquels User1 s'est connecté via DeviceLogonEvents (filtrage sur AccountName/AccountUpn), puis on effectue une jointure sur DeviceId avec les tables d'alertes (AlertInfo/AlertEvidence) afin de ne récupérer que les alertes déclenchées sur ces appareils précis, ce qui permet de circonscrire l'investigation au périmètre du compte compromis.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicelogonevents-table",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "DeviceInfo\n| where LoggedOnUsers contains 'user1'\n| distinct DeviceId\n| "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "extend",
+            "join",
+            "project"
+          ],
+          "correct": "join"
+        },
+        {
+          "type": "text",
+          "value": " kind=inner AlertEvidence on DeviceId\n| project AlertId\n| join AlertInfo on AlertId\n| "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "project",
+            "summarize",
+            "take"
+          ],
+          "correct": "project"
+        },
+        {
+          "type": "text",
+          "value": " AlertId, Timestamp, Title, Severity, Category"
+        }
+      ]
+    }
   },
   {
     "id": "813356",
@@ -635,8 +830,55 @@ const QUESTIONS = [
     "correctLetters": [],
     "answerImage": "https://www.examtopics.com/assets/media/exam-media/04261/0002500001.png",
     "source": "examtopics.com",
-    "explanation": "This hotspot tests the ability to build a cross-table advanced hunting query that pivots from a malicious email event to the recipients' subsequent sign-in activity. The query needs to join the email table (filtered to the known malicious message) with a sign-in events table on the recipient's identity, constrain the join to sign-ins that occurred within one hour after the email was received, sort by time descending, and limit the results to the 20 most recent rows (e.g., using a time-windowed join plus `top 20 by Timestamp desc`). As a hotspot question with a visual answer key, the exact dropdown selections can't be reliably reconstructed without the image, so the originally recorded answer is kept unchanged.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-overview"
+    "explanation": "This hotspot tests the ability to build a cross-table advanced hunting query that pivots from a malicious email event to the recipients' subsequent sign-in activity. The query needs to join the email table (filtered to the known malicious message) with a sign-in events table on the recipient's identity, constrain the join to sign-ins that occurred within one hour after the email was received, sort by time descending, and limit the results to the 20 most recent rows (e.g., using a time-windowed join plus `top 20 by Timestamp desc`).",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-overview",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "let MaliciousEmails = "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "EmailAttachementInfo",
+            "EmailEvents",
+            "IdentityLogonEvents"
+          ],
+          "correct": "EmailEvents"
+        },
+        {
+          "type": "text",
+          "value": "\n| where MalwareFilterVerdict == \"Malware\"\n| project TimeEmail = Timestamp, Subject, SenderFromAddress, AccountName = tostring(split (RecipientEmailAddress, \"@\") [0]);\nMaliciousEmails\n| join (\n"
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "EmailAttachementInfo",
+            "EmailEvents",
+            "IdentityLogonEvents"
+          ],
+          "correct": "IdentityLogonEvents"
+        },
+        {
+          "type": "text",
+          "value": "\n| project LogonTime = Timestamp, AccountName, DeviceName\n) on AccountName\n| where (LogonTime - TimeEmail) between (0min.. 60min)\n| "
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "options": [
+            "select 20",
+            "take 20",
+            "top 20"
+          ],
+          "correct": "take 20"
+        }
+      ]
+    }
   },
   {
     "id": "813342",
@@ -719,7 +961,46 @@ const QUESTIONS = [
     "answerImage": "https://www.examtopics.com/assets/media/exam-media/04261/0002800001.jpg",
     "source": "examtopics.com",
     "explanation": "This hotspot tests building a query that pivots from a known-malicious email sender to the devices that received the attached file, using the SHA256 hash as the common key between Microsoft Defender for Office 365 email data and Microsoft Defender for Endpoint device data. The expected approach filters EmailAttachmentInfo by the malicious SenderFromAddress to get the attachment's SHA256, then joins that value against DeviceFileEvents.SHA256 to return the affected DeviceName/DeviceId values. Since this is a hotspot answer rendered only in an image, the exact dropdown selections are left as originally recorded.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-emailattachmentinfo-table"
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-emailattachmentinfo-table",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "EmailAttachmentInfo\n| where SenderFromAddress =~ \"MaliciousSender@example.com\"\nwhere isnotempty "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "(DeviceId)",
+            "(RecipientEmailAddress)",
+            "(SenderFromAddress)",
+            "(SHA256)"
+          ],
+          "correct": "(SHA256)"
+        },
+        {
+          "type": "text",
+          "value": "\n| join (\nDeviceFileEvents\n| project FileName, SHA256\n) on "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "DeviceId",
+            "RecipientEmailAddress",
+            "SenderFromAddress",
+            "SHA256"
+          ],
+          "correct": "SHA256"
+        },
+        {
+          "type": "text",
+          "value": "\n| project Timestamp, FileName, SHA256, DeviceName, DeviceId, NetworkMessageId, SenderFromAddress, RecipientEmailAddress"
+        }
+      ]
+    }
   },
   {
     "id": "813345",
@@ -777,7 +1058,40 @@ const QUESTIONS = [
     "answerImage": "https://img.examtopics.com/sc-200/image410.png",
     "source": "examtopics.com",
     "explanation": "This hotspot tests knowledge that botnet-originated connections are detected in Defender for Cloud Apps using an Activity policy (not an Anomaly detection or Access policy), filtered on the IP address category/tag equal to 'Botnet' — a tag Defender for Cloud Apps' threat-intelligence feed automatically applies to known botnet IP ranges. Anomaly detection policies are pre-built and not customizable to this degree, and Access policies control real-time session access rather than alerting on historical activity patterns. As this is a hotspot answer shown only in an image, the specific dropdown values are left as originally recorded.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/user-activity-policies"
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/user-activity-policies",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "Policy template type: "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "Access policy",
+            "Activity policy",
+            "Anomaly detection policy"
+          ],
+          "correct": "Activity policy"
+        },
+        {
+          "type": "text",
+          "value": "\nFilter based on: "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "IP address tag",
+            "Source",
+            "User agent string"
+          ],
+          "correct": "IP address tag"
+        }
+      ]
+    }
   },
   {
     "id": "813347",
@@ -860,8 +1174,27 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/77b4e91f-1e0d-471b-990f-94e3234884ae.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This drag-drop tests constructing an advanced hunting query against the DeviceLogonEvents table: filtering ActionType to failed logon attempts (e.g., 'LogonFailed'), restricting DeviceName to the three named devices (CFOLaptop, CEOLaptop, COOLaptop), and then using `summarize count()` grouped by DeviceName (or AccountName) to produce the failed sign-in counts. Because the answer is a visual drag-and-drop arrangement that can't be verified without the image, the originally recorded answer is kept unchanged.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicelogonevents-table"
+    "explanation": "This drag-drop tests constructing an advanced hunting query against the DeviceLogonEvents table: filtering ActionType to failed logon attempts (e.g., 'LogonFailed'), restricting DeviceName to the three named devices (CFOLaptop, CEOLaptop, COOLaptop), and then using `summarize count()` grouped by DeviceName (or AccountName) to produce the failed sign-in counts.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicelogonevents-table",
+    "interactive": {
+      "kind": "order-items",
+      "pool": [
+        "| project LogonFailures=count()",
+        "| summarize LogonFailures=count() by DeviceName, LogonType",
+        "| where ActionType == FailureReason",
+        "| where DeviceName in (\"CFOLaptop\", \"CEOLaptop\", \"COOLaptop\")",
+        "ActionType == \"LogonFailed\"",
+        "ActionType == FailureReason",
+        "DeviceEvents",
+        "DeviceLogonEvents"
+      ],
+      "correctOrder": [
+        "DeviceLogonEvents",
+        "| where DeviceName in (\"CFOLaptop\", \"CEOLaptop\", \"COOLaptop\")",
+        "ActionType == FailureReason",
+        "| summarize LogonFailures=count() by DeviceName, LogonType"
+      ]
+    }
   },
   {
     "id": "ed-9-596f7520",
@@ -951,8 +1284,25 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/0c5d2640-5306-48c3-8f5f-2d6b8007ee5c.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This drag-drop tests the app-risk remediation workflow in Defender for Cloud Apps when Defender for Endpoint isn't available: you investigate the flagged app (Launchpad) and its risk score/permissions on the OAuth apps or App governance page, review which users and data it has access to, then take a governance action such as banning or revoking the app's permissions, and finally notify the affected users so they're aware access was removed. Because the correct sequence is shown only as an image-based drag-and-drop answer, the originally recorded answer is kept unchanged, and the explanation focuses on the general app-governance remediation concept being tested.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/governance-actions"
+    "explanation": "This drag-drop tests the app-risk remediation workflow in Defender for Cloud Apps when Defender for Endpoint isn't available: you investigate the flagged app (Launchpad) and its risk score/permissions on the OAuth apps or App governance page, review which users and data it has access to, then take a governance action such as banning or revoking the app's permissions, and finally notify the affected users so they're aware access was removed.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/governance-actions",
+    "interactive": {
+      "kind": "order-items",
+      "pool": [
+        "Tag the app as Unsanctioned.",
+        "Run the script on the source appliance.",
+        "Run the script in Azure Cloud Shell.",
+        "Select the app.",
+        "Tag the app as Sanctioned.",
+        "Generate a block script."
+      ],
+      "correctOrder": [
+        "Select the app.",
+        "Tag the app as Unsanctioned.",
+        "Generate a block script.",
+        "Run the script on the source appliance."
+      ]
+    }
   },
   {
     "id": "ed-14-596f7520",
@@ -970,7 +1320,61 @@ const QUESTIONS = [
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/a9c3dce7-bfd0-4ef3-b5aa-52f955bc0155.jpg",
     "source": "exam-dumps.net",
     "explanation": "This hotspot tests cross-domain advanced hunting in Microsoft Defender XDR: identifying devices affected by a malicious email attachment means joining EmailAttachmentInfo (which records the SHA256 of attachments processed by Defender for Office 365) with DeviceFileEvents (which records the SHA256 of files seen/executed on endpoints via Defender for Endpoint) on the shared SHA256 column, then projecting DeviceName/DeviceId for matching rows. This SHA256-based join is the standard way to pivot from an email-borne threat to the endpoints where that file actually landed. The specific hotspot selections remain as originally recorded since they were only shown in an image.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-emailattachmentinfo-table"
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-emailattachmentinfo-table",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "EmailAttachmentInfo\n| where SenderFromAddress =~ \"MaliciousSender@example.com\"\n| where isnotempty (SHA256)\n| "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "extend",
+            "join",
+            "project",
+            "union"
+          ],
+          "correct": "join"
+        },
+        {
+          "type": "text",
+          "value": " (\nDeviceFileEvents\n| "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "extend",
+            "join",
+            "project",
+            "union"
+          ],
+          "correct": "project"
+        },
+        {
+          "type": "text",
+          "value": " FileName, SHA256\n) on SHA256\n| "
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "options": [
+            "extend",
+            "join",
+            "project",
+            "union"
+          ],
+          "correct": "project"
+        },
+        {
+          "type": "text",
+          "value": " Timestamp, FileName, SHA256, DeviceName, DeviceId, NetworkMessageId, SenderFromAddress, RecipientEmailAddress"
+        }
+      ]
+    }
   },
   {
     "id": "ed-15-596f7520",
@@ -1052,8 +1456,55 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/edcf6aae-66a4-40bf-a9d4-9e9fe522b87a.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This is a hotspot question whose exact drop-down selections are shown only in an image that cannot be verified pixel-by-pixel, so the originally provided answer is kept as-is. Conceptually, the query needs to join EmailEvents (to find the malicious email and its recipients) with a sign-in table such as the Microsoft Entra sign-in logs, correlate on the recipient's account and a time window of one hour after the email's delivery timestamp, and then sort and limit the results to the most recent 20 sign-ins. This pattern of joining email delivery data with identity sign-in data is a common advanced hunting technique for detecting account compromise following a phishing email.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-example-queries"
+    "explanation": "The query needs to join EmailEvents (to find the malicious email and its recipients) with a sign-in table such as the Microsoft Entra sign-in logs, correlate on the recipient's account and a time window of one hour after the email's delivery timestamp, and then sort and limit the results to the most recent 20 sign-ins. This pattern of joining email delivery data with identity sign-in data is a common advanced hunting technique for detecting account compromise following a phishing email.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-example-queries",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "let MaliciousEmails = "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "EmailAttachementInfo",
+            "EmailEvents",
+            "IdentityLogonEvents"
+          ],
+          "correct": "EmailEvents"
+        },
+        {
+          "type": "text",
+          "value": "\n| where MalwareFilterVerdict == \"Malware\"\n| project TimeEmail = Timestamp, Subject, SenderFromAddress, AccountName = tostring(split (RecipientEmailAddress, \"@\") [0]);\nMaliciousEmails\n| join (\n"
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "EmailAttachementInfo",
+            "EmailEvents",
+            "IdentityLogonEvents"
+          ],
+          "correct": "IdentityLogonEvents"
+        },
+        {
+          "type": "text",
+          "value": "\n| project LogonTime = Timestamp, AccountName, DeviceName\n) on AccountName\n| where (LogonTime - TimeEmail) between (0min.. 60min)\n| "
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "options": [
+            "select 20",
+            "take 20",
+            "top 20"
+          ],
+          "correct": "take 20"
+        }
+      ]
+    }
   },
   {
     "id": "ed-23-596f7572",
@@ -1104,8 +1555,47 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/093e12be-c3f2-4d5a-9344-dc1973d4ca33.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This is a hotspot question whose exact drop-down selections are shown only in an image that cannot be verified pixel-by-pixel, so the originally provided answer is kept as-is. Conceptually, the query needs to start from the email attachment metadata for messages sent by the known malicious sender (EmailAttachmentInfo), extract the SHA256 hash of those attachments, and then join that hash against a device-side file table such as DeviceFileEvents or DeviceProcessEvents to find every device where a file with the same SHA256 was seen. Matching on SHA256 rather than file name or path is the key technique being tested, since hash matching is resistant to file renaming.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-example-queries"
+    "explanation": "The query needs to start from the email attachment metadata for messages sent by the known malicious sender (EmailAttachmentInfo), extract the SHA256 hash of those attachments, and then join that hash against a device-side file table such as DeviceFileEvents or DeviceProcessEvents to find every device where a file with the same SHA256 was seen. Matching on SHA256 rather than file name or path is the key technique being tested, since hash matching is resistant to file renaming.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-example-queries",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "EmailAttachmentInfo\n| where SenderFromAddress =~ \"MaliciousSender@example.com\"\nwhere isnotempty "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "(DeviceId)",
+            "(RecipientEmailAddress)",
+            "(SenderFromAddress)",
+            "(SHA256)"
+          ],
+          "correct": "(SHA256)"
+        },
+        {
+          "type": "text",
+          "value": "\n| join (\nDeviceFileEvents\n| project FileName, SHA256\n) on "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "DeviceId",
+            "RecipientEmailAddress",
+            "SenderFromAddress",
+            "SHA256"
+          ],
+          "correct": "SHA256"
+        },
+        {
+          "type": "text",
+          "value": "\n| project Timestamp, FileName, SHA256, DeviceName, DeviceId, NetworkMessageId, SenderFromAddress, RecipientEmailAddress"
+        }
+      ]
+    }
   },
   {
     "id": "ed-25-596f7520",
@@ -1164,8 +1654,41 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/cb0ba523-a2d4-4a47-9d2d-a2b39ec098f5.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This is a hotspot question whose exact drop-down selections are shown only in an image that cannot be verified pixel-by-pixel, so the originally provided answer is kept as-is. Conceptually, detecting connections from a botnet originates from the built-in Risky IP category in Defender for Cloud Apps, which already includes the Botnet threat-intelligence tag, and the way to act on it with a custom, template-based policy is to create an Activity policy using an activity-matches-filter template scoped to the Risky IP address category/tag. This tests knowledge that Defender for Cloud Apps ships built-in IP threat-intelligence tags that templates and custom policies can filter on directly, without needing to manually define the malicious IP ranges yourself.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/ip-tags"
+    "explanation": "Detecting connections from a botnet originates from the built-in Risky IP category in Defender for Cloud Apps, which already includes the Botnet threat-intelligence tag, and the way to act on it with a custom, template-based policy is to create an Activity policy using an activity-matches-filter template scoped to the Risky IP address category/tag. This tests knowledge that Defender for Cloud Apps ships built-in IP threat-intelligence tags that templates and custom policies can filter on directly, without needing to manually define the malicious IP ranges yourself.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/ip-tags",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "Policy template type: "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "Access policy",
+            "Activity policy",
+            "Anomaly detection policy"
+          ],
+          "correct": "Anomaly detection policy"
+        },
+        {
+          "type": "text",
+          "value": "\nFilter based on: "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "IP address tag",
+            "Source",
+            "User agent string"
+          ],
+          "correct": "IP address tag"
+        }
+      ]
+    }
   },
   {
     "id": "ed-28-596f7520",
@@ -1287,8 +1810,21 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/7581e479-2d72-4b6b-bbe9-df970de880dc.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This is a drag-and-drop question whose exact role-to-user mapping is shown only in an image that cannot be verified pixel-by-pixel, so the originally provided answer is kept as-is. Conceptually, the question tests knowledge of Microsoft Defender for Cloud's built-in Microsoft Entra roles at the subscription level, such as Security Reader (view-only access to recommendations and alerts) versus Security Admin/Contributor (ability to apply recommendations, dismiss alerts, or edit security policies), and matching the least-privileged role to each user's specific listed tasks. The underlying skill being tested is choosing the narrowest built-in role that still covers the exact actions each user needs to perform.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/security"
+    "explanation": "The question tests knowledge of Microsoft Defender for Cloud's built-in Microsoft Entra roles at the subscription level, such as Security Reader (view-only access to recommendations and alerts) versus Security Admin/Contributor (ability to apply recommendations, dismiss alerts, or edit security policies), and matching the least-privileged role to each user's specific listed tasks. The underlying skill being tested is choosing the narrowest built-in role that still covers the exact actions each user needs to perform.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/security",
+    "interactive": {
+      "kind": "order-items",
+      "pool": [
+        "Contributor",
+        "Owner",
+        "Security administrator",
+        "Security reader"
+      ],
+      "correctOrder": [
+        "Owner",
+        "Contributor"
+      ]
+    }
   },
   {
     "id": "ed-36-596f7520",
@@ -1537,8 +2073,20 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/70ab7e8e-3fdc-4e69-bb79-8d383a9874c6.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This is a drag-and-drop question whose answer is shown only in an image, so the lettered answer cannot be independently re-verified here and is kept as originally recorded. Conceptually, the scenario tests least-privilege role assignment in Microsoft Defender for Cloud: enabling a Defender plan (Defender for Servers) on resources requires a role with write access at the subscription/resource level (such as Contributor or Owner), while reviewing recommendations and configuring vulnerability scanning can be done with the narrower Security Admin / Security Reader-type roles built for Defender for Cloud. The task is to match each built-in Azure role to the minimum privilege needed for each action rather than over-granting Owner/Contributor to everyone.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/permissions"
+    "explanation": "The scenario tests least-privilege role assignment in Microsoft Defender for Cloud: enabling a Defender plan (Defender for Servers) on resources requires a role with write access at the subscription/resource level (such as Contributor or Owner), while reviewing recommendations and configuring vulnerability scanning can be done with the narrower Security Admin / Security Reader-type roles built for Defender for Cloud. The task is to match each built-in Azure role to the minimum privilege needed for each action rather than over-granting Owner/Contributor to everyone.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/permissions",
+    "interactive": {
+      "kind": "order-items",
+      "pool": [
+        "User1",
+        "User2",
+        "User3"
+      ],
+      "correctOrder": [
+        "User1",
+        "User2"
+      ]
+    }
   },
   {
     "id": "ed-44-596f7520",
@@ -1555,8 +2103,43 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/12c8850a-5aa3-43a6-bccc-de0297a3a642.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This is a hotspot question whose answer options are only visible in an image, so the recorded answer is kept as-is. Conceptually, the query needs to search the EmailAttachmentInfo (or EmailEvents joined with EmailAttachmentInfo) table for FileName == \"Document.pdf\", and for performance it must apply the time filter (where Timestamp > ago(1h)) as early as possible in the query so Advanced Hunting/KQL can prune data before evaluating the more expensive string filter. Placing broad, indexed filters like time range first is the standard KQL performance optimization pattern used throughout Microsoft Defender XDR hunting guidance.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-best-practices"
+    "explanation": "The query needs to search the EmailAttachmentInfo (or EmailEvents joined with EmailAttachmentInfo) table for FileName == \"Document.pdf\", and for performance it must apply the time filter (where Timestamp > ago(1h)) as early as possible in the query so Advanced Hunting/KQL can prune data before evaluating the more expensive string filter. Placing broad, indexed filters like time range first is the standard KQL performance optimization pattern used throughout Microsoft Defender XDR hunting guidance.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-best-practices",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "EmailAttachmentInfo\n"
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "| join DeviceFileEvents on SHA256",
+            "| join kind=inner (DeviceFileEvents | where Timestamp > ago(1h)) on SHA256",
+            "| where Timestamp > ago(1h)",
+            "| where Timestamp < ago(1h)"
+          ],
+          "correct": "| where Timestamp > ago(1h)"
+        },
+        {
+          "type": "text",
+          "value": "\n| where Subject == \"Document Attachment\" and FileName == \"Document.pdf\"\n"
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "| join DeviceFileEvents on SHA256",
+            "| join kind=inner (DeviceFileEvents | where Timestamp > ago(1h)) on SHA256",
+            "| where Timestamp > ago(1h)",
+            "| where Timestamp < ago(1h)"
+          ],
+          "correct": "| join kind=inner (DeviceFileEvents | where Timestamp > ago(1h)) on SHA256"
+        }
+      ]
+    }
   },
   {
     "id": "ed-45-596f7572",
@@ -1672,8 +2255,45 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/903ed14d-aa3d-4460-9173-8404a51d4fda.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This is a hotspot question with the real answer only visible in an image, so the recorded letter is kept unchanged. Conceptually, to get the 100 most recent sign-ins across both devices and on-premises AD DS domain controllers, the query must union two Advanced Hunting tables — DeviceLogonEvents (endpoint sign-ins) and IdentityLogonEvents (which, once Defender for Identity sensors are deployed on domain controllers, captures AD authentication events) — sort the combined results by Timestamp in descending order, and limit the output with take 100 (or top 100 by Timestamp).",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-identitylogonevents-table"
+    "explanation": "To get the 100 most recent sign-ins across both devices and on-premises AD DS domain controllers, the query must union two Advanced Hunting tables — DeviceLogonEvents (endpoint sign-ins) and IdentityLogonEvents (which, once Defender for Identity sensors are deployed on domain controllers, captures AD authentication events) — sort the combined results by Timestamp in descending order, and limit the output with take 100 (or top 100 by Timestamp).",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-identitylogonevents-table",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "DeviceLogonEvents\n| extend Table = 'table1'\n| take 100\n| "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "IdentityInfo",
+            "IdentityLogonEvents",
+            "IdentityQueryEvents"
+          ],
+          "correct": "IdentityLogonEvents"
+        },
+        {
+          "type": "text",
+          "value": " (\n    "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "join kind = full outer",
+            "join kind = inner",
+            "union"
+          ],
+          "correct": "union"
+        },
+        {
+          "type": "text",
+          "value": "\n    | extend Table = 'table2'\n    | take 100\n)\n| project-reorder Timestamp, Table, AccountDomain, AccountName, AccountUpn, AccountSid\n| order by Timestamp asc"
+        }
+      ]
+    }
   },
   {
     "id": "ed-50-596f7520",
@@ -1724,8 +2344,52 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/f09fe9cb-528c-4398-986e-5855503351ca.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This hotspot question's true/false answers are only visible in an image that cannot be inspected, so the recorded value is retained unchanged. The question is testing the ability to read a custom Microsoft Defender XDR detection rule's KQL and determine behavior such as which entities trigger alerts, how frequently the rule runs, and what actions or exclusions apply — concepts fully documented in Microsoft's custom detection rules guidance (rule logic, scheduling frequency, lookback period, and impacted entities).",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/custom-detection-rules"
+    "explanation": "The question is testing the ability to read a custom Microsoft Defender XDR detection rule's KQL and determine behavior such as which entities trigger alerts, how frequently the rule runs, and what actions or exclusions apply — concepts fully documented in Microsoft's custom detection rules guidance (rule logic, scheduling frequency, lookback period, and impacted entities).",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/custom-detection-rules",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "AlertInfo\n| where Severity == \"High\"\n| distinct AlertId\n| join AlertEvidence on AlertId\n| where EntityType in (\"User\", \"Mailbox\")\n| where EvidenceRole == \"Impacted\"\n| summarize by Timestamp, AlertId, AccountName, AccountObjectId, EntityType, DeviceId, SHA256\n| join EmailEvents on $left.AccountObjectId == $right.RecipientObjectId\n| where DeliveryAction == \"Delivered\"\n| summarize by Timestamp, AlertId, ReportId, RecipientObjectId, RecipientEmailAddtess, EntityType, DeviceId, SHA256\n\nStatement 1: The custom detection rule can be used to automate the deletion of email messages from a user's mailbox based on the RecipientEmailAddress column. "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "correct": "Yes"
+        },
+        {
+          "type": "text",
+          "value": "\n\nStatement 2: The custom detection rule can be used to restrict app execution automatically based on the DeviceId column. "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "correct": "No"
+        },
+        {
+          "type": "text",
+          "value": "\n\nStatement 3: The custom detection rule can be used to automate the deletion of a file based on the SHA256 column. "
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "correct": "No"
+        }
+      ]
+    }
   },
   {
     "id": "ed-52-596f7520",
@@ -1775,8 +2439,41 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/a14e4b6c-0ea1-4eb2-ac27-cb2eb384928f.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This hotspot question's answer options are only visible in an image, so the recorded letter is kept unchanged. Conceptually, to find interactive sign-ins by finance-department users, the query would hunt in IdentityLogonEvents (for on-premises AD DS authentications synced via Defender for Identity) and/or DeviceLogonEvents, filtering on LogonType == \"Interactive\" and joining or filtering on the AccountName/department attribute for the finance users, which is the standard pattern Microsoft documents for identity logon hunting.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-identitylogonevents-table"
+    "explanation": "To find interactive sign-ins by finance-department users, the query would hunt in IdentityLogonEvents (for on-premises AD DS authentications synced via Defender for Identity) and/or DeviceLogonEvents, filtering on LogonType == \"Interactive\" and joining or filtering on the AccountName/department attribute for the finance users, which is the standard pattern Microsoft documents for identity logon hunting.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-identitylogonevents-table",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "BehaviorAnalytics",
+            "IdentityInfo",
+            "IdentityQueryEvents"
+          ],
+          "correct": "IdentityInfo"
+        },
+        {
+          "type": "text",
+          "value": "\n| where Department == 'Finance'\n| project-rename objid = AccountObjectId\n| join "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "AuditLogs",
+            "IdentityLogonEvents",
+            "SigninLogs"
+          ],
+          "correct": "IdentityLogonEvents"
+        },
+        {
+          "type": "text",
+          "value": " on $left.objid == $right.AccountObjectId"
+        }
+      ]
+    }
   },
   {
     "id": "ed-55-596f7520",
@@ -1826,8 +2523,58 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/1b2b6b76-a070-4082-92b3-cf62a3c7f301.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This hotspot question's exact configuration is only visible in an image, so the recorded answer is retained unchanged. Conceptually, this scenario is about using Microsoft Purview Content search / eDiscovery to locate a specific file shared externally: the search must be scoped to the OneDrive location of the sharing user (or the relevant SharePoint/OneDrive content source) and filtered by file type/name (Power BI .pbix report) and the sharing activity, rather than searching mailboxes, since the file was shared from OneDrive via Teams.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/purview/ediscovery-search-for-content"
+    "explanation": "This scenario is about using Microsoft Purview Content search / eDiscovery to locate a specific file shared externally: the search must be scoped to the OneDrive location of the sharing user (or the relevant SharePoint/OneDrive content source) and filtered by file type/name (Power BI .pbix report) and the sharing activity, rather than searching mailboxes, since the file was shared from OneDrive via Teams.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/purview/ediscovery-search-for-content",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "Activities: "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "Copied file",
+            "Downloaded files to computer",
+            "Share file, folder, or site",
+            "Shared Power BI report"
+          ],
+          "correct": "Share file, folder, or site"
+        },
+        {
+          "type": "text",
+          "value": "\nRecord type: "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "MicrosoftTeams",
+            "OneDrive",
+            "PowerBiAudit",
+            "Shared Power BI report"
+          ],
+          "correct": "Shared Power BI report"
+        },
+        {
+          "type": "text",
+          "value": "\nWorkload: "
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "options": [
+            "MicrosoftTeams",
+            "OneDrive",
+            "PowerBi",
+            "SharePoint"
+          ],
+          "correct": "MicrosoftTeams"
+        }
+      ]
+    }
   },
   {
     "id": "ed-57-596f7520",
@@ -1943,8 +2690,43 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/31c73865-5d02-4e6d-8506-4a5f864181e6.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This hotspot question's exact query fragments are only visible in an image, so the recorded answer is kept unchanged. Conceptually, a custom detection rule meeting these requirements would filter DeviceTvmSoftwareVulnerabilities (or a join with it) for critical severity, combine it with recent device activity using where Timestamp > ago(1h) (or LastSeen within the last hour), and apply a summarize/distinct (or arg_max by DeviceId) step to collapse duplicate rows per device, since Microsoft's custom detection documentation specifically recommends deduplication for rules that would otherwise generate one alert per matching row.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/custom-detection-rules"
+    "explanation": "A custom detection rule meeting these requirements would filter DeviceTvmSoftwareVulnerabilities (or a join with it) for critical severity, combine it with recent device activity using where Timestamp > ago(1h) (or LastSeen within the last hour), and apply a summarize/distinct (or arg_max by DeviceId) step to collapse duplicate rows per device, since Microsoft's custom detection documentation specifically recommends deduplication for rules that would otherwise generate one alert per matching row.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-xdr/custom-detection-rules",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "DeviceTvmSoftwareVulnerabilities\n| where VulnerabilitySeverityLevel == 'Critical'\n"
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "| distinct CveId",
+            "| distinct DeviceId",
+            "| project-away CveId",
+            "| project-keep DeviceId"
+          ],
+          "correct": "| distinct DeviceId"
+        },
+        {
+          "type": "text",
+          "value": "\n| join kind=inner DeviceInfo on DeviceId\n| where Timestamp between (now(-1h)..now())\n"
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "| distinct DeviceId",
+            "| distinct DeviceId, ReportId",
+            "| project Timestamp, DeviceId, ReportId",
+            "| summarize count() by DeviceId, ReportId"
+          ],
+          "correct": "| project Timestamp, DeviceId, ReportId"
+        }
+      ]
+    }
   },
   {
     "id": "ed-61-596f7520",
@@ -1961,8 +2743,41 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/c8aaf516-1da9-4251-97d7-9d84802c82ac.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This hotspot question's configuration is only visible in an image, so the recorded answer is kept unchanged. Conceptually, to minimize the scope of a Microsoft Purview content search for one user's Teams chats, the search should target that specific user's mailbox/Teams location (where 1:1 and group chat content is stored) and scope the condition to the Teams chat content type rather than searching all mailboxes or all of Exchange/SharePoint, consistent with Purview's guidance on locating Teams conversation content through content search.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/purview/ediscovery-search-for-content"
+    "explanation": "To minimize the scope of a Microsoft Purview content search for one user's Teams chats, the search should target that specific user's mailbox/Teams location (where 1:1 and group chat content is stored) and scope the condition to the Teams chat content type rather than searching all mailboxes or all of Exchange/SharePoint, consistent with Purview's guidance on locating Teams conversation content through content search.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/purview/ediscovery-search-for-content",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "Locations: "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "Exchange mailboxes",
+            "Exchange public folders",
+            "SharePoint sites"
+          ],
+          "correct": "Exchange mailboxes"
+        },
+        {
+          "type": "text",
+          "value": "\nKeywords: "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "Category",
+            "ItemClass",
+            "Kind"
+          ],
+          "correct": "Kind"
+        }
+      ]
+    }
   },
   {
     "id": "ed-62-596f7520",
@@ -2141,8 +2956,41 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/973264b7-c372-4c18-8489-18193589e6da.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This is a hotspot question whose exact selections are only visible in an image, so the recorded answer is kept unchanged. Conceptually, the scenario tests how to validate a remediation Logic App inside Microsoft Defender for Cloud (formerly Security Center): you open an existing alert's \"Take action\" tab and use the \"Trigger automated response\" section to manually fire LA1 against that alert (or use the Workflow automation blade's \"Trigger logic app\" option), which lets you confirm the app runs correctly without waiting for a real detection.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/manage-respond-alerts"
+    "explanation": "The scenario tests how to validate a remediation Logic App inside Microsoft Defender for Cloud (formerly Security Center): you open an existing alert's \"Take action\" tab and use the \"Trigger automated response\" section to manually fire LA1 against that alert (or use the Workflow automation blade's \"Trigger logic app\" option), which lets you confirm the app runs correctly without waiting for a real detection.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/manage-respond-alerts",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "Set the LA1 trigger to: "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "When a Defender for Cloud Recommendation is created or triggered",
+            "When a Defender for Cloud Alert is created or triggered",
+            "When a response to a Defender for Cloud alert is triggered"
+          ],
+          "correct": "When a Defender for Cloud Recommendation is created or triggered"
+        },
+        {
+          "type": "text",
+          "value": "\nTrigger the execution of LA1 from: "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "Recommendations",
+            "Workflow automation",
+            "Security alerts"
+          ],
+          "correct": "Workflow automation"
+        }
+      ]
+    }
   },
   {
     "id": "ed-80-596f7520",
@@ -2259,8 +3107,24 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/70a42542-9887-42c7-8dc5-9c2354ff0515.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This is a drag-and-drop question whose exact ordered steps are only visible in an image, so the recorded answer is kept unchanged. Conceptually, the scenario tests the end-to-end flow for detecting suspicious sign-ins to Azure VMs and validating it: enable Microsoft Defender for Cloud (the Defender for Servers plan, which ingests sign-in/security data), ensure the VM is onboarded/monitored, and then generate a sample or simulated alert to confirm the suspicious-IP sign-in detection is actually working end-to-end rather than just assuming the configuration is correct.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/alert-validation"
+    "explanation": "The scenario tests the end-to-end flow for detecting suspicious sign-ins to Azure VMs and validating it: enable Microsoft Defender for Cloud (the Defender for Servers plan, which ingests sign-in/security data), ensure the VM is onboarded/monitored, and then generate a sample or simulated alert to confirm the suspicious-IP sign-in detection is actually working end-to-end rather than just assuming the configuration is correct.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/alert-validation",
+    "interactive": {
+      "kind": "order-items",
+      "pool": [
+        "Change the alert severity threshold for emails to Medium.",
+        "Copy an executable file on a virtual machine and rename the file as ASC_AlertTest_662jfi039N.exe.",
+        "Enable Azure Defender for the subscription.",
+        "Change the alert severity threshold for emails to Low.",
+        "Run the executable file and specify the appropriate arguments.",
+        "Rename the executable file as AlertTest.exe."
+      ],
+      "correctOrder": [
+        "Enable Azure Defender for the subscription.",
+        "Copy an executable file on a virtual machine and rename the file as ASC_AlertTest_662jfi039N.exe.",
+        "Run the executable file and specify the appropriate arguments."
+      ]
+    }
   },
   {
     "id": "ed-84-596f7572",
@@ -2314,8 +3178,25 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/6ddb0043-fc37-47be-8727-3bef6ec9e438.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This is a drag-and-drop question whose exact ordered steps are only visible in an image, so the recorded answer is kept unchanged. Conceptually, ingesting GCP data into Microsoft Defender for Cloud follows a fixed sequence: from Environment settings, add a new GCP environment/connector, configure the connector's project or organization scope, select which Defender plans to enable, configure access by running the generated onboarding script in GCP (which creates the required service accounts/permissions), and finally review and create the connector so Defender for Cloud starts discovering and scanning GCP resources.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-gcp"
+    "explanation": "Ingesting GCP data into Microsoft Defender for Cloud follows a fixed sequence: from Environment settings, add a new GCP environment/connector, configure the connector's project or organization scope, select which Defender plans to enable, configure access by running the generated onboarding script in GCP (which creates the required service accounts/permissions), and finally review and create the connector so Defender for Cloud starts discovering and scanning GCP resources.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-gcp",
+    "interactive": {
+      "kind": "order-items",
+      "pool": [
+        "Enable Security Health Analytics.",
+        "From Azure Security Center, add cloud connectors.",
+        "Configure the GCP Security Command Center.",
+        "Create a dedicated service account and a private key.",
+        "Enable the GCP Security Command Center API."
+      ],
+      "correctOrder": [
+        "Configure the GCP Security Command Center.",
+        "Enable Security Health Analytics.",
+        "Enable the GCP Security Command Center API.",
+        "Create a dedicated service account and a private key.",
+        "From Azure Security Center, add cloud connectors."
+      ]
+    }
   },
   {
     "id": "ed-88-596f7520",
@@ -2467,8 +3348,52 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/0463544c-f172-4b36-ae7e-c6f392506539.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This is a hotspot question whose exact Yes/No selections are only visible in the exhibit images, so the recorded answer is kept unchanged. Conceptually, the scenario tests how Secure Score is calculated from Azure Policy assignments: a recommendation only contributes to (or is counted against) a resource's Secure Score if the underlying policy definition for that recommendation is actually assigned and enabled (not excluded/disabled) at the scope containing that resource, so vm1 and vm2 can be affected differently depending on which policy/initiative assignments apply to each of them.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/secure-score-security-controls"
+    "explanation": "The scenario tests how Secure Score is calculated from Azure Policy assignments: a recommendation only contributes to (or is counted against) a resource's Secure Score if the underlying policy definition for that recommendation is actually assigned and enabled (not excluded/disabled) at the scope containing that resource, so vm1 and vm2 can be affected differently depending on which policy/initiative assignments apply to each of them.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/secure-score-security-controls",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "Statement: Both virtual machines have inbound rules that allow access from either Any or Internet ranges.\n"
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "correct": "Yes"
+        },
+        {
+          "type": "text",
+          "value": "\nStatement: Both virtual machines have management ports exposed directly to the internet.\n"
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "correct": "No"
+        },
+        {
+          "type": "text",
+          "value": "\nStatement: If you enable just-in-time network access controls on all virtual machines, you will increase the secure score by four point.\n"
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "correct": "Yes"
+        }
+      ]
+    }
   },
   {
     "id": "ed-93-596f7520",
@@ -2485,8 +3410,24 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/4a032eca-cf88-4aca-b77d-2f9d99f34646.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This is a drag-and-drop question whose exact ordered steps are only visible in an image, so the recorded answer is kept unchanged. Conceptually, the workflow for requesting remediation of a newly disclosed CVE with a known active exploit is: locate the CVE in Vulnerability management > Weaknesses and confirm it shows a documented/active exploit, open the associated security recommendation to see the exposed/affected devices, and then select \"Request remediation\" on that recommendation to send a remediation request (optionally creating an Intune ticket) to the team responsible for those devices.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/defender-vulnerability-management/tvm-remediation"
+    "explanation": "The workflow for requesting remediation of a newly disclosed CVE with a known active exploit is: locate the CVE in Vulnerability management > Weaknesses and confirm it shows a documented/active exploit, open the associated security recommendation to see the exposed/affected devices, and then select \"Request remediation\" on that recommendation to send a remediation request (optionally creating an Intune ticket) to the team responsible for those devices.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/defender-vulnerability-management/tvm-remediation",
+    "interactive": {
+      "kind": "order-items",
+      "pool": [
+        "From Advanced hunting, search for CveId in the DeviceTvmSoftwareInventoryVulnerabilities table.",
+        "Select Go to related security recommendations.",
+        "From Vulnerability Management, select Weaknesses, and search for and select the CVE.",
+        "From Device Inventory, search for the CVE.",
+        "Create the remediation request.",
+        "Open the Threat Protection report."
+      ],
+      "correctOrder": [
+        "From Vulnerability Management, select Weaknesses, and search for and select the CVE.",
+        "Select Go to related security recommendations.",
+        "Create the remediation request."
+      ]
+    }
   },
   {
     "id": "ed-94-596f7520",
@@ -2569,8 +3510,43 @@ const QUESTIONS = [
     ],
     "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/a45ceea5-145c-409f-8ade-e2e5b1f06627.jpg",
     "source": "exam-dumps.net",
-    "explanation": "This is a hotspot question whose exact pixel-level selections can't be verified from the scraped data, so the originally recorded selection is kept as-is. Conceptually, a Defender for Cloud suppression rule is scoped using an entity type (such as Resource ID, IP address, or Login) and a matching field value for that entity; to silence alerts tied specifically to one storage account during development, the entity type would be the resource identifier and the field would hold that storage account's resource ID, so only alerts for that resource are hidden rather than alerts tenant-wide. This lets teams suppress known, expected noise from a specific resource without disabling detection elsewhere.",
-    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/alerts-suppression-rules"
+    "explanation": "A Defender for Cloud suppression rule is scoped using an entity type (such as Resource ID, IP address, or Login) and a matching field value for that entity; to silence alerts tied specifically to one storage account during development, the entity type would be the resource identifier and the field would hold that storage account's resource ID, so only alerts for that resource are hidden rather than alerts tenant-wide. This lets teams suppress known, expected noise from a specific resource without disabling detection elsewhere.",
+    "referenceUrl": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/alerts-suppression-rules",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {
+          "type": "text",
+          "value": "Entity type: "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "IP address",
+            "Azure Resource",
+            "Host",
+            "User account"
+          ],
+          "correct": "Azure Resource"
+        },
+        {
+          "type": "text",
+          "value": "\nField: "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": [
+            "Name",
+            "Resource Id",
+            "Address",
+            "Command line"
+          ],
+          "correct": "Resource Id"
+        }
+      ]
+    }
   },
   {
     "id": "spt-SCM1-D1-01",

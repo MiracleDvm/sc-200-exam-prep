@@ -1,0 +1,58 @@
+[
+  {
+    "id": "ed-79-596f7520",
+    "type": "hotspot",
+    "text": "You have an Azure subscription that has Microsoft Defender for Cloud enabled for all supported resource types.\nYou create an Azure logic app named LA1.\nYou plan to use LA1 to automatically remediate security risks detected in Defender for Cloud.\nYou need to test LA1 in Security Center.\nWhat should you do? To answer, select the appropriate options in the answer area.\nNote: Each correct selection is worth one point.\nHot Area:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/5ee14983-8235-47cb-9080-8b0c1e5b0f7b.jpg"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/973264b7-c372-4c18-8489-18193589e6da.jpg"
+  },
+  {
+    "id": "ed-83-596f7520",
+    "type": "drag-drop",
+    "text": "You create a new Azure subscription and start collecting logs for Azure Monitor.\nYou need to configure Azure Security Center to detect possible threats related to sign-ins from suspicious IP addresses to Azure virtual machines. The solution must validate the configuration.\nWhich three actions should you perform in a sequence? To answer, move the appropriate actions from the list of action to the answer area and arrange them in the correct order.\nSelect and Place:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/9a7b566d-264e-4e5b-96ce-bdfa4cee4f4e.jpg"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/70a42542-9887-42c7-8dc5-9c2354ff0515.jpg"
+  },
+  {
+    "id": "ed-85-596f7520",
+    "type": "drag-drop",
+    "text": "You have resources in Azure and Google cloud.\nYou need to ingest Google Cloud Platform (GCP) data into Azure Defender.\nIn which order should you perform the actions? To answer, move all actions from the list of actions to the answer area and arrange them in the correct order.\nSelect and Place:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/3368d3cb-f37a-44c9-800c-da6c44cf0af4.jpg"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/6ddb0043-fc37-47be-8727-3bef6ec9e438.jpg"
+  },
+  {
+    "id": "ed-92-596f7520",
+    "type": "hotspot",
+    "text": "You manage the security posture of an Azure subscription that contains two virtual machines name vm1 and vm2.\nThe secure score in Azure Security Center is shown in the Security Center exhibit. (Click the Security Center tab.)\n\nAzure Policy assignments are configured as shown in the Policies exhibit. (Click the Policies tab.)\n\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\nNote: Each correct selection is worth one point.\nHot Area:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/cc9525e5-5799-457d-9b87-04b0c32b3851.jpg",
+      "https://www.exam-dumps.net/images/exams/SC-200/c3b7fcd7-a21d-4bf1-a930-e2290d327227.jpg",
+      "https://www.exam-dumps.net/images/exams/SC-200/de15eacb-877d-49b6-b782-8f964e744811.jpg"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/0463544c-f172-4b36-ae7e-c6f392506539.jpg"
+  },
+  {
+    "id": "ed-93-596f7520",
+    "type": "drag-drop",
+    "text": "You are informed of a new common vulnerabilities and exposures (CVE) vulnerability that affects your environment.\nYou need to use Microsoft Defender portal to request remediation from the team responsible for the affected systems if there is a documented active exploit available.\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.\nSelect and Place:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/0444427c-8c8c-4820-8459-239b8c6d81af.jpg"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/4a032eca-cf88-4aca-b77d-2f9d99f34646.jpg"
+  },
+  {
+    "id": "ed-96-596f7520",
+    "type": "hotspot",
+    "text": "You have an Azure Storage account that will be accessed by multiple Azure Functions apps during the development of an application.\nYou need to hide Microsoft Defender for Cloud alerts for the storage account.\nWhich entity type and field should you use in a suppression rule? To answer, select the appropriate options in the answer area.\nNote: Each correct selection is worth one point.\nHot Area:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/a41e15f2-42c1-4492-a11e-9feafc451987.jpg"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/a45ceea5-145c-409f-8ade-e2e5b1f06627.jpg"
+  }
+]

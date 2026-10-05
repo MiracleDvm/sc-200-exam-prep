@@ -1,0 +1,58 @@
+[
+  {
+    "id": "ed-21-596f7520",
+    "type": "hotspot",
+    "text": "You are informed of an increase in malicious email being received by users.\nYou need to create an advanced hunting query in Microsoft Defender portal to identify whether the accounts of the email recipients were compromised. The query must return the most recent 20 sign-ins performed by the recipients within an hour of receiving the known malicious email.\nHow should you complete the query? To answer, select the appropriate options in the answer area.\nNote: Each correct selection is worth one point.\nHot Area:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/41dbf87a-0499-4337-a4a2-8f3426e181a7.jpg"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/edcf6aae-66a4-40bf-a9d4-9e9fe522b87a.jpg"
+  },
+  {
+    "id": "ed-24-596f7520",
+    "type": "hotspot",
+    "text": "You are using Microsoft Sentinel.\nYou need to identify all the devices that contain files in emails sent by a known malicious email sender. The query will be based on the match of the SHA256 hash.\nHow should you complete the query? To answer, select the appropriate options in the answer area.\nNote: Each correct selection is worth one point.\nHot Area:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/15dc29f0-5de4-4e66-9388-88ec62d75ef4.jpg"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/093e12be-c3f2-4d5a-9344-dc1973d4ca33.jpg"
+  },
+  {
+    "id": "ed-26-596f7520",
+    "type": "hotspot",
+    "text": "You purchase a Microsoft 365 subscription.\nYou plan to configure Microsoft Defender for Cloud Apps.\nYou need to create a custom template-based policy that detects connections to Microsoft 365 apps that originate from a botnet network.\nWhat should you use? To answer, select the appropriate options in the answer area.\nNote: Each correct selection is worth one point.\nHot Area:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/c7a879f9-ea33-4b64-8605-ae83a2d4c5b0.jpg"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/cb0ba523-a2d4-4a47-9d2d-a2b39ec098f5.jpg"
+  },
+  {
+    "id": "ed-33-596f7520",
+    "type": "drag-drop",
+    "text": "You have an Azure subscription linked to a Microsoft Entra tenant. The tenant contains two users named User1 and User2.\nYou plan to deploy Microsoft Defender for Cloud.\nYou need to enable User1 and User2 to perform tasks at the subscription level as shown in the following table.\n\nThe solution must use the principle of least privilege.\nWhich role should you assign to each user? To answer, drag the appropriate roles to the correct users. Each role may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.\nSelect and Place:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/a1e79a98-1c5f-4226-9b24-abb5d032994f.jpg",
+      "https://www.exam-dumps.net/images/exams/SC-200/6fd3fd98-1398-4219-883b-2f78e4cbf643.jpg"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/7581e479-2d72-4b6b-bbe9-df970de880dc.jpg"
+  },
+  {
+    "id": "ed-43-596f7520",
+    "type": "drag-drop",
+    "text": "You have an Azure subscription that contains the users shown in the following table.\n\nYou need to delegate the following tasks:\n-Enable Microsoft Defender for Servers on virtual machines.\n-Review security recommendations and enable server vulnerability scans.\nThe solution must use the principle of least privilege.\nWhich user should perform each task? To answer, drag the appropriate users to the correct tasks. Each user may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.\nNote: Each correct selection is worth one point.\nSelect and Place:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/beeba22c-d44d-442c-9871-dff059511be3.jpg",
+      "https://www.exam-dumps.net/images/exams/SC-200/069ed214-f28a-4556-b35f-72b3baab7f6a.jpg"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/70ab7e8e-3fdc-4e69-bb79-8d383a9874c6.jpg"
+  },
+  {
+    "id": "ed-44-596f7520",
+    "type": "hotspot",
+    "text": "You have a Microsoft 365 E5 subscription.\nYou need to create a hunting query that will return every email that contains an attachment named Document.pdf. The query must meet the following requirements:\n-Only show emails sent during the last hour.\n-Optimize query performance.\nHow should you complete the query? To answer, select the appropriate options in the answer area.\nNote: Each correct selection is worth one point.\nHot Area:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/caa39d92-e221-4d21-b78c-b3f0a900a2fc.jpg"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/12c8850a-5aa3-43a6-bccc-de0297a3a642.jpg"
+  }
+]

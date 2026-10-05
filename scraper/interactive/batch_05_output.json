@@ -1,0 +1,122 @@
+[
+  {
+    "id": "ed-79-596f7520",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {"type": "text", "value": "Set the LA1 trigger to: "},
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": [
+            "When a Defender for Cloud Recommendation is created or triggered",
+            "When a Defender for Cloud Alert is created or triggered",
+            "When a response to a Defender for Cloud alert is triggered"
+          ],
+          "correct": "When a Defender for Cloud Recommendation is created or triggered"
+        },
+        {"type": "text", "value": "\nTrigger the execution of LA1 from: "},
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": ["Recommendations", "Workflow automation", "Security alerts"],
+          "correct": "Workflow automation"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ed-83-596f7520",
+    "interactive": {
+      "kind": "order-items",
+      "pool": [
+        "Change the alert severity threshold for emails to Medium.",
+        "Copy an executable file on a virtual machine and rename the file as ASC_AlertTest_662jfi039N.exe.",
+        "Enable Azure Defender for the subscription.",
+        "Change the alert severity threshold for emails to Low.",
+        "Run the executable file and specify the appropriate arguments.",
+        "Rename the executable file as AlertTest.exe."
+      ],
+      "correctOrder": [
+        "Enable Azure Defender for the subscription.",
+        "Copy an executable file on a virtual machine and rename the file as ASC_AlertTest_662jfi039N.exe.",
+        "Run the executable file and specify the appropriate arguments."
+      ]
+    }
+  },
+  {
+    "id": "ed-85-596f7520",
+    "interactive": {
+      "kind": "order-items",
+      "pool": [
+        "Enable Security Health Analytics.",
+        "From Azure Security Center, add cloud connectors.",
+        "Configure the GCP Security Command Center.",
+        "Create a dedicated service account and a private key.",
+        "Enable the GCP Security Command Center API."
+      ],
+      "correctOrder": [
+        "Configure the GCP Security Command Center.",
+        "Enable Security Health Analytics.",
+        "Enable the GCP Security Command Center API.",
+        "Create a dedicated service account and a private key.",
+        "From Azure Security Center, add cloud connectors."
+      ]
+    }
+  },
+  {
+    "id": "ed-92-596f7520",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {"type": "text", "value": "Statement: Both virtual machines have inbound rules that allow access from either Any or Internet ranges.\n"},
+        {"type": "blank", "id": "b1", "options": ["Yes", "No"], "correct": "Yes"},
+        {"type": "text", "value": "\nStatement: Both virtual machines have management ports exposed directly to the internet.\n"},
+        {"type": "blank", "id": "b2", "options": ["Yes", "No"], "correct": "No"},
+        {"type": "text", "value": "\nStatement: If you enable just-in-time network access controls on all virtual machines, you will increase the secure score by four point.\n"},
+        {"type": "blank", "id": "b3", "options": ["Yes", "No"], "correct": "Yes"}
+      ]
+    }
+  },
+  {
+    "id": "ed-93-596f7520",
+    "interactive": {
+      "kind": "order-items",
+      "pool": [
+        "From Advanced hunting, search for CveId in the DeviceTvmSoftwareInventoryVulnerabilities table.",
+        "Select Go to related security recommendations.",
+        "From Vulnerability Management, select Weaknesses, and search for and select the CVE.",
+        "From Device Inventory, search for the CVE.",
+        "Create the remediation request.",
+        "Open the Threat Protection report."
+      ],
+      "correctOrder": [
+        "From Vulnerability Management, select Weaknesses, and search for and select the CVE.",
+        "Select Go to related security recommendations.",
+        "Create the remediation request."
+      ]
+    }
+  },
+  {
+    "id": "ed-96-596f7520",
+    "interactive": {
+      "kind": "select-blanks",
+      "segments": [
+        {"type": "text", "value": "Entity type: "},
+        {
+          "type": "blank",
+          "id": "b1",
+          "options": ["IP address", "Azure Resource", "Host", "User account"],
+          "correct": "Azure Resource"
+        },
+        {"type": "text", "value": "\nField: "},
+        {
+          "type": "blank",
+          "id": "b2",
+          "options": ["Name", "Resource Id", "Address", "Command line"],
+          "correct": "Resource Id"
+        }
+      ]
+    }
+  }
+]

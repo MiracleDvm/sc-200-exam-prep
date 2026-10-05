@@ -1,0 +1,58 @@
+[
+  {
+    "id": "813328",
+    "type": "drag-drop",
+    "text": "You are investigating an incident by using Microsoft 365 Defender.\n\nYou need to create an advanced hunting query to count failed sign-in authentications on three devices named CFOLaptop, CEOLaptop, and COOLaptop.\n\nHow should you complete the query? To answer, select the appropriate options in the answer area.\n\nNOTE: Each correct selection is worth one point.\n\nSelect and Place:",
+    "images": [
+      "https://www.examtopics.com/assets/media/exam-media/04261/0001100001.png"
+    ],
+    "answerImage": "https://www.examtopics.com/assets/media/exam-media/04261/0001200001.png"
+  },
+  {
+    "id": "813333",
+    "type": "drag-drop",
+    "text": "You open the Cloud App Security portal as shown in the following exhibit.\n\n\n\nYour environment does NOT have Microsoft Defender for Endpoint enabled.\n\nYou need to remediate the risk for the Launchpad app.\n\nWhich four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the\n\ncorrect order.\n\nSelect and Place:",
+    "images": [
+      "https://www.examtopics.com/assets/media/exam-media/04261/0001500001.jpg",
+      "https://www.examtopics.com/assets/media/exam-media/04261/0001600001.png"
+    ],
+    "answerImage": "https://www.examtopics.com/assets/media/exam-media/04261/0001700001.png"
+  },
+  {
+    "id": "813334",
+    "type": "hotspot",
+    "text": "You have a Microsoft 365 E5 subscription.\n\nYou plan to perform cross-domain investigations by using Microsoft 365 Defender.\n\nYou need to create an advanced hunting query to identify devices affected by a malicious email attachment.\n\nHow should you complete the query? To answer, select the appropriate options in the answer area.\n\nNOTE: Each correct selection is worth one point.\n\nHot Area:",
+    "images": [
+      "https://www.examtopics.com/assets/media/exam-media/04261/0001800001.png"
+    ],
+    "answerImage": "https://www.examtopics.com/assets/media/exam-media/04261/0001900001.png"
+  },
+  {
+    "id": "813353",
+    "type": "drag-drop",
+    "text": "You have an Azure subscription linked to an Azure Active Directory (Azure AD) tenant. The tenant contains two users named User1 and User2.\n\nYou plan to deploy Azure Defender.\n\nYou need to enable User1 and User2 to perform tasks at the subscription level as shown in the following table.\n\n\n\nThe solution must use the principle of least privilege.\n\nWhich role should you assign to each user? To answer, drag the appropriate roles to the correct users. Each role may be used once, more than once, or not at all.\n\nYou may need to drag the split bar between panes or scroll to view content.\n\nSelect and Place:",
+    "images": [
+      "https://www.examtopics.com/assets/media/exam-media/04261/0003500001.png",
+      "https://www.examtopics.com/assets/media/exam-media/04261/0003600001.png"
+    ],
+    "answerImage": "https://www.examtopics.com/assets/media/exam-media/04261/0003700001.png"
+  },
+  {
+    "id": "813354",
+    "type": "hotspot",
+    "text": "You have a Microsoft 365 E5 subscription that contains 200 Windows 10 devices enrolled in Microsoft Defender for Endpoint.\n\nYou need to ensure that users can access the devices by using a remote shell connection directly from the Microsoft 365 Defender portal. The solution must use\n\nthe principle of least privilege.\n\nWhat should you do in the Microsoft 365 Defender portal? To answer, select the appropriate options in the answer area.\n\nNOTE: Each correct selection is worth one point.\n\nHot Area:",
+    "images": [
+      "https://www.examtopics.com/assets/media/exam-media/04261/0003800001.png"
+    ],
+    "answerImage": "https://img.examtopics.com/sc-200/image411.png"
+  },
+  {
+    "id": "813355",
+    "type": "hotspot",
+    "text": "You have a Microsoft 365 subscription that uses Microsoft 365 Defender and contains a user named User1.\n\nYou are notified that the account of User1 is compromised.\n\nYou need to review the alerts triggered on the devices to which User1 signed in.\n\nHow should you complete the query? To answer, select the appropriate options in the answer area.\n\nNOTE: Each correct selection is worth one point.\n\nHot Area:",
+    "images": [
+      "https://www.examtopics.com/assets/media/exam-media/04261/0004000001.jpg"
+    ],
+    "answerImage": "https://www.examtopics.com/assets/media/exam-media/04261/0004100001.jpg"
+  }
+]

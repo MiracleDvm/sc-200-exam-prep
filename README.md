@@ -47,3 +47,16 @@ node scraper/merge_research.js           # fusionne les résultats vérifiés da
 ```
 
 Chaque question porte désormais `correctLetters` (corrigé si besoin), `explanation` (3-5 phrases) et `referenceUrl` (lien Microsoft Learn, ou `null` si rien de fiable trouvé — jamais un lien inventé). 3 réponses ont été corrigées sur les 252 revérifiées ; 1 question a été retirée faute de choix exploitables (bug de parsing résiduel).
+
+## Questions drag-drop / hotspot interactives
+
+Les 30 questions "glisser-déposer" et "zone active" d'ExamTopics/exam-dumps.net (répondre à une requête KQL à trous, ordonner une liste d'actions) étaient à l'origine de simples images à regarder, avec auto-évaluation seulement en fin d'examen. Elles ont été transformées en vraies questions jouables :
+
+```
+node scraper/split_interactive_batches.js   # découpe les 30 questions visuelles en lots dans scraper/interactive/batch_NN_input.json
+# puis, pour chaque lot : un agent télécharge les images question+réponse, les regarde (vision)
+# et transcrit la structure exacte (menus déroulants ou liste à ordonner) dans batch_NN_output.json
+node scraper/merge_interactive.js           # fusionne les données interactives vérifiées dans app/data/questions.js
+```
+
+Chaque question porte un champ `interactive` : `{"kind": "select-blanks", "segments": [...]}` pour les menus déroulants intégrés dans un texte/requête, ou `{"kind": "order-items", "pool": [...], "correctOrder": [...]}` pour les listes à ordonner. L'app affiche alors de vrais `<select>` inline ou une interface "cliquer pour ajouter dans l'ordre", avec correction automatique (plus besoin d'auto-évaluation). Les 30/30 ont été transcrites avec succès et validées (schéma cohérent, pas de doublon impossible dans les listes à ordonner).

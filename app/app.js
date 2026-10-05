@@ -64,6 +64,128 @@ function renderCommunityBlock(q) {
     </div>`;
 }
 
+// ---------- Interactive drag-drop / hotspot questions ----------
+
+function getInteractiveStore() {
+  if (state.view === 'exam' && state.exam) return state.exam.interactiveAnswers;
+  if (state.view === 'practice' && state.practice) return state.practice.interactiveAnswers;
+  return null;
+}
+
+function interactiveHasAnswer(answer) {
+  if (!answer) return false;
+  if (answer.blanks) return Object.values(answer.blanks).some((v) => v);
+  if (answer.order) return answer.order.length > 0;
+  return false;
+}
+
+function interactiveIsComplete(interactive, answer) {
+  if (!answer) return false;
+  if (interactive.kind === 'select-blanks') {
+    const blanks = answer.blanks || {};
+    return interactive.segments.filter((s) => s.type === 'blank').every((s) => blanks[s.id]);
+  }
+  if (interactive.kind === 'order-items') {
+    return (answer.order || []).length > 0;
+  }
+  return false;
+}
+
+function interactiveIsCorrect(interactive, answer) {
+  if (!answer) return false;
+  if (interactive.kind === 'select-blanks') {
+    const blanks = answer.blanks || {};
+    return interactive.segments
+      .filter((s) => s.type === 'blank')
+      .every((s) => blanks[s.id] === s.correct);
+  }
+  if (interactive.kind === 'order-items') {
+    const given = (answer.order || []).map((idx) => interactive.pool[idx]);
+    return JSON.stringify(given) === JSON.stringify(interactive.correctOrder);
+  }
+  return false;
+}
+
+function setBlankAnswer(qid, blankId, value) {
+  const store = getInteractiveStore();
+  if (!store) return;
+  if (!store[qid]) store[qid] = {};
+  if (!store[qid].blanks) store[qid].blanks = {};
+  store[qid].blanks[blankId] = value;
+  render();
+}
+
+function addOrderItem(qid, poolIdx) {
+  const store = getInteractiveStore();
+  if (!store) return;
+  if (!store[qid]) store[qid] = {};
+  if (!store[qid].order) store[qid].order = [];
+  if (!store[qid].order.includes(poolIdx)) store[qid].order.push(poolIdx);
+  render();
+}
+
+function removeOrderItem(qid, pos) {
+  const store = getInteractiveStore();
+  if (!store || !store[qid] || !store[qid].order) return;
+  store[qid].order.splice(pos, 1);
+  render();
+}
+
+function renderInteractiveEditable(qid, interactive, answer) {
+  if (interactive.kind === 'select-blanks') {
+    const blanks = (answer && answer.blanks) || {};
+    const body = interactive.segments.map((seg) => {
+      if (seg.type === 'text') return escapeHtml(seg.value);
+      const val = blanks[seg.id] || '';
+      const opts = seg.options.map((o) => `<option value="${escapeHtml(o)}" ${o === val ? 'selected' : ''}>${escapeHtml(o)}</option>`).join('');
+      return `<select class="inline-blank" onchange="setBlankAnswer('${qid}','${seg.id}', this.value)"><option value="">--</option>${opts}</select>`;
+    }).join('');
+    return `<pre class="interactive-query">${body}</pre>`;
+  }
+  if (interactive.kind === 'order-items') {
+    const order = (answer && answer.order) || [];
+    const usedIdx = new Set(order);
+    const poolHtml = interactive.pool.map((item, idx) => usedIdx.has(idx) ? '' :
+      `<li class="pool-item" onclick="addOrderItem('${qid}', ${idx})">${escapeHtml(item)}</li>`
+    ).join('');
+    const orderHtml = order.map((idx, pos) =>
+      `<li class="order-item">${pos + 1}. ${escapeHtml(interactive.pool[idx])} <button class="order-remove" onclick="event.stopPropagation(); removeOrderItem('${qid}', ${pos})">✕</button></li>`
+    ).join('');
+    return `<div class="order-container">
+      <div class="order-col"><strong>Actions disponibles</strong><ul class="pool-list">${poolHtml || '<li class="empty">—</li>'}</ul></div>
+      <div class="order-col"><strong>Ta réponse (dans l'ordre)</strong><ul class="order-list">${orderHtml || '<li class="empty">Clique une action à gauche</li>'}</ul></div>
+    </div>`;
+  }
+  return '';
+}
+
+function renderInteractiveRevealed(interactive, answer) {
+  if (interactive.kind === 'select-blanks') {
+    const blanks = (answer && answer.blanks) || {};
+    const body = interactive.segments.map((seg) => {
+      if (seg.type === 'text') return escapeHtml(seg.value);
+      const val = blanks[seg.id] || '';
+      const isCorrect = val === seg.correct;
+      const shown = val ? escapeHtml(val) : '(vide)';
+      const note = isCorrect ? '' : ` <span class="blank-correct-answer">(bonne réponse : ${escapeHtml(seg.correct)})</span>`;
+      return `<span class="blank-value ${isCorrect ? 'blank-correct' : 'blank-incorrect'}">${shown}</span>${note}`;
+    }).join('');
+    return `<pre class="interactive-query">${body}</pre>`;
+  }
+  if (interactive.kind === 'order-items') {
+    const order = (answer && answer.order) || [];
+    const given = order.map((idx) => interactive.pool[idx]);
+    const allCorrect = JSON.stringify(given) === JSON.stringify(interactive.correctOrder);
+    const givenHtml = given.length ? given.map((t, i) => `<li>${i + 1}. ${escapeHtml(t)}</li>`).join('') : '<li class="empty">(aucune réponse donnée)</li>';
+    const correctHtml = interactive.correctOrder.map((t, i) => `<li>${i + 1}. ${escapeHtml(t)}</li>`).join('');
+    return `<div class="order-container">
+      <div class="order-col"><strong>Ta réponse</strong><ul class="order-list ${allCorrect ? 'all-correct' : 'all-incorrect'}">${givenHtml}</ul></div>
+      <div class="order-col"><strong>Réponse correcte</strong><ul class="order-list all-correct">${correctHtml}</ul></div>
+    </div>`;
+  }
+  return '';
+}
+
 // ---------- Routing ----------
 
 function render() {
@@ -151,6 +273,7 @@ function startExam() {
       answers: {},
       visited: {},
       selfGrades: {},
+      interactiveAnswers: {},
       index: 0,
       endAt: Date.now() + durationMin * 60000,
       durationMin,
@@ -188,7 +311,7 @@ function renderExam() {
   updateTimerDisplay(ex.endAt - Date.now());
 
   const navButtons = ex.questions.map((qq, i) => {
-    const answered = (ex.answers[qq.id] && ex.answers[qq.id].length > 0) || ex.visited[qq.id];
+    const answered = (ex.answers[qq.id] && ex.answers[qq.id].length > 0) || ex.visited[qq.id] || interactiveHasAnswer(ex.interactiveAnswers[qq.id]);
     const classes = [
       i === ex.index ? 'current' : '',
       answered ? 'answered' : '',
@@ -198,7 +321,12 @@ function renderExam() {
   }).join('');
 
   let bodyHtml;
-  if (q.type === 'drag-drop' || q.type === 'hotspot') {
+  if (q.interactive) {
+    bodyHtml = `
+      ${renderQuestionBody(q)}
+      ${renderInteractiveEditable(q.id, q.interactive, ex.interactiveAnswers[q.id])}
+    `;
+  } else if (q.type === 'drag-drop' || q.type === 'hotspot') {
     bodyHtml = `
       ${renderQuestionBody(q)}
       <p style="color:var(--text-dim);font-size:0.85rem;">
@@ -272,7 +400,9 @@ function finishExam() {
 function computeScore(ex) {
   let correct = 0;
   ex.questions.forEach((q) => {
-    if (q.type === 'drag-drop' || q.type === 'hotspot') {
+    if (q.interactive) {
+      if (interactiveIsCorrect(q.interactive, ex.interactiveAnswers[q.id])) correct++;
+    } else if (q.type === 'drag-drop' || q.type === 'hotspot') {
       if (ex.selfGrades[q.id] === 'correct') correct++;
     } else {
       const sel = (ex.answers[q.id] || []).slice().sort().join('');
@@ -291,7 +421,13 @@ function renderReview() {
 
   const itemsHtml = ex.questions.map((q, i) => {
     let answerBlock;
-    if (q.type === 'drag-drop' || q.type === 'hotspot') {
+    if (q.interactive) {
+      const isCorrect = interactiveIsCorrect(q.interactive, ex.interactiveAnswers[q.id]);
+      answerBlock = `
+        ${renderInteractiveRevealed(q.interactive, ex.interactiveAnswers[q.id])}
+        <p class="${isCorrect ? 'badge-pass' : 'badge-fail'}" style="margin-top:8px;">${isCorrect ? '✅ Correct' : '❌ Incorrect'}</p>
+      `;
+    } else if (q.type === 'drag-drop' || q.type === 'hotspot') {
       const grade = ex.selfGrades[q.id];
       answerBlock = `
         <p style="color:var(--text-dim);font-size:0.85rem;">Réponse officielle :</p>
@@ -385,7 +521,7 @@ function startPractice() {
 
   state = {
     view: 'practice',
-    practice: { pool, index: 0, revealed: {}, selected: {}, selfGraded: {}, correctCount: 0, wrongCount: 0 },
+    practice: { pool, index: 0, revealed: {}, selected: {}, selfGraded: {}, interactiveAnswers: {}, correctCount: 0, wrongCount: 0 },
   };
   render();
 }
@@ -397,7 +533,15 @@ function renderPractice() {
   const sel = pr.selected[q.id] || [];
 
   let bodyHtml;
-  if (q.type === 'drag-drop' || q.type === 'hotspot') {
+  if (q.interactive) {
+    const iAns = pr.interactiveAnswers[q.id];
+    bodyHtml = `${renderQuestionBody(q)}
+      ${revealed
+        ? renderInteractiveRevealed(q.interactive, iAns)
+        : `${renderInteractiveEditable(q.id, q.interactive, iAns)}
+           <div class="btn-row"><button class="primary" onclick="revealAnswer('${q.id}')" ${interactiveHasAnswer(iAns) ? '' : 'disabled'}>Valider</button></div>`}
+    `;
+  } else if (q.type === 'drag-drop' || q.type === 'hotspot') {
     bodyHtml = `${renderQuestionBody(q)}
       ${revealed
         ? `<p style="color:var(--text-dim);font-size:0.85rem;">Réponse officielle :</p>${q.answerImage ? `<img src="${q.answerImage}" style="max-width:100%;border-radius:6px;">` : ''}`
@@ -429,14 +573,16 @@ function renderPractice() {
   let feedbackHtml = '';
   if (revealed) {
     let isCorrect = null;
-    if (q.type !== 'drag-drop' && q.type !== 'hotspot') {
+    if (q.interactive) {
+      isCorrect = interactiveIsCorrect(q.interactive, pr.interactiveAnswers[q.id]);
+    } else if (q.type !== 'drag-drop' && q.type !== 'hotspot') {
       const selSorted = sel.slice().sort().join('');
       const offSorted = (q.correctLetters || []).slice().sort().join('');
       isCorrect = selSorted === offSorted;
     }
 
     let selfGradeHtml = '';
-    if (q.type === 'drag-drop' || q.type === 'hotspot') {
+    if (!q.interactive && (q.type === 'drag-drop' || q.type === 'hotspot')) {
       selfGradeHtml = pr.selfGraded[q.id]
         ? `<p>${pr.selfGraded[q.id] === 'correct' ? "✅ Tu avais juste" : "❌ Tu avais faux"}</p>`
         : `<div class="btn-row"><button onclick="practiceSelfGrade('${q.id}',true)">J'avais juste</button><button onclick="practiceSelfGrade('${q.id}',false)">J'avais faux</button></div>`;
@@ -481,7 +627,9 @@ function revealAnswer(qid) {
   const pr = state.practice;
   pr.revealed[qid] = true;
   const q = pr.pool.find((x) => x.id === qid);
-  if (q.type !== 'drag-drop' && q.type !== 'hotspot') {
+  if (q.interactive) {
+    if (interactiveIsCorrect(q.interactive, pr.interactiveAnswers[qid])) pr.correctCount++; else pr.wrongCount++;
+  } else if (q.type !== 'drag-drop' && q.type !== 'hotspot') {
     const sel = (pr.selected[qid] || []).slice().sort().join('');
     const off = (q.correctLetters || []).slice().sort().join('');
     if (sel === off) pr.correctCount++; else pr.wrongCount++;
