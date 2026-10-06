@@ -452,33 +452,65 @@ function confirmFinishExam() {
   if (confirm("Terminer l'examen maintenant ?")) finishExam();
 }
 function finishExam() {
+  if (timerInterval) clearInterval(timerInterval);
   state = { view: 'review', exam: state.exam };
+  state.exam.reviewFilter = { sort: 'default', topic: 'all' };
   render();
+}
+
+function isQuestionCorrect(q, ex) {
+  if (q.interactive) return interactiveIsCorrect(q.interactive, ex.interactiveAnswers[q.id]);
+  if (q.type === 'drag-drop' || q.type === 'hotspot') return ex.selfGrades[q.id] === 'correct';
+  const sel = (ex.answers[q.id] || []).slice().sort().join('');
+  const off = (q.correctLetters || []).slice().sort().join('');
+  return !!sel && sel === off;
 }
 
 function computeScore(ex) {
   let correct = 0;
-  ex.questions.forEach((q) => {
-    if (q.interactive) {
-      if (interactiveIsCorrect(q.interactive, ex.interactiveAnswers[q.id])) correct++;
-    } else if (q.type === 'drag-drop' || q.type === 'hotspot') {
-      if (ex.selfGrades[q.id] === 'correct') correct++;
-    } else {
-      const sel = (ex.answers[q.id] || []).slice().sort().join('');
-      const off = (q.correctLetters || []).slice().sort().join('');
-      if (sel && sel === off) correct++;
-    }
-  });
+  ex.questions.forEach((q) => { if (isQuestionCorrect(q, ex)) correct++; });
   const total = ex.questions.length;
   const score = total ? Math.round((correct / total) * 1000) : 0;
   return { correct, total, score, passed: score >= 700 };
 }
 
+function setReviewSort(value) { state.exam.reviewFilter.sort = value; render(); }
+function setReviewTopicFilter(value) { state.exam.reviewFilter.topic = value; render(); }
+
 function renderReview() {
   const ex = state.exam;
   const { correct, total, score, passed } = computeScore(ex);
+  const filter = ex.reviewFilter || { sort: 'default', topic: 'all' };
 
-  const itemsHtml = ex.questions.map((q, i) => {
+  const topics = [...new Set(ex.questions.map((q) => q.topic))].sort((a, b) => String(a).localeCompare(String(b)));
+
+  let indexed = ex.questions.map((q, i) => ({ q, originalIndex: i }));
+  if (filter.topic !== 'all') indexed = indexed.filter(({ q }) => q.topic === filter.topic);
+  if (filter.sort === 'wrongFirst') {
+    indexed = indexed
+      .map((item) => ({ ...item, correct: isQuestionCorrect(item.q, ex) }))
+      .sort((a, b) => (a.correct === b.correct ? 0 : a.correct ? 1 : -1));
+  }
+
+  const filterHtml = `
+    <div class="toolbar">
+      <label style="color:var(--text-dim);font-size:0.85rem;">Trier :
+        <select onchange="setReviewSort(this.value)">
+          <option value="default" ${filter.sort === 'default' ? 'selected' : ''}>Ordre de l'examen</option>
+          <option value="wrongFirst" ${filter.sort === 'wrongFirst' ? 'selected' : ''}>Mauvaises réponses d'abord</option>
+        </select>
+      </label>
+      <label style="color:var(--text-dim);font-size:0.85rem;">Domaine :
+        <select onchange="setReviewTopicFilter(this.value)">
+          <option value="all" ${filter.topic === 'all' ? 'selected' : ''}>Tous</option>
+          ${topics.map((t) => `<option value="${escapeHtml(String(t))}" ${filter.topic === t ? 'selected' : ''}>${escapeHtml(topicLabel(t))}</option>`).join('')}
+        </select>
+      </label>
+      <span class="topic-pill">${indexed.length} question${indexed.length === 1 ? '' : 's'} affichée${indexed.length === 1 ? '' : 's'}</span>
+    </div>
+  `;
+
+  const itemsHtml = indexed.map(({ q, originalIndex: i }) => {
     let answerBlock;
     if (q.interactive) {
       const isCorrect = interactiveIsCorrect(q.interactive, ex.interactiveAnswers[q.id]);
@@ -522,7 +554,8 @@ function renderReview() {
         <button class="primary" onclick="saveAndGoHome()">Enregistrer et retourner à l'accueil</button>
       </div>
     </div>
-    <div class="card">${itemsHtml}</div>
+    <div class="card">${filterHtml}</div>
+    <div class="card">${itemsHtml || '<p style="color:var(--text-dim)">Aucune question ne correspond à ce filtre.</p>'}</div>
   `;
 }
 
