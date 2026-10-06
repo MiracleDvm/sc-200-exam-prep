@@ -4,7 +4,7 @@
     "number": 1,
     "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Testlet 1 )",
     "type": "single-choice",
-    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nFabrikam, Inc. is a financial services company.\nThe company has branch offices in New York, London, and Singapore. Fabrikam has remote users located across the globe. The remote users access company resources, including cloud resources, by using a VPN connection to a branch office.\nExisting Environment\nIdentity Environment\nThe network contains an Active Directory Domain Services (AD DS) forest named fabrikam.com that syncs with an Azure AD tenant named fabrikam.com. To sync the forest, Fabrikam uses Azure AD Connect with pass-through authentication enabled and password hash synchronization disabled.\nThe fabrikam.com forest contains two global groups named Group1 and Group2.\nMicrosoft 365 Environment\nAll the users at Fabrikam are assigned a Microsoft 365 E5 license and a Microsoft Entra ID P2 license.\nFabrikam implements Microsoft Defender for Identity and Microsoft Defender for Cloud Apps and enables log collectors.\nAzure Environment\nFabrikam has an Azure subscription that contains the resources shown in the following table.\n\nAmazon Web Services (AWS) Environment\nFabrikam has an Amazon Web Services (AWS) account named Account1. Account1 contains 100 Amazon Elastic Compute Cloud (EC2) instances that run a custom Windows Server 2022. The image includes Microsoft SQL Server 2019 and does NOT have any agents installed.\nCurrent Issues\nWhen the users use the VPN connections, Microsoft 365 Defender raises a high volume of impossible travel alerts that are false positives.\nDefender for Identity raises a high volume of Suspected DCSync attack alerts that are false positives.\nRequirements\nPlanned changes\nFabrikam plans to implement the following services:\n-Microsoft Defender for Cloud\n-Microsoft Sentinel\nBusiness Requirements\nFabrikam identifies the following business requirements:\n-Use the principle of least privilege, whenever possible.\n-Minimize administrative effort.\nMicrosoft Defender for Cloud Apps Requirements\nFabrikam identifies the following Microsoft Defender for Cloud Apps requirements:\n-Ensure that impossible travel alert policies are based on the previous activities of each user.\n-Reduce the amount of impossible travel alerts that are false positives.\nMicrosoft Defender for Identity Requirements\nMinimize the administrative effort required to investigate the false positive alerts.\nMicrosoft Defender for Cloud Requirements\nFabrikam identifies the following Microsoft Defender for Cloud requirements:\n-Ensure that the members of Group2 can modify security policies.\n-Ensure that the members of Group1 can assign regulatory compliance policy initiatives at the Azure subscription level.\n-Automate the deployment of the Azure Connected Machine agent for Azure Arc-enabled servers to the existing and future resources of Account1.\n-Minimize the administrative effort required to investigate the false positive alerts.\nMicrosoft Sentinel Requirements\nFabrikam identifies the following Microsoft Sentinel requirements:\n-Query for NXDOMAIN DNS requests from the last seven days by using built-in Advanced Security Information Model (ASIM) unifying parsers.\n-From AWS EC2 instances, collect Windows Security event log entries that include local group membership changes.\n-Identify anomalous activities of Azure AD users by using User and Entity Behavior Analytics (UEBA).\n-Evaluate the potential impact of compromised Azure AD user credentials by using UEBA.\n-Ensure that App1 is available for use in Microsoft Sentinel automation rules.\n-Identify the mean time to triage for incidents generated during the last 30 days.\n-Identify the mean time to close incidents generated during the last 30 days.\n-Ensure that the members of Group1 can create and run playbooks.\n-Ensure that the members of Group1 can manage analytics rules.\n-Run hunting queries on Pool1 by using Jupyter notebooks.\n-Ensure that the members of Group2 can manage incidents.\n-Maximize the performance of data queries.\n-Minimize the amount of collected data.\n\nYou need to minimize the effort required to investigate the Microsoft Defender for Identity false positive alerts.\nWhat should you review?",
+    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nFabrikam, Inc. is a financial services company.\nThe company has branch offices in New York, London, and Singapore. Fabrikam has remote users located across the globe. The remote users access company resources, including cloud resources, by using a VPN connection to a branch office.\nExisting Environment\nIdentity Environment\nThe network contains an Active Directory Domain Services (AD DS) forest named fabrikam.com that syncs with an Azure AD tenant named fabrikam.com. To sync the forest, Fabrikam uses Azure AD Connect with pass-through authentication enabled and password hash synchronization disabled.\nThe fabrikam.com forest contains two global groups named Group1 and Group2.\nMicrosoft 365 Environment\nAll the users at Fabrikam are assigned a Microsoft 365 E5 license and a Microsoft Entra ID P2 license.\nFabrikam implements Microsoft Defender for Identity and Microsoft Defender for Cloud Apps and enables log collectors.\nAzure Environment\nFabrikam has an Azure subscription that contains the resources shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/3e8faa7f-9012-41d2-ab16-631ac268ed90.jpg]\n\nAmazon Web Services (AWS) Environment\nFabrikam has an Amazon Web Services (AWS) account named Account1. Account1 contains 100 Amazon Elastic Compute Cloud (EC2) instances that run a custom Windows Server 2022. The image includes Microsoft SQL Server 2019 and does NOT have any agents installed.\nCurrent Issues\nWhen the users use the VPN connections, Microsoft 365 Defender raises a high volume of impossible travel alerts that are false positives.\nDefender for Identity raises a high volume of Suspected DCSync attack alerts that are false positives.\nRequirements\nPlanned changes\nFabrikam plans to implement the following services:\n-Microsoft Defender for Cloud\n-Microsoft Sentinel\nBusiness Requirements\nFabrikam identifies the following business requirements:\n-Use the principle of least privilege, whenever possible.\n-Minimize administrative effort.\nMicrosoft Defender for Cloud Apps Requirements\nFabrikam identifies the following Microsoft Defender for Cloud Apps requirements:\n-Ensure that impossible travel alert policies are based on the previous activities of each user.\n-Reduce the amount of impossible travel alerts that are false positives.\nMicrosoft Defender for Identity Requirements\nMinimize the administrative effort required to investigate the false positive alerts.\nMicrosoft Defender for Cloud Requirements\nFabrikam identifies the following Microsoft Defender for Cloud requirements:\n-Ensure that the members of Group2 can modify security policies.\n-Ensure that the members of Group1 can assign regulatory compliance policy initiatives at the Azure subscription level.\n-Automate the deployment of the Azure Connected Machine agent for Azure Arc-enabled servers to the existing and future resources of Account1.\n-Minimize the administrative effort required to investigate the false positive alerts.\nMicrosoft Sentinel Requirements\nFabrikam identifies the following Microsoft Sentinel requirements:\n-Query for NXDOMAIN DNS requests from the last seven days by using built-in Advanced Security Information Model (ASIM) unifying parsers.\n-From AWS EC2 instances, collect Windows Security event log entries that include local group membership changes.\n-Identify anomalous activities of Azure AD users by using User and Entity Behavior Analytics (UEBA).\n-Evaluate the potential impact of compromised Azure AD user credentials by using UEBA.\n-Ensure that App1 is available for use in Microsoft Sentinel automation rules.\n-Identify the mean time to triage for incidents generated during the last 30 days.\n-Identify the mean time to close incidents generated during the last 30 days.\n-Ensure that the members of Group1 can create and run playbooks.\n-Ensure that the members of Group1 can manage analytics rules.\n-Run hunting queries on Pool1 by using Jupyter notebooks.\n-Ensure that the members of Group2 can manage incidents.\n-Maximize the performance of data queries.\n-Minimize the amount of collected data.\n\nYou need to minimize the effort required to investigate the Microsoft Defender for Identity false positive alerts.\nWhat should you review?",
     "images": [],
     "choices": [
       {
@@ -37,6 +37,178 @@
     "source": "exam-dumps.net"
   },
   {
+    "id": "ed-2-54686520",
+    "number": 2,
+    "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Testlet 2 )",
+    "type": "single-choice",
+    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nA company named Contoso Ltd. has a main office and five branch offices located throughout North America. The main office is in Seattle. The branch offices are in Toronto, Miami, Houston, Los Angeles, and Vancouver.\nContoso has a subsidiary named Fabrikam, Ltd. that has offices in New York and San Francisco.\nExisting Environment\nEnd-User Environment\nAll users at Contoso use Windows 11 devices. Each user is licensed for Microsoft 365. In addition, iOS devices are distributed to the members of the sales team at Contoso.\nCloud and Hybrid Infrastructure\nAll Contoso applications are deployed to Azure.\nYou enable Microsoft Defender for Cloud Apps.\nContoso and Fabrikam have different Microsoft Entra tenants. Fabrikam recently purchased an Azure subscription and enabled Microsoft Defender for Cloud for all supported resource types.\nCurrent Problems\nThe security team at Contoso receives a large number of cybersecurity alerts. The security team spends too much time identifying which cybersecurity alerts are legitimate threats, and which are not.\nThe Contoso sales team uses only iOS devices. The sales team members exchange files with customers by using a variety of third-party tools. In the past, the sales team experienced phishing attacks on their devices.\nThe marketing team at Contoso has several Microsoft SharePoint Online sites for collaborating with external vendors. The marketing team has had several incidents in which vendors uploaded files that contain malware.\nThe executive team at Contoso suspects a security breach. The executive team requests that you identify which files had more than five activities during the past 48 hours, including data access, download, or deletion for Microsoft Defender for Cloud Apps-protected applications.\nRequirements\nPlanned Changes\nContoso plans to integrate the security operations of both companies and manage all security operations centrally.\nTechnical Requirements\nContoso identifies the following technical requirements:\n-Receive alerts if an Azure virtual machine is under brute force attack.\n-Use Microsoft Sentinel to reduce organizational risk by rapidly remediating active attacks on the environment.\n-Implement Microsoft Sentinel queries that correlate data across the Microsoft Entra tenants of Contoso and Fabrikam.\n-Develop a procedure to remediate Microsoft Defender for Key Vault alerts for Contoso in case of external and internal threats. The solution must minimize the impact on legitimate attempts to access the key vault content.\n-Identify all cases of users who failed to sign in to an Azure resource for the first time from a given country. A junior security administrator provides you with the following incomplete query.\nBehaviorAnalytics | where ActivityType == \"FailedLogOn\" | where ________ == True\n\nThe issue for which team can be resolved by using Microsoft Defender for Endpoint?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "executive"
+      },
+      {
+        "letter": "B",
+        "text": "sales"
+      },
+      {
+        "letter": "C",
+        "text": "marketing"
+      }
+    ],
+    "correctLetters": [
+      "B"
+    ],
+    "answerImage": null,
+    "communityTop": null,
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-3-54686520",
+    "number": 3,
+    "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Testlet 2 )",
+    "type": "single-choice",
+    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nA company named Contoso Ltd. has a main office and five branch offices located throughout North America. The main office is in Seattle. The branch offices are in Toronto, Miami, Houston, Los Angeles, and Vancouver.\nContoso has a subsidiary named Fabrikam, Ltd. that has offices in New York and San Francisco.\nExisting Environment\nEnd-User Environment\nAll users at Contoso use Windows 11 devices. Each user is licensed for Microsoft 365. In addition, iOS devices are distributed to the members of the sales team at Contoso.\nCloud and Hybrid Infrastructure\nAll Contoso applications are deployed to Azure.\nYou enable Microsoft Defender for Cloud Apps.\nContoso and Fabrikam have different Microsoft Entra tenants. Fabrikam recently purchased an Azure subscription and enabled Microsoft Defender for Cloud for all supported resource types.\nCurrent Problems\nThe security team at Contoso receives a large number of cybersecurity alerts. The security team spends too much time identifying which cybersecurity alerts are legitimate threats, and which are not.\nThe Contoso sales team uses only iOS devices. The sales team members exchange files with customers by using a variety of third-party tools. In the past, the sales team experienced phishing attacks on their devices.\nThe marketing team at Contoso has several Microsoft SharePoint Online sites for collaborating with external vendors. The marketing team has had several incidents in which vendors uploaded files that contain malware.\nThe executive team at Contoso suspects a security breach. The executive team requests that you identify which files had more than five activities during the past 48 hours, including data access, download, or deletion for Microsoft Defender for Cloud Apps-protected applications.\nRequirements\nPlanned Changes\nContoso plans to integrate the security operations of both companies and manage all security operations centrally.\nTechnical Requirements\nContoso identifies the following technical requirements:\n-Receive alerts if an Azure virtual machine is under brute force attack.\n-Use Microsoft Sentinel to reduce organizational risk by rapidly remediating active attacks on the environment.\n-Implement Microsoft Sentinel queries that correlate data across the Microsoft Entra tenants of Contoso and Fabrikam.\n-Develop a procedure to remediate Microsoft Defender for Key Vault alerts for Contoso in case of external and internal threats. The solution must minimize the impact on legitimate attempts to access the key vault content.\n-Identify all cases of users who failed to sign in to an Azure resource for the first time from a given country. A junior security administrator provides you with the following incomplete query.\nBehaviorAnalytics | where ActivityType == \"FailedLogOn\" | where ________ == True\n\nThe issue for which team can be resolved by using Microsoft Defender for Office 365?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "executive"
+      },
+      {
+        "letter": "B",
+        "text": "marketing"
+      },
+      {
+        "letter": "C",
+        "text": "security"
+      },
+      {
+        "letter": "D",
+        "text": "sales"
+      }
+    ],
+    "correctLetters": [
+      "B"
+    ],
+    "answerImage": null,
+    "communityTop": null,
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-4-596f7520",
+    "number": 4,
+    "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Testlet 3 )",
+    "type": "single-choice",
+    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nLitware Inc. is a renewable energy company.\nLitware has offices in Boston and Seattle. Litware also has remote users located across the United States. To access Litware resources, including cloud resources, the remote users establish a VPN connection to either office.\nExisting Environment\nIdentity Environment\nThe network contains an Active Directory forest named litware.com that syncs to a Microsoft Entra tenant named litware.com.\nMicrosoft 365 Environment\nLitware has a Microsoft 365 E5 subscription linked to the litware.com Microsoft Entra tenant. Microsoft Defender for Endpoint is deployed to all computers that run Windows 10. All Microsoft Defender for Cloud Apps built-in anomaly detection policies are enabled.\nAzure Environment\nLitware has an Azure subscription linked to the litware.com Microsoft Entra tenant. The subscription contains resources in the East US Azure region as shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/4a45d10f-9bd5-4cbd-9962-967c749acc00.jpg]\n\nNetwork Environment\nEach Litware office connects directly to the internet and has a site-to-site VPN connection to the virtual networks in the Azure subscription.\nOn-premises Environment\nThe on-premises network contains the computers shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/ae7aaddc-2e0c-4db7-96a5-0f2a406cb987.jpg]\n\nCurrent problems\nMicrosoft Defender for Cloud Apps frequently generates false positive alerts when users connect to both offices simultaneously.\nPlanned Changes and Requirements\nPlanned Changes\nLitware plans to implement the following changes:\n-Create and configure Azure Sentinel in the Azure subscription.\n-Validate Azure Sentinel functionality by using Microsoft Entra test user accounts.\nBusiness Requirements\nLitware identifies the following business requirements:\n-The principle of least privilege must be used whenever possible.\n-Costs must be minimized, as long as all other requirements are met.\n-Logs collected by Log Analytics must provide a full audit trail of user activities.\n-All domain controllers must be protected by using Microsoft Defender for Identity.\nAzure Information Protection Requirements\nAll files that have sensitivity labels and are stored on the Windows 10 computers must be available from the Azure Information Protection – Data discovery dashboard.\nMicrosoft Defender for Endpoint Requirements\nAll Microsoft Defender for Cloud Apps unsanctioned apps must be blocked on the Windows 10 computers by using Microsoft Defender for Endpoint.\nMicrosoft Defender for Cloud Apps Security Requirements\nMicrosoft Defender for Cloud Apps must identify whether a user connection is anomalous based on tenant-\nlevel data.\nMicrosoft Defender for Cloud Requirements\nAll servers must send logs to the same Log Analytics workspace.\nMicrosoft Sentinel Requirements\nLitware must meet the following Microsoft Sentinel requirements:\n-Integrate Microsoft Sentinel and Microsoft Defender for Cloud Apps.\n-Ensure that a user named admin1 can modify existing Microsoft Sentinel playbooks.\n-Create an Microsoft Sentinel analytics rule based on a custom query. The rule must automatically initiate the execution of a playbook.\n-Add notes to events that represent data access from a specific IP address to provide the ability to reference the IP address when navigating through an investigation graph while hunting.\n-Create a test rule that generates alerts when inbound access to Microsoft Office 365 by the Microsoft Entra test user accounts is detected. Alerts generated by the rule must be grouped into individual incidents, with one incident per test user account.\n\nYou need to implement the Azure Information Protection requirements.\nWhat should you configure first?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Device health and compliance reports settings in Microsoft 365 Defender portal"
+      },
+      {
+        "letter": "B",
+        "text": "scanner clusters in Azure Information Protection from the Azure portal"
+      },
+      {
+        "letter": "C",
+        "text": "content scan jobs in Azure Information Protection from the Azure portal"
+      },
+      {
+        "letter": "D",
+        "text": "Advanced features from Settings in Microsoft 365 Defender portal"
+      }
+    ],
+    "correctLetters": [
+      "D"
+    ],
+    "answerImage": null,
+    "communityTop": null,
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-5-596f7520",
+    "number": 5,
+    "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Testlet 3 )",
+    "type": "single-choice",
+    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nLitware Inc. is a renewable energy company.\nLitware has offices in Boston and Seattle. Litware also has remote users located across the United States. To access Litware resources, including cloud resources, the remote users establish a VPN connection to either office.\nExisting Environment\nIdentity Environment\nThe network contains an Active Directory forest named litware.com that syncs to a Microsoft Entra tenant named litware.com.\nMicrosoft 365 Environment\nLitware has a Microsoft 365 E5 subscription linked to the litware.com Microsoft Entra tenant. Microsoft Defender for Endpoint is deployed to all computers that run Windows 10. All Microsoft Defender for Cloud Apps built-in anomaly detection policies are enabled.\nAzure Environment\nLitware has an Azure subscription linked to the litware.com Microsoft Entra tenant. The subscription contains resources in the East US Azure region as shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/4a45d10f-9bd5-4cbd-9962-967c749acc00.jpg]\n\nNetwork Environment\nEach Litware office connects directly to the internet and has a site-to-site VPN connection to the virtual networks in the Azure subscription.\nOn-premises Environment\nThe on-premises network contains the computers shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/ae7aaddc-2e0c-4db7-96a5-0f2a406cb987.jpg]\n\nCurrent problems\nMicrosoft Defender for Cloud Apps frequently generates false positive alerts when users connect to both offices simultaneously.\nPlanned Changes and Requirements\nPlanned Changes\nLitware plans to implement the following changes:\n-Create and configure Azure Sentinel in the Azure subscription.\n-Validate Azure Sentinel functionality by using Microsoft Entra test user accounts.\nBusiness Requirements\nLitware identifies the following business requirements:\n-The principle of least privilege must be used whenever possible.\n-Costs must be minimized, as long as all other requirements are met.\n-Logs collected by Log Analytics must provide a full audit trail of user activities.\n-All domain controllers must be protected by using Microsoft Defender for Identity.\nAzure Information Protection Requirements\nAll files that have sensitivity labels and are stored on the Windows 10 computers must be available from the Azure Information Protection – Data discovery dashboard.\nMicrosoft Defender for Endpoint Requirements\nAll Microsoft Defender for Cloud Apps unsanctioned apps must be blocked on the Windows 10 computers by using Microsoft Defender for Endpoint.\nMicrosoft Defender for Cloud Apps Security Requirements\nMicrosoft Defender for Cloud Apps must identify whether a user connection is anomalous based on tenant-\nlevel data.\nMicrosoft Defender for Cloud Requirements\nAll servers must send logs to the same Log Analytics workspace.\nMicrosoft Sentinel Requirements\nLitware must meet the following Microsoft Sentinel requirements:\n-Integrate Microsoft Sentinel and Microsoft Defender for Cloud Apps.\n-Ensure that a user named admin1 can modify existing Microsoft Sentinel playbooks.\n-Create an Microsoft Sentinel analytics rule based on a custom query. The rule must automatically initiate the execution of a playbook.\n-Add notes to events that represent data access from a specific IP address to provide the ability to reference the IP address when navigating through an investigation graph while hunting.\n-Create a test rule that generates alerts when inbound access to Microsoft Office 365 by the Microsoft Entra test user accounts is detected. Alerts generated by the rule must be grouped into individual incidents, with one incident per test user account.\n\nYou need to modify the anomaly detection policy settings to meet the Microsoft Defender for Cloud Apps requirements and resolve the reported problem.\nWhich policy should you modify?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Activity from suspicious IP addresses"
+      },
+      {
+        "letter": "B",
+        "text": "Activity from anonymous IP addresses"
+      },
+      {
+        "letter": "C",
+        "text": "Impossible travel"
+      },
+      {
+        "letter": "D",
+        "text": "Risky sign-in"
+      }
+    ],
+    "correctLetters": [
+      "C"
+    ],
+    "answerImage": null,
+    "communityTop": null,
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-6-596f7520",
+    "number": 6,
+    "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Testlet 3 )",
+    "type": "drag-drop",
+    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nLitware Inc. is a renewable energy company.\nLitware has offices in Boston and Seattle. Litware also has remote users located across the United States. To access Litware resources, including cloud resources, the remote users establish a VPN connection to either office.\nExisting Environment\nIdentity Environment\nThe network contains an Active Directory forest named litware.com that syncs to a Microsoft Entra tenant named litware.com.\nMicrosoft 365 Environment\nLitware has a Microsoft 365 E5 subscription linked to the litware.com Microsoft Entra tenant. Microsoft Defender for Endpoint is deployed to all computers that run Windows 10. All Microsoft Defender for Cloud Apps built-in anomaly detection policies are enabled.\nAzure Environment\nLitware has an Azure subscription linked to the litware.com Microsoft Entra tenant. The subscription contains resources in the East US Azure region as shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/4a45d10f-9bd5-4cbd-9962-967c749acc00.jpg]\n\nNetwork Environment\nEach Litware office connects directly to the internet and has a site-to-site VPN connection to the virtual networks in the Azure subscription.\nOn-premises Environment\nThe on-premises network contains the computers shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/ae7aaddc-2e0c-4db7-96a5-0f2a406cb987.jpg]\n\nCurrent problems\nMicrosoft Defender for Cloud Apps frequently generates false positive alerts when users connect to both offices simultaneously.\nPlanned Changes and Requirements\nPlanned Changes\nLitware plans to implement the following changes:\n-Create and configure Azure Sentinel in the Azure subscription.\n-Validate Azure Sentinel functionality by using Microsoft Entra test user accounts.\nBusiness Requirements\nLitware identifies the following business requirements:\n-The principle of least privilege must be used whenever possible.\n-Costs must be minimized, as long as all other requirements are met.\n-Logs collected by Log Analytics must provide a full audit trail of user activities.\n-All domain controllers must be protected by using Microsoft Defender for Identity.\nAzure Information Protection Requirements\nAll files that have sensitivity labels and are stored on the Windows 10 computers must be available from the Azure Information Protection – Data discovery dashboard.\nMicrosoft Defender for Endpoint Requirements\nAll Microsoft Defender for Cloud Apps unsanctioned apps must be blocked on the Windows 10 computers by using Microsoft Defender for Endpoint.\nMicrosoft Defender for Cloud Apps Security Requirements\nMicrosoft Defender for Cloud Apps must identify whether a user connection is anomalous based on tenant-\nlevel data.\nMicrosoft Defender for Cloud Requirements\nAll servers must send logs to the same Log Analytics workspace.\nMicrosoft Sentinel Requirements\nLitware must meet the following Microsoft Sentinel requirements:\n-Integrate Microsoft Sentinel and Microsoft Defender for Cloud Apps.\n-Ensure that a user named admin1 can modify existing Microsoft Sentinel playbooks.\n-Create an Microsoft Sentinel analytics rule based on a custom query. The rule must automatically initiate the execution of a playbook.\n-Add notes to events that represent data access from a specific IP address to provide the ability to reference the IP address when navigating through an investigation graph while hunting.\n-Create a test rule that generates alerts when inbound access to Microsoft Office 365 by the Microsoft Entra test user accounts is detected. Alerts generated by the rule must be grouped into individual incidents, with one incident per test user account.\n\nYou need to configure DC1 to meet the business requirements.\nWhich four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.\nSelect and Place:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/b291b4db-47b4-4bac-aef9-d9b1fe91d189.jpg"
+    ],
+    "choices": [],
+    "correctLetters": [
+      "A"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/35053cb1-5c96-4d43-b063-8228322b6d81.jpg",
+    "communityTop": {
+      "text": "Explanation:\n\nScenario: Litware identifies the following business requirements: All domain controllers must be protected by using Microsoft Defender for Identity. DC1 is on on-premises server running Windows Server 2019. It is a domain controller.\nDeploy Microsoft Defender for Identity with Microsoft 365 Defender\nStep 1: Provide a global administrator credentials to the litware.com Active Directory domain\nPrerequisites include: * Accounts At least one Directory Service account with read access to all objects in the monitored domains.\n* Permissions To create your Defender for Identity instance, you'll need an Azure AD tenant with at least one global/security administrator. Each Defender for Identity workspace supports a multiple Active Directory forest boundary and Forest Functional Level (FFL) of Windows 2003 and above.\nYou need to be a global administrator or security administrator on the tenant to access the Identity section on the Microsoft 365 Defender portal and be able to create the workspace.\nStep 2: Create an instance of Microsoft Defender for Identity.\nStep 3: Provide domain administrator credentials to the litware.com Active Directory domain. If there are only three steps required, skip this step.\nStep 4: Install the sensor on DC1.\nNote on the four steps: Step 1: log in to https://portal.atp.azure.com as a global admin Step 2: Create the instance Step 3. Connect the instance to Active Directory Step 4. Download and install the sensor.\nIncorrect: * Install the standalone sensor on DC1 We are in a domain.",
+      "selectedAnswer": null,
+      "upvotes": null
+    },
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-7-596f7520",
+    "number": 7,
+    "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Testlet 3 )",
+    "type": "drag-drop",
+    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nLitware Inc. is a renewable energy company.\nLitware has offices in Boston and Seattle. Litware also has remote users located across the United States. To access Litware resources, including cloud resources, the remote users establish a VPN connection to either office.\nExisting Environment\nIdentity Environment\nThe network contains an Active Directory forest named litware.com that syncs to a Microsoft Entra tenant named litware.com.\nMicrosoft 365 Environment\nLitware has a Microsoft 365 E5 subscription linked to the litware.com Microsoft Entra tenant. Microsoft Defender for Endpoint is deployed to all computers that run Windows 10. All Microsoft Defender for Cloud Apps built-in anomaly detection policies are enabled.\nAzure Environment\nLitware has an Azure subscription linked to the litware.com Microsoft Entra tenant. The subscription contains resources in the East US Azure region as shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/4a45d10f-9bd5-4cbd-9962-967c749acc00.jpg]\n\nNetwork Environment\nEach Litware office connects directly to the internet and has a site-to-site VPN connection to the virtual networks in the Azure subscription.\nOn-premises Environment\nThe on-premises network contains the computers shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/ae7aaddc-2e0c-4db7-96a5-0f2a406cb987.jpg]\n\nCurrent problems\nMicrosoft Defender for Cloud Apps frequently generates false positive alerts when users connect to both offices simultaneously.\nPlanned Changes and Requirements\nPlanned Changes\nLitware plans to implement the following changes:\n-Create and configure Azure Sentinel in the Azure subscription.\n-Validate Azure Sentinel functionality by using Microsoft Entra test user accounts.\nBusiness Requirements\nLitware identifies the following business requirements:\n-The principle of least privilege must be used whenever possible.\n-Costs must be minimized, as long as all other requirements are met.\n-Logs collected by Log Analytics must provide a full audit trail of user activities.\n-All domain controllers must be protected by using Microsoft Defender for Identity.\nAzure Information Protection Requirements\nAll files that have sensitivity labels and are stored on the Windows 10 computers must be available from the Azure Information Protection – Data discovery dashboard.\nMicrosoft Defender for Endpoint Requirements\nAll Microsoft Defender for Cloud Apps unsanctioned apps must be blocked on the Windows 10 computers by using Microsoft Defender for Endpoint.\nMicrosoft Defender for Cloud Apps Security Requirements\nMicrosoft Defender for Cloud Apps must identify whether a user connection is anomalous based on tenant-\nlevel data.\nMicrosoft Defender for Cloud Requirements\nAll servers must send logs to the same Log Analytics workspace.\nMicrosoft Sentinel Requirements\nLitware must meet the following Microsoft Sentinel requirements:\n-Integrate Microsoft Sentinel and Microsoft Defender for Cloud Apps.\n-Ensure that a user named admin1 can modify existing Microsoft Sentinel playbooks.\n-Create an Microsoft Sentinel analytics rule based on a custom query. The rule must automatically initiate the execution of a playbook.\n-Add notes to events that represent data access from a specific IP address to provide the ability to reference the IP address when navigating through an investigation graph while hunting.\n-Create a test rule that generates alerts when inbound access to Microsoft Office 365 by the Microsoft Entra test user accounts is detected. Alerts generated by the rule must be grouped into individual incidents, with one incident per test user account.\n\nYou need to configure DC1 to meet the business requirements.\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.\nSelect and Place:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/b5b1b270-03ac-4778-be18-fd4fbdbdd570.jpg"
+    ],
+    "choices": [],
+    "correctLetters": [
+      "A"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/a25fc384-39fb-4fb4-a9fc-2ceee9c87ad8.jpg",
+    "communityTop": {
+      "text": "Explanation:\n\nScenario: Litware identifies the following business requirements: All domain controllers must be protected by using Microsoft Defender for Identity. DC1 is on on-premises server running Windows Server 2019. It is a domain controller.\nDeploy Microsoft Defender for Identity with Microsoft 365 Defender\nStep 1: Provide a global administrator credentials to the litware.com Active Directory domain Prerequisites include: * Accounts At least one Directory Service account with read access to all objects in the monitored domains.\n* Permissions To create your Defender for Identity instance, you'll need an Azure AD tenant with at least one global/security administrator. Each Defender for Identity workspace supports a multiple Active Directory forest boundary and\nForest Functional Level (FFL) of Windows 2003 and above.\nYou need to be a global administrator or security administrator on the tenant to access the Identity section on the Microsoft 365 Defender portal and be able to create the workspace.\nStep 2: Create an instance of Microsoft Defender for Identity.\nStep 3: Install the sensor on DC1.\nNote if four steps instead of three steps: Step 1: log in to https://portal.atp.azure.com as a global admin Step 2: Create the instance Step 3. Connect the instance to Active Directory Step 4. Download and install the sensor.\nIncorrect: * Install the standalone sensor on DC1 We are in a domain.",
+      "selectedAnswer": null,
+      "upvotes": null
+    },
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
     "id": "ed-8-596f7520",
     "number": 8,
     "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Question Set 4 )",
@@ -59,7 +231,7 @@
     "source": "exam-dumps.net"
   },
   {
-    "id": "ed-fxlcgdnsr4l-",
+    "id": "ed-2thnhyweejy-",
     "number": null,
     "topic": "SC-200",
     "type": "single-choice",
@@ -365,6 +537,56 @@
     "source": "exam-dumps.net"
   },
   {
+    "id": "ed-18-4e6f7465",
+    "number": 18,
+    "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Question Set 4 )",
+    "type": "single-choice",
+    "text": "Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.\nAfter you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.\nYou are configuring Microsoft Defender for Identity integration with Active Directory.\nFrom the Microsoft Defender portal, you need to configure several accounts for attackers to exploit.\nSolution: From Microsoft Entra ID Protection, you configure the sign-in risk policy.\nDoes this meet the goal?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Yes"
+      },
+      {
+        "letter": "B",
+        "text": "No"
+      }
+    ],
+    "correctLetters": [
+      "B"
+    ],
+    "answerImage": null,
+    "communityTop": null,
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-19-4e6f7465",
+    "number": 19,
+    "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Question Set 4 )",
+    "type": "single-choice",
+    "text": "Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.\nAfter you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.\nYou are configuring Microsoft Defender for Identity integration with Active Directory.\nFrom the Microsoft Defender portal, you need to configure several accounts for attackers to exploit.\nSolution: You add the accounts to an Active Directory group and add the group as a Sensitive group.\nDoes this meet the goal?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Yes"
+      },
+      {
+        "letter": "B",
+        "text": "No"
+      }
+    ],
+    "correctLetters": [
+      "B"
+    ],
+    "answerImage": null,
+    "communityTop": null,
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
     "id": "ed-20-596f7520",
     "number": 20,
     "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Question Set 4 )",
@@ -640,6 +862,31 @@
     ],
     "correctLetters": [
       "A",
+      "B"
+    ],
+    "answerImage": null,
+    "communityTop": null,
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-29-4e6f7465",
+    "number": 29,
+    "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Question Set 4 )",
+    "type": "single-choice",
+    "text": "Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.\nAfter you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.\nYou are configuring Microsoft Defender for Identity integration with Active Directory.\nFrom the Microsoft Defender portal, you need to configure several accounts for attackers to exploit.\nSolution: You add each account as a Sensitive account.\nDoes this meet the goal?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Yes"
+      },
+      {
+        "letter": "B",
+        "text": "No"
+      }
+    ],
+    "correctLetters": [
       "B"
     ],
     "answerImage": null,
@@ -1251,6 +1498,28 @@
     "source": "exam-dumps.net"
   },
   {
+    "id": "ed-49-596f7520",
+    "number": 49,
+    "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Question Set 4 )",
+    "type": "hotspot",
+    "text": "You have a Microsoft 365 E5 subscription that uses Microsoft Defender XDR.\nYour network contains an on-premises Active Directory Domain Services (AD DS) domain that syncs with a Microsoft Entra tenant.\nYou need to identify LDAP requests by AD DS users to enumerate AD DS objects.\nHow should you complete the KQL query? To answer, select the appropriate options in the answer area.\nNote: Each correct selection is worth one point.\nHot Area:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/a7d42bf4-8958-4e04-87ce-0b5ba616ef90.jpg"
+    ],
+    "choices": [],
+    "correctLetters": [
+      "A"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/24e8376b-27f1-4057-8e80-f59842637cd0.jpg",
+    "communityTop": {
+      "text": "Explanation:\n\nBox 1: IdentityQueryEvents The IdentityQueryEvents table in the advanced hunting schema contains information about queries performed against Active Directory objects, such as users, groups, devices, and domains.\nBox 2: isnotempty\nExample: IdentityQueryEvents | where isnotempty(AccountSid) | take 100\n// IdentityQueryEvents // - contains query activities performed against Active Directory objects, such as users, groups, devices, and domains monitored by Azure ATP // - Includes SAMR, DNS and LDAP requests\n// ---------------\nIncorrect: * IdentityInfo The IdentityInfo table in the advanced hunting schema contains information about user accounts obtained from various services, including Azure Active Directory.\n* IdentityDirectoryEvents IdentityDirectoryEvents The IdentityDirectoryEvents table in the advanced hunting schema contains events involving an on-premises domain controller running Active Directory (AD). This table captures various identity-related events, like password changes, password expiration, and user principal name (UPN) changes. It also captures system events on the domain controller, like scheduling of tasks and PowerShell activity.",
+      "selectedAnswer": null,
+      "upvotes": null
+    },
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
     "id": "ed-50-596f7520",
     "number": 50,
     "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Question Set 4 )",
@@ -1341,6 +1610,52 @@
     "answerImage": null,
     "communityTop": {
       "text": "Explanation:Exclude machines from scanning Agentless scanning applies to all of the eligible machines in the subscription. To prevent specific machines from being scanned, you can exclude machines from agentless scanning based on your pre-existing environment tags.\nWhen Defender for Cloud performs the continuous discovery for machines, excluded machines are skipped.\nTo configure machines for exclusion:\n1. From Defender for Cloud's menu, open Environment settings.\n2. Select the relevant subscription or multicloud connector.\n3. For either the Defender Cloud Security Posture Management (CSPM) or Defender for Servers P2 plan, select Settings.\n4. For agentless scanning, select Edit configuration.\n5. Enter the tag name and value that applies to the machines that you want to exempt. You can enter multiple tag:value pairs.\n\n6. Select Save to apply the changes.\nNote: Defender for Servers Plan 1 is entry-level and must be enabled at the subscription level.\nFeatures include: Foundational cloud security posture management (CSPM), which is provided free by Defender for Cloud.\nDefender for Servers Plan 2 provides all features. The plan must be enabled at the subscription level and at the workspace level to get full feature coverage. Features include:\nAll the functionality that's provided by Defender for Servers Plan 1. More extended detection and response (XDR) capabilities.",
+      "selectedAnswer": null,
+      "upvotes": null
+    },
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-53-596f7520",
+    "number": 53,
+    "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Question Set 4 )",
+    "type": "multi-select",
+    "text": "You need to configure Microsoft Defender for Cloud Apps to generate alerts and trigger remediation actions in response to external sharing of confidential files.\nWhich two actions should you perform in the Microsoft Defender portal? Each correct answer presents part of the solution.\nNote: Each correct selection is worth one point.",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "From Settings, select Information Protection, select Azure Information Protection, and then select Only scan files for Azure Information Protection classification labels and content inspection warnings from this tenant."
+      },
+      {
+        "letter": "B",
+        "text": "From Cloud apps, select Files, and then filter File Type to Document."
+      },
+      {
+        "letter": "C",
+        "text": "From Settings, select Information Protection, select Files, and then enable file monitoring."
+      },
+      {
+        "letter": "D",
+        "text": "From Cloud apps, select Files, and then filter App to Office 365."
+      },
+      {
+        "letter": "E",
+        "text": "From Cloud apps, select Files, and then select New policy from search."
+      },
+      {
+        "letter": "F",
+        "text": "From Settings, select Information Protection, select Azure Information Protection, and then select Automatically scan new files for Azure Information Protection classification labels and content inspection warnings."
+      }
+    ],
+    "correctLetters": [
+      "B",
+      "F"
+    ],
+    "answerImage": null,
+    "communityTop": {
+      "text": "Explanation:Discover and protect sensitive information in your organization\nPhase 1: Discover your data Details omitted.\n(D) Phase 2: Classify sensitive information 1. Define which information is sensitive. Details omitted.\n2. Enable Microsoft Information Protection integration a. In the Microsoft 365 Defender portal, select Settings. Then choose Cloud Apps. b. Under Information Protection, go to Microsoft Information Protection. Select Automatically scan new files for Microsoft Information Protection sensitivity labels and content inspection warnings.\n\n3. Etc.\nPhase 3: Protect your data\nPhase 4: Monitor and report on your data\nE: File filters in Microsoft Defender for Cloud Apps File monitoring should be enabled in Settings. In the Microsoft 365 Defender portal, select Settings. Then choose Cloud Apps. Under Information Protection, select Files. Select Enable file monitoring and then select Save.\nNote: To provide data protection, Microsoft Defender for Cloud Apps gives you visibility into all the files from your connected apps. After you connect Microsoft Defender for Cloud Apps to an app using the App connector, Microsoft Defender for Cloud Apps scans all the files, for example all the files stored in OneDrive and\nSalesforce. Then, Defender for Cloud Apps rescans each file every time it's modified – the modification can be to content, metadata, or sharing permissions. Scanning times depend on the number of files stored in your app. You can also use the Files page to filter files to investigate what kind of data is saved in your cloud apps.\n('Microsoft 365 Defender' and 'Microsoft Defender XDR' are just terminologies used to group different platforms together.)",
       "selectedAnswer": null,
       "upvotes": null
     },
@@ -1609,6 +1924,52 @@
     "source": "exam-dumps.net"
   },
   {
+    "id": "ed-63-596f7520",
+    "number": 63,
+    "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Question Set 4 )",
+    "type": "multi-select",
+    "text": "You need to configure Microsoft Defender for Cloud Apps to generate alerts and trigger remediation actions in response to external sharing of confidential files.\nWhich two actions should you perform in the Microsoft Defender portal? Each correct answer presents part of the solution.\nNote: Each correct selection is worth one point.",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "From Settings, select Cloud Apps, select Microsoft Information Protection, and then select Only scan files for Microsoft Information Protection sensitivity labels and content inspection warnings from this tenant."
+      },
+      {
+        "letter": "B",
+        "text": "From Cloud apps, select Files, and then filter File Type to Document."
+      },
+      {
+        "letter": "C",
+        "text": "From Settings, select Cloud Apps, select Microsoft Information Protection, select Files, and then enable file monitoring."
+      },
+      {
+        "letter": "D",
+        "text": "From Cloud apps, select Files, and then filter App to Microsoft 365."
+      },
+      {
+        "letter": "E",
+        "text": "From Cloud apps, select Files, and then select New policy from search."
+      },
+      {
+        "letter": "F",
+        "text": "From Settings, select Cloud Apps, select Microsoft Information Protection, and then select Automatically scan new files for Microsoft Information Protection sensitivity labels and content inspection warnings."
+      }
+    ],
+    "correctLetters": [
+      "C",
+      "F"
+    ],
+    "answerImage": null,
+    "communityTop": {
+      "text": "Explanation:Discover and protect sensitive information in your organization\nPhase 1: Discover your data Details omitted.\n(F) Phase 2: Classify sensitive information 1. Define which information is sensitive. Details omitted.\n2. Enable Microsoft Information Protection integration a. In the Microsoft 365 Defender portal, select Settings. Then choose Cloud Apps. b. Under Information Protection, go to Microsoft Information Protection. Select Automatically scan new files for Microsoft Information Protection sensitivity labels and content inspection warnings.\n\n3. Etc.\nPhase 3: Protect your data\nPhase 4: Monitor and report on your data\nC: File filters in Microsoft Defender for Cloud Apps File monitoring should be enabled in Settings. In the Microsoft 365 Defender portal, select Settings. Then choose Cloud Apps. Under Information Protection, select Files. Select Enable file monitoring and then select Save.\nNote: To provide data protection, Microsoft Defender for Cloud Apps gives you visibility into all the files from your connected apps. After you connect Microsoft Defender for Cloud Apps to an app using the App connector, Microsoft Defender for Cloud Apps scans all the files, for example all the files stored in OneDrive and Salesforce. Then, Defender for Cloud Apps rescans each file every time it's modified – the modification can be to content, metadata, or sharing permissions. Scanning times depend on the number of files stored in your app. You can also use the Files page to filter files to investigate what kind of data is saved in your cloud apps.\n('Microsoft 365 Defender' and 'Microsoft Defender XDR' are just terminologies used to group different platforms together.)",
+      "selectedAnswer": null,
+      "upvotes": null
+    },
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
     "id": "ed-64-596f7520",
     "number": 64,
     "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Question Set 4 )",
@@ -1713,6 +2074,64 @@
     "source": "exam-dumps.net"
   },
   {
+    "id": "ed-67-4e6f7465",
+    "number": 67,
+    "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Question Set 4 )",
+    "type": "single-choice",
+    "text": "Note: This section contains one or more sets of questions with the same scenario and problem. Each question presents a unique solution to the problem. You must determine whether the solution meets the stated goals. More than one solution in the set might solve the problem. It is also possible that none of the solutions in the set solve the problem.\nAfter you answer a question in this section, you will NOT be able to return. As a result, these questions do not appear on the Review Screen.\nYou have a Microsoft 365 subscription.\nYou have 1,000 Windows devices that have a third-party antivirus product installed and Microsoft Defender Antivirus in passive mode.\nAll Windows devices are onboarded to Microsoft Defender for Endpoint.\nYou need to ensure that the devices are protected from malicious artifacts that were undetected by the third-party antivirus product.\nSolution: You configure Controlled folder access.\nDoes this meet the goal?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Yes"
+      },
+      {
+        "letter": "B",
+        "text": "No"
+      }
+    ],
+    "correctLetters": [
+      "B"
+    ],
+    "answerImage": null,
+    "communityTop": {
+      "text": "Explanation:Correct: * You configure endpoint detection and response (EDR) in block mode.\nIncorrect: * You configure Controlled folder access. * You enable automated investigation and response (AIR). * You enable Live Response.\nNote: * You configure endpoint detection and response (EDR) in block mode. Enabling EDR in block mode allows Microsoft Defender to provide additional protection by blocking and remediating malicious artifacts that might bypass the third-party antivirus. EDR in block mode works even when Defender Antivirus is in passive mode, providing an effective safety net against threats undetected by the primary antivirus.\nIncorrect: * You configure Controlled folder access. Controlled Folder Access is a feature of Microsoft Defender that protects specified folders from unauthorized changes, such as those by ransomware.\nWhile it is beneficial for protecting important files, it does not focus on identifying or blocking malicious artifacts undetected by the primary antivirus. This feature does not enhance the detection or blocking capabilities against a wide range of threats that might bypass the third-party antivirus.\n* You enable automated investigation and response (AIR). Automated Investigation and Response automates the investigation and remediation of alerts, helping security teams respond faster to potential threats. However, AIR primarily addresses post-alert actions rather than actively blocking threats at the endpoint level. It relies on alerts to trigger, so it does not fill the gap for additional real-time threat blocking, unlike EDR in block mode, which proactively blocks and remediates threats that may bypass the primary antivirus.",
+      "selectedAnswer": null,
+      "upvotes": null
+    },
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-68-4e6f7465",
+    "number": 68,
+    "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Question Set 4 )",
+    "type": "single-choice",
+    "text": "Note: This section contains one or more sets of questions with the same scenario and problem. Each question presents a unique solution to the problem. You must determine whether the solution meets the stated goals. More than one solution in the set might solve the problem. It is also possible that none of the solutions in the set solve the problem.\nAfter you answer a question in this section, you will NOT be able to return. As a result, these questions do not appear on the Review Screen.\nYou have a Microsoft 365 subscription.\nYou have 1,000 Windows devices that have a third-party antivirus product installed and Microsoft Defender Antivirus in passive mode.\nAll Windows devices are onboarded to Microsoft Defender for Endpoint.\nYou need to ensure that the devices are protected from malicious artifacts that were undetected by the third-party antivirus product.\nSolution: You enable automated investigation and response (AIR).\nDoes this meet the goal?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Yes"
+      },
+      {
+        "letter": "B",
+        "text": "No"
+      }
+    ],
+    "correctLetters": [
+      "B"
+    ],
+    "answerImage": null,
+    "communityTop": {
+      "text": "Explanation:Correct: * You configure endpoint detection and response (EDR) in block mode.\nIncorrect: * You configure Controlled folder access. * You enable automated investigation and response (AIR). * You enable Live Response.\nNote: * You configure endpoint detection and response (EDR) in block mode. Enabling EDR in block mode allows Microsoft Defender to provide additional protection by blocking and remediating malicious artifacts that might bypass the third-party antivirus. EDR in block mode works even when Defender Antivirus is in passive mode, providing an effective safety net against threats undetected by the primary antivirus.\nIncorrect: * You configure Controlled folder access. Controlled Folder Access is a feature of Microsoft Defender that protects specified folders from unauthorized changes, such as those by ransomware.\nWhile it is beneficial for protecting important files, it does not focus on identifying or blocking malicious artifacts undetected by the primary antivirus. This feature does not enhance the detection or blocking capabilities against a wide range of threats that might bypass the third-party antivirus.\n* You enable automated investigation and response (AIR). Automated Investigation and Response automates the investigation and remediation of alerts, helping security teams respond faster to potential threats. However, AIR primarily addresses post-alert actions rather than actively blocking threats at the endpoint level. It relies on alerts to trigger, so it does not fill the gap for additional real-time threat blocking, unlike EDR in block mode, which proactively blocks and remediates threats that may bypass the primary antivirus.",
+      "selectedAnswer": null,
+      "upvotes": null
+    },
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
     "id": "ed-69-596f7520",
     "number": 69,
     "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Question Set 4 )",
@@ -1739,6 +2158,259 @@
     ],
     "correctLetters": [
       "B"
+    ],
+    "answerImage": null,
+    "communityTop": null,
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-70-4e6f7465",
+    "number": 70,
+    "topic": "Exam Topic: Mitigate threats using Microsoft 365 Defender ( Question Set 4 )",
+    "type": "single-choice",
+    "text": "Note: This section contains one or more sets of questions with the same scenario and problem. Each question presents a unique solution to the problem. You must determine whether the solution meets the stated goals. More than one solution in the set might solve the problem. It is also possible that none of the solutions in the set solve the problem.\nAfter you answer a question in this section, you will NOT be able to return. As a result, these questions do not appear on the Review Screen.\nYou have a Microsoft 365 subscription.\nYou have 1,000 Windows devices that have a third-party antivirus product installed and Microsoft Defender Antivirus in passive mode.\nAll Windows devices are onboarded to Microsoft Defender for Endpoint.\nYou need to ensure that the devices are protected from malicious artifacts that were undetected by the third-party antivirus product.\nSolution: You enable Live Response.\nDoes this meet the goal?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Yes"
+      },
+      {
+        "letter": "B",
+        "text": "No"
+      }
+    ],
+    "correctLetters": [
+      "B"
+    ],
+    "answerImage": null,
+    "communityTop": {
+      "text": "Explanation:Correct:\n* You configure endpoint detection and response (EDR) in block mode.\nIncorrect: * You configure Controlled folder access. * You enable automated investigation and response (AIR). * You enable Live Response.\nNote: * You configure endpoint detection and response (EDR) in block mode. Enabling EDR in block mode allows Microsoft Defender to provide additional protection by blocking and remediating malicious artifacts that might bypass the third-party antivirus. EDR in block mode works even when Defender Antivirus is in passive mode, providing an effective safety net against threats undetected by the primary antivirus.\nIncorrect: * You configure Controlled folder access. Controlled Folder Access is a feature of Microsoft Defender that protects specified folders from unauthorized changes, such as those by ransomware.\nWhile it is beneficial for protecting important files, it does not focus on identifying or blocking malicious artifacts undetected by the primary antivirus. This feature does not enhance the detection or blocking capabilities against a wide range of threats that might bypass the third-party antivirus.\n* You enable automated investigation and response (AIR). Automated Investigation and Response automates the investigation and remediation of alerts, helping security teams respond faster to potential threats. However, AIR primarily addresses post-alert actions rather than actively blocking threats at the endpoint level. It relies on alerts to trigger, so it does not fill the gap for additional real-time threat blocking, unlike EDR in block mode, which proactively blocks and remediates threats that may bypass the primary antivirus.",
+      "selectedAnswer": null,
+      "upvotes": null
+    },
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-71-596f7520",
+    "number": 71,
+    "topic": "Exam Topic: Mitigate threats using Microsoft Defender for Cloud ( Testlet 1 )",
+    "type": "hotspot",
+    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nFabrikam, Inc. is a financial services company.\nThe company has branch offices in New York, London, and Singapore. Fabrikam has remote users located across the globe. The remote users access company resources, including cloud resources, by using a VPN connection to a branch office.\nExisting Environment\nIdentity Environment\nThe network contains an Active Directory Domain Services (AD DS) forest named fabrikam.com that syncs with an Azure AD tenant named fabrikam.com. To sync the forest, Fabrikam uses Azure AD Connect with pass-through authentication enabled and password hash synchronization disabled.\nThe fabrikam.com forest contains two global groups named Group1 and Group2.\nMicrosoft 365 Environment\nAll the users at Fabrikam are assigned a Microsoft 365 E5 license and a Microsoft Entra ID P2 license.\nFabrikam implements Microsoft Defender for Identity and Microsoft Defender for Cloud Apps and enables log collectors.\nAzure Environment\nFabrikam has an Azure subscription that contains the resources shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/4ec6cd92-63d5-48d6-821b-cbedf6dc6c3d.jpg]\n\nAmazon Web Services (AWS) Environment\nFabrikam has an Amazon Web Services (AWS) account named Account1. Account1 contains 100 Amazon Elastic Compute Cloud (EC2) instances that run a custom Windows Server 2022. The image includes Microsoft SQL Server 2019 and does NOT have any agents installed.\nCurrent Issues\nWhen the users use the VPN connections, Microsoft 365 Defender raises a high volume of impossible travel alerts that are false positives.\nDefender for Identity raises a high volume of Suspected DCSync attack alerts that are false positives.\nRequirements\nPlanned changes\nFabrikam plans to implement the following services:\n-Microsoft Defender for Cloud\n-Microsoft Sentinel\nBusiness Requirements\nFabrikam identifies the following business requirements:\n-Use the principle of least privilege, whenever possible.\n-Minimize administrative effort.\nMicrosoft Defender for Cloud Apps Requirements\nFabrikam identifies the following Microsoft Defender for Cloud Apps requirements:\n-Ensure that impossible travel alert policies are based on the previous activities of each user.\n-Reduce the amount of impossible travel alerts that are false positives.\nMicrosoft Defender for Identity Requirements\nMinimize the administrative effort required to investigate the false positive alerts.\nMicrosoft Defender for Cloud Requirements\nFabrikam identifies the following Microsoft Defender for Cloud requirements:\n-Ensure that the members of Group2 can modify security policies.\n-Ensure that the members of Group1 can assign regulatory compliance policy initiatives at the Azure subscription level.\n-Automate the deployment of the Azure Connected Machine agent for Azure Arc-enabled servers to the existing and future resources of Account1.\n-Minimize the administrative effort required to investigate the false positive alerts.\nMicrosoft Sentinel Requirements\nFabrikam identifies the following Microsoft Sentinel requirements:\n-Query for NXDOMAIN DNS requests from the last seven days by using built-in Advanced Security Information Model (ASIM) unifying parsers.\n-From AWS EC2 instances, collect Windows Security event log entries that include local group membership changes.\n-Identify anomalous activities of Azure AD users by using User and Entity Behavior Analytics (UEBA).\n-Evaluate the potential impact of compromised Azure AD user credentials by using UEBA.\n-Ensure that App1 is available for use in Microsoft Sentinel automation rules.\n-Identify the mean time to triage for incidents generated during the last 30 days.\n-Identify the mean time to close incidents generated during the last 30 days.\n-Ensure that the members of Group1 can create and run playbooks.\n-Ensure that the members of Group1 can manage analytics rules.\n-Run hunting queries on Pool1 by using Jupyter notebooks.\n-Ensure that the members of Group2 can manage incidents.\n-Maximize the performance of data queries.\n-Minimize the amount of collected data.\n-\n\nYou need to meet the Microsoft Defender for Cloud Apps requirements.\nWhat should you do? To answer, select the appropriate options in the answer area.\nNote: Each correct selection is worth one point.\nHot Area:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/a021e5f7-73f2-4183-997b-7dfd516bb95a.jpg"
+    ],
+    "choices": [],
+    "correctLetters": [
+      "A"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/7ba40c12-7bc4-4833-9d0e-91c5fbee8616.jpg",
+    "communityTop": {
+      "text": "Explanation:\n\nBox 1: Low Fabrikam identifies the following Microsoft Defender for Cloud Apps requirements: Reduce the amount of impossible travel alerts that are false positives. Ensure that impossible travel alert policies are based on the previous activities of each user.\nThe sensitivity slider allows you to affect the algorithm and define how strict the detection logic is. The higher the sensitivity level, fewer activities will be suppressed as part of the detection logic. In this way, you can adapt the detection according to your coverage needs and your SNR targets.\nNote: In the Impossible Travel policy, you can set the sensitivity slider to determine the level of anomalous behavior needed before an alert is triggered. For example, if you set it to low or medium, it will suppress Impossible Travel alerts from a user's common locations, and if you set it to high, it will surface such alerts. You can choose from the following sensitivity levels:\nLow: System, tenant, and user suppressions\nMedium: System and user suppressions\nHigh: Only system suppressions\nBox 2: IP address range Anomalies are detected by scanning user activity. The risk is evaluated by looking at over 30 different risk indicators, grouped into risk factors, as follows:\nRisky IP address Login failures Admin activity Inactive accounts Location Impossible travel Device and user agent Activity rate\nIncorrect: In addition to native Defender for Cloud Apps alerts, you'll also get the following detection alerts based on information received from Azure Active Directory (AD) Identity Protection: * Leaked credentials Triggered when a user's valid credentials have been leaked.\n* Risky sign-in: Combines a number of Azure AD Identity Protection sign-in detections into a single detection.",
+      "selectedAnswer": null,
+      "upvotes": null
+    },
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-72-596f7520",
+    "number": 72,
+    "topic": "Exam Topic: Mitigate threats using Microsoft Defender for Cloud ( Testlet 1 )",
+    "type": "hotspot",
+    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nFabrikam, Inc. is a financial services company.\nThe company has branch offices in New York, London, and Singapore. Fabrikam has remote users located across the globe. The remote users access company resources, including cloud resources, by using a VPN connection to a branch office.\nExisting Environment\nIdentity Environment\nThe network contains an Active Directory Domain Services (AD DS) forest named fabrikam.com that syncs with an Azure AD tenant named fabrikam.com. To sync the forest, Fabrikam uses Azure AD Connect with pass-through authentication enabled and password hash synchronization disabled.\nThe fabrikam.com forest contains two global groups named Group1 and Group2.\nMicrosoft 365 Environment\nAll the users at Fabrikam are assigned a Microsoft 365 E5 license and a Microsoft Entra ID P2 license.\nFabrikam implements Microsoft Defender for Identity and Microsoft Defender for Cloud Apps and enables log collectors.\nAzure Environment\nFabrikam has an Azure subscription that contains the resources shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/4ec6cd92-63d5-48d6-821b-cbedf6dc6c3d.jpg]\n\nAmazon Web Services (AWS) Environment\nFabrikam has an Amazon Web Services (AWS) account named Account1. Account1 contains 100 Amazon Elastic Compute Cloud (EC2) instances that run a custom Windows Server 2022. The image includes Microsoft SQL Server 2019 and does NOT have any agents installed.\nCurrent Issues\nWhen the users use the VPN connections, Microsoft 365 Defender raises a high volume of impossible travel alerts that are false positives.\nDefender for Identity raises a high volume of Suspected DCSync attack alerts that are false positives.\nRequirements\nPlanned changes\nFabrikam plans to implement the following services:\n-Microsoft Defender for Cloud\n-Microsoft Sentinel\nBusiness Requirements\nFabrikam identifies the following business requirements:\n-Use the principle of least privilege, whenever possible.\n-Minimize administrative effort.\nMicrosoft Defender for Cloud Apps Requirements\nFabrikam identifies the following Microsoft Defender for Cloud Apps requirements:\n-Ensure that impossible travel alert policies are based on the previous activities of each user.\n-Reduce the amount of impossible travel alerts that are false positives.\nMicrosoft Defender for Identity Requirements\nMinimize the administrative effort required to investigate the false positive alerts.\nMicrosoft Defender for Cloud Requirements\nFabrikam identifies the following Microsoft Defender for Cloud requirements:\n-Ensure that the members of Group2 can modify security policies.\n-Ensure that the members of Group1 can assign regulatory compliance policy initiatives at the Azure subscription level.\n-Automate the deployment of the Azure Connected Machine agent for Azure Arc-enabled servers to the existing and future resources of Account1.\n-Minimize the administrative effort required to investigate the false positive alerts.\nMicrosoft Sentinel Requirements\nFabrikam identifies the following Microsoft Sentinel requirements:\n-Query for NXDOMAIN DNS requests from the last seven days by using built-in Advanced Security Information Model (ASIM) unifying parsers.\n-From AWS EC2 instances, collect Windows Security event log entries that include local group membership changes.\n-Identify anomalous activities of Azure AD users by using User and Entity Behavior Analytics (UEBA).\n-Evaluate the potential impact of compromised Azure AD user credentials by using UEBA.\n-Ensure that App1 is available for use in Microsoft Sentinel automation rules.\n-Identify the mean time to triage for incidents generated during the last 30 days.\n-Identify the mean time to close incidents generated during the last 30 days.\n-Ensure that the members of Group1 can create and run playbooks.\n-Ensure that the members of Group1 can manage analytics rules.\n-Run hunting queries on Pool1 by using Jupyter notebooks.\n-Ensure that the members of Group2 can manage incidents.\n-Maximize the performance of data queries.\n-Minimize the amount of collected data.\n-\n\nYou need to assign role-based access control (RBAC) roles to Group1 and Group2 to meet the Microsoft Defender for Cloud requirements and the business requirements.\nWhich role should you assign to each group? To answer, select the appropriate options in the answer area.\nNote: Each correct selection is worth one point.\nHot Area:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/c5d5ee6a-96e3-4b98-865e-24fc022e5396.jpg"
+    ],
+    "choices": [],
+    "correctLetters": [
+      "A"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/fa4dfcdf-e18f-466a-bb91-ac8d53b2b820.jpg",
+    "communityTop": {
+      "text": "Explanation:\n\nBox 1: Security Assessment Contributor Ensure that the members of Group1 can assign regulatory compliance policy initiatives at the Azure subscription level.\nSecurity Assessment Contributor Let’s you push assessments to Microsoft Defender for Cloud\nAction: Microsoft.Security/assessments/write Create or update security assessments on your subscription\nBox 2: Security Admin Ensure that the members of Group2 can modify security policies.\nSecurity Admin View and update permissions for Microsoft Defender for Cloud. Same permissions as the Security Reader role and can also update the security policy and dismiss alerts and recommendations.\nIncorrect: * Contributor Grants full access to manage all resources, but does not allow you to assign roles in Azure RBAC, manage assignments in Azure Blueprints, or share image galleries.\n* Owner Grants full access to manage all resources, including the ability to assign roles in Azure RBAC.",
+      "selectedAnswer": null,
+      "upvotes": null
+    },
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-73-596f7520",
+    "number": 73,
+    "topic": "Exam Topic: Mitigate threats using Microsoft Defender for Cloud ( Testlet 1 )",
+    "type": "single-choice",
+    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nFabrikam, Inc. is a financial services company.\nThe company has branch offices in New York, London, and Singapore. Fabrikam has remote users located across the globe. The remote users access company resources, including cloud resources, by using a VPN connection to a branch office.\nExisting Environment\nIdentity Environment\nThe network contains an Active Directory Domain Services (AD DS) forest named fabrikam.com that syncs with an Azure AD tenant named fabrikam.com. To sync the forest, Fabrikam uses Azure AD Connect with pass-through authentication enabled and password hash synchronization disabled.\nThe fabrikam.com forest contains two global groups named Group1 and Group2.\nMicrosoft 365 Environment\nAll the users at Fabrikam are assigned a Microsoft 365 E5 license and a Microsoft Entra ID P2 license.\nFabrikam implements Microsoft Defender for Identity and Microsoft Defender for Cloud Apps and enables log collectors.\nAzure Environment\nFabrikam has an Azure subscription that contains the resources shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/8dcfca6c-e76c-4d12-8fb3-c9ddf3bdba0e.jpg]\n\nAmazon Web Services (AWS) Environment\nFabrikam has an Amazon Web Services (AWS) account named Account1. Account1 contains 100 Amazon Elastic Compute Cloud (EC2) instances that run a custom Windows Server 2022. The image includes Microsoft SQL Server 2019 and does NOT have any agents installed.\nCurrent Issues\nWhen the users use the VPN connections, Microsoft 365 Defender raises a high volume of impossible travel alerts that are false positives.\nDefender for Identity raises a high volume of Suspected DCSync attack alerts that are false positives.\nRequirements\nPlanned changes\nFabrikam plans to implement the following services:\n-Microsoft Defender for Cloud\n-Microsoft Sentinel\nBusiness Requirements\nFabrikam identifies the following business requirements:\n-Use the principle of least privilege, whenever possible.\n-Minimize administrative effort.\nMicrosoft Defender for Cloud Apps Requirements\nFabrikam identifies the following Microsoft Defender for Cloud Apps requirements:\n-Ensure that impossible travel alert policies are based on the previous activities of each user.\n-Reduce the amount of impossible travel alerts that are false positives.\nMicrosoft Defender for Identity Requirements\nMinimize the administrative effort required to investigate the false positive alerts.\nMicrosoft Defender for Cloud Requirements\nFabrikam identifies the following Microsoft Defender for Cloud requirements:\n-Ensure that the members of Group2 can modify security policies.\n-Ensure that the members of Group1 can assign regulatory compliance policy initiatives at the Azure subscription level.\n-Automate the deployment of the Azure Connected Machine agent for Azure Arc-enabled servers to the existing and future resources of Account1.\n-Minimize the administrative effort required to investigate the false positive alerts.\nMicrosoft Sentinel Requirements\nFabrikam identifies the following Microsoft Sentinel requirements:\n-Query for NXDOMAIN DNS requests from the last seven days by using built-in Advanced Security Information Model (ASIM) unifying parsers.\n-From AWS EC2 instances, collect Windows Security event log entries that include local group membership changes.\n-Identify anomalous activities of Azure AD users by using User and Entity Behavior Analytics (UEBA).\n-Evaluate the potential impact of compromised Azure AD user credentials by using UEBA.\n-Ensure that App1 is available for use in Microsoft Sentinel automation rules.\n-Identify the mean time to triage for incidents generated during the last 30 days.\n-Identify the mean time to close incidents generated during the last 30 days.\n-Ensure that the members of Group1 can create and run playbooks.\n-Ensure that the members of Group1 can manage analytics rules.\n-Run hunting queries on Pool1 by using Jupyter notebooks.\n-Ensure that the members of Group2 can manage incidents.\n-Maximize the performance of data queries.\n-Minimize the amount of collected data.\n-\n\nYou need to deploy the native cloud connector to Account 1 to meet the Microsoft Defender for Cloud requirements.\nWhat should you do in Account1 first?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Create an AWS user for Defender for Cloud."
+      },
+      {
+        "letter": "B",
+        "text": "Configure AWS Security Hub."
+      },
+      {
+        "letter": "C",
+        "text": "Deploy the AWS Systems Manager (SSM) agent."
+      },
+      {
+        "letter": "D",
+        "text": "Create an Access control (IAM) role for Defender for Cloud."
+      }
+    ],
+    "correctLetters": [
+      "B"
+    ],
+    "answerImage": null,
+    "communityTop": null,
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-74-596f7520",
+    "number": 74,
+    "topic": "Exam Topic: Mitigate threats using Microsoft Defender for Cloud ( Testlet 2 )",
+    "type": "hotspot",
+    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nLitware Inc. is a renewable energy company.\nLitware has offices in Boston and Seattle. Litware also has remote users located across the United States. To access Litware resources, including cloud resources, the remote users establish a VPN connection to either office.\nExisting Environment\nIdentity Environment\nThe network contains an Active Directory forest named litware.com that syncs to a Microsoft Entra tenant named litware.com.\nMicrosoft 365 Environment\nLitware has a Microsoft 365 E5 subscription linked to the litware.com Microsoft Entra tenant. Microsoft Defender for Endpoint is deployed to all computers that run Windows 10. All Microsoft Defender for Cloud Apps built-in anomaly detection policies are enabled.\nAzure Environment\nLitware has an Azure subscription linked to the litware.com Microsoft Entra tenant. The subscription contains resources in the East US Azure region as shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/a1bccc5a-312b-4742-98f9-0e7f1709feef.jpg]\n\nNetwork Environment\nEach Litware office connects directly to the internet and has a site-to-site VPN connection to the virtual networks in the Azure subscription.\nOn-premises Environment\nThe on-premises network contains the computers shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/978183a0-a27e-46af-9703-ab102ae66803.jpg]\n\nCurrent problems\nMicrosoft Defender for Cloud Apps frequently generates false positive alerts when users connect to both offices simultaneously.\nPlanned Changes and Requirements\nPlanned Changes\nLitware plans to implement the following changes:\n-Create and configure Azure Sentinel in the Azure subscription.\n-Validate Azure Sentinel functionality by using Microsoft Entra test user accounts.\nBusiness Requirements\nLitware identifies the following business requirements:\n-The principle of least privilege must be used whenever possible.\n-Costs must be minimized, as long as all other requirements are met.\n-Logs collected by Log Analytics must provide a full audit trail of user activities.\n-All domain controllers must be protected by using Microsoft Defender for Identity.\nAzure Information Protection Requirements\nAll files that have sensitivity labels and are stored on the Windows 10 computers must be available from the Azure Information Protection – Data discovery dashboard.\nMicrosoft Defender for Endpoint Requirements\nAll Microsoft Defender for Cloud Apps unsanctioned apps must be blocked on the Windows 10 computers by using Microsoft Defender for Endpoint.\nMicrosoft Defender for Cloud Apps Security Requirements\nMicrosoft Defender for Cloud Apps must identify whether a user connection is anomalous based on tenant-\nlevel data.\nMicrosoft Defender for Cloud Requirements\nAll servers must send logs to the same Log Analytics workspace.\nMicrosoft Sentinel Requirements\nLitware must meet the following Microsoft Sentinel requirements:\n-Integrate Microsoft Sentinel and Microsoft Defender for Cloud Apps.\n-Ensure that a user named admin1 can modify existing Microsoft Sentinel playbooks.\n-Create an Microsoft Sentinel analytics rule based on a custom query. The rule must automatically initiate the execution of a playbook.\n-Add notes to events that represent data access from a specific IP address to provide the ability to reference the IP address when navigating through an investigation graph while hunting.\n-Create a test rule that generates alerts when inbound access to Microsoft Office 365 by the Microsoft Entra test user accounts is detected. Alerts generated by the rule must be grouped into individual incidents, with one incident per test user account.\n-\n\nYou need to implement Microsoft Defender for Cloud to meet the Microsoft Defender for Cloud requirements and the business requirements.\nWhat should you include in the solution? To answer, select the appropriate options in the answer area.\nNote: Each correct selection is worth one point.\nHot Area:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/74ec37f2-5d0d-42b3-acf4-93491fc81be8.jpg"
+    ],
+    "choices": [],
+    "correctLetters": [
+      "A"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/6aac463e-a80b-4cf6-8535-64b70d62060c.jpg",
+    "communityTop": {
+      "text": "Explanation:",
+      "selectedAnswer": null,
+      "upvotes": null
+    },
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-75-596f7520",
+    "number": 75,
+    "topic": "Exam Topic: Mitigate threats using Microsoft Defender for Cloud ( Testlet 3 )",
+    "type": "hotspot",
+    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nA company named Contoso Ltd. has a main office and five branch offices located throughout North America. The main office is in Seattle. The branch offices are in Toronto, Miami, Houston, Los Angeles, and Vancouver.\nContoso has a subsidiary named Fabrikam, Ltd. that has offices in New York and San Francisco.\nExisting Environment\nEnd-User Environment\nAll users at Contoso use Windows 11 devices. Each user is licensed for Microsoft 365. In addition, iOS devices are distributed to the members of the sales team at Contoso.\nCloud and Hybrid Infrastructure\nAll Contoso applications are deployed to Azure.\nYou enable Microsoft Defender for Cloud Apps.\nContoso and Fabrikam have different Microsoft Entra tenants. Fabrikam recently purchased an Azure subscription and enabled Microsoft Defender for Cloud for all supported resource types.\nCurrent Problems\nThe security team at Contoso receives a large number of cybersecurity alerts. The security team spends too much time identifying which cybersecurity alerts are legitimate threats, and which are not.\nThe Contoso sales team uses only iOS devices. The sales team members exchange files with customers by using a variety of third-party tools. In the past, the sales team experienced phishing attacks on their devices.\nThe marketing team at Contoso has several Microsoft SharePoint Online sites for collaborating with external vendors. The marketing team has had several incidents in which vendors uploaded files that contain malware.\nThe executive team at Contoso suspects a security breach. The executive team requests that you identify which files had more than five activities during the past 48 hours, including data access, download, or deletion for Microsoft Defender for Cloud Apps-protected applications.\nRequirements\nPlanned Changes\nContoso plans to integrate the security operations of both companies and manage all security operations centrally.\nTechnical Requirements\nContoso identifies the following technical requirements:\n-Receive alerts if an Azure virtual machine is under brute force attack.\n-Use Microsoft Sentinel to reduce organizational risk by rapidly remediating active attacks on the environment.\n-Implement Microsoft Sentinel queries that correlate data across the Microsoft Entra tenants of Contoso and Fabrikam.\n-Develop a procedure to remediate Microsoft Defender for Key Vault alerts for Contoso in case of external and internal threats. The solution must minimize the impact on legitimate attempts to access the key vault content.\n-Identify all cases of users who failed to sign in to an Azure resource for the first time from a given country. A junior security administrator provides you with the following incomplete query.\nBehaviorAnalytics | where ActivityType == \"FailedLogOn\" | where ________ == True\n\nYou need to recommend remediation actions for the Microsoft Defender for Cloud alerts for Fabrikam.\nWhat should you recommend for each threat? To answer, select the appropriate options in the answer area.\nNote: Each correct selection is worth one point.\nHot Area:",
+    "images": [
+      "https://www.exam-dumps.net/images/exams/SC-200/02dcbbd1-2c7f-41c1-9a15-5963a430c3a3.jpg"
+    ],
+    "choices": [],
+    "correctLetters": [
+      "A"
+    ],
+    "answerImage": "https://www.exam-dumps.net/images/exams/SC-200/e3c85210-ce60-4d61-ad25-77cbbca7873d.jpg",
+    "communityTop": {
+      "text": "Explanation:",
+      "selectedAnswer": null,
+      "upvotes": null
+    },
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-76-596f7520",
+    "number": 76,
+    "topic": "Exam Topic: Mitigate threats using Microsoft Defender for Cloud ( Testlet 3 )",
+    "type": "single-choice",
+    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nA company named Contoso Ltd. has a main office and five branch offices located throughout North America. The main office is in Seattle. The branch offices are in Toronto, Miami, Houston, Los Angeles, and Vancouver.\nContoso has a subsidiary named Fabrikam, Ltd. that has offices in New York and San Francisco.\nExisting Environment\nEnd-User Environment\nAll users at Contoso use Windows 11 devices. Each user is licensed for Microsoft 365. In addition, iOS devices are distributed to the members of the sales team at Contoso.\nCloud and Hybrid Infrastructure\nAll Contoso applications are deployed to Azure.\nYou enable Microsoft Defender for Cloud Apps.\nContoso and Fabrikam have different Microsoft Entra tenants. Fabrikam recently purchased an Azure subscription and enabled Microsoft Defender for Cloud for all supported resource types.\nCurrent Problems\nThe security team at Contoso receives a large number of cybersecurity alerts. The security team spends too much time identifying which cybersecurity alerts are legitimate threats, and which are not.\nThe Contoso sales team uses only iOS devices. The sales team members exchange files with customers by using a variety of third-party tools. In the past, the sales team experienced phishing attacks on their devices.\nThe marketing team at Contoso has several Microsoft SharePoint Online sites for collaborating with external vendors. The marketing team has had several incidents in which vendors uploaded files that contain malware.\nThe executive team at Contoso suspects a security breach. The executive team requests that you identify which files had more than five activities during the past 48 hours, including data access, download, or deletion for Microsoft Defender for Cloud Apps-protected applications.\nRequirements\nPlanned Changes\nContoso plans to integrate the security operations of both companies and manage all security operations centrally.\nTechnical Requirements\nContoso identifies the following technical requirements:\n-Receive alerts if an Azure virtual machine is under brute force attack.\n-Use Microsoft Sentinel to reduce organizational risk by rapidly remediating active attacks on the environment.\n-Implement Microsoft Sentinel queries that correlate data across the Microsoft Entra tenants of Contoso and Fabrikam.\n-Develop a procedure to remediate Microsoft Defender for Key Vault alerts for Contoso in case of external and internal threats. The solution must minimize the impact on legitimate attempts to access the key vault content.\n-Identify all cases of users who failed to sign in to an Azure resource for the first time from a given country. A junior security administrator provides you with the following incomplete query.\nBehaviorAnalytics | where ActivityType == \"FailedLogOn\" | where ________ == True\n\nYou need to recommend a solution to meet the technical requirements for the Azure virtual machines.\nWhat should you include in the recommendation?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "just-in-time (JIT) VM access"
+      },
+      {
+        "letter": "B",
+        "text": "Microsoft Defender for Cloud"
+      },
+      {
+        "letter": "C",
+        "text": "Azure Firewall"
+      },
+      {
+        "letter": "D",
+        "text": "Azure Application Gateway"
+      }
+    ],
+    "correctLetters": [
+      "B"
+    ],
+    "answerImage": null,
+    "communityTop": null,
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-77-596f7520",
+    "number": 77,
+    "topic": "Exam Topic: Mitigate threats using Microsoft Defender for Cloud ( Testlet 4 )",
+    "type": "single-choice",
+    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nAdatum Corporation is a United States-based financial services company that has regional offices in New York, Chicago, and San Francisco.\nExisting Environment\nIdentity Environment\nThe on-premises network contains an Active Directory Domain Services (AD DS) forest named corp.adatum.com that syncs with a Microsoft Entra tenant named adatum.com. All user and group management tasks are performed in corp.adatum.com. The corp.adatum.com domain contains a group named Group1 that syncs with adatum.com.\nLicensing Status\nAll the users at Adatum are assigned a Microsoft 365 E5 license and a Microsoft Entra ID P2 license.\nCloud Environment\nThe cloud environment contains a Microsoft 365 subscription, an Azure subscription linked to the adatum.com tenant, and the resources shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/9453a467-55f0-4472-848e-ff2d47a866dc.jpg]\n\nOn-premises Environment\nThe on-premises network contains the resources shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/e8e19623-4a40-45e9-b60d-2e093bb22eef.jpg]\n\nRequirements\nPlanned changes\nAdatum plans to perform the following changes:\n-Implement a query named rulequery1 that will include the following KQL query.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/75c172ba-4f4e-47e6-abd5-9674650c785c.jpg]\n\n-Implement a Microsoft Sentinel scheduled rule that generates incidents based on rulequery1.\nMicrosoft Defender for Cloud Requirements\nAdatum identifies the following Microsoft Defender for Cloud requirements:\n-The members of Group1 must be able to enable Defender for Cloud plans and apply regulatory compliance initiatives.\n-Microsoft Defender for Servers Plan 2 must be enabled on all the Azure virtual machines.\n-Server2 must be excluded from agentless scanning.\nMicrosoft Sentinel Requirements\nAdatum identifies the following Microsoft Sentinel requirements:\n-Implement an Advanced Security Information Model (ASIM) query that will return a count of DNS requests that results in an NXDOMAIN response from Infoblox1.\n-Ensure that multiple alerts generated by rulequery1 in response to a single user launching Azure Cloud Shell multiple times are consolidated as a single incident.\n-Implement the Windows Security Events via AMA connector for Microsoft Sentinel and configure it to monitor the Security event log of Server1.\n-Ensure that incidents generated by rulequery1 are closed automatically if Azure Cloud Shell is launched by the company’s SecOps team.\n-Implement a custom Microsoft Sentinel workbook named Workbook1 that will include a query to dynamically retrieve data from Webapp1.\n-Implement a Microsoft Sentinel near-real-time (NRT) analytics rule that detects sign-ins to a designated break glass account.\n-Ensure that HuntingQuery1 runs automatically when the Hunting page of Microsoft Sentinel in the Azure portal is accessed.\n-Ensure that higher than normal volumes of password resets for corp.adatum.com user accounts are detected.\n-Minimize the overhead associated with queries that use ASIM parsers.\n-Ensure that the Group1 members can create and edit playbooks.\n-Use built-in ASIM parsers whenever possible.\nBusiness Requirements\nAdatum identifies the following business requirements:\n-Follow the principle of least privilege whenever possible.\n-Minimize administrative effort whenever possible.\n-\n\nYou need to implement the Defender for Cloud requirements.\nWhat should you configure for Server2?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "the Microsoft Antimalware extension"
+      },
+      {
+        "letter": "B",
+        "text": "the Azure Automanage machine configuration extension for Windows"
+      },
+      {
+        "letter": "C",
+        "text": "an Azure resource lock"
+      },
+      {
+        "letter": "D",
+        "text": "an Azure resource tag"
+      }
+    ],
+    "correctLetters": [
+      "D"
+    ],
+    "answerImage": null,
+    "communityTop": {
+      "text": "Explanation:Server2 must be excluded from agentless scanning.\nExclude machines from scanning Agentless scanning applies to all of the eligible machines in the subscription. To prevent specific machines from being scanned, you can exclude machines from agentless scanning based on your pre-existing environment tags.\nWhen Defender for Cloud performs the continuous discovery for machines, excluded machines are skipped.\nTo configure machines for exclusion:\n1. From Defender for Cloud's menu, open Environment settings. 2. Select the relevant subscription or multicloud connector. 3. For either the Defender Cloud Security Posture Management (CSPM) or Defender for Servers P2 plan, select Settings. 4. For agentless scanning, select Edit configuration. 5. Enter the tag name and value that applies to the machines that you want to exempt. You can enter multiple tag:value pairs.\n\n6. Select Save to apply the changes.",
+      "selectedAnswer": null,
+      "upvotes": null
+    },
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-78-596f7520",
+    "number": 78,
+    "topic": "Exam Topic: Mitigate threats using Microsoft Defender for Cloud ( Testlet 4 )",
+    "type": "single-choice",
+    "text": "Case study:\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\nTo start the case study To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs.\nWhen you are ready to answer a question, click the Question button to return to the question.\nOverview\nAdatum Corporation is a United States-based financial services company that has regional offices in New York, Chicago, and San Francisco.\nExisting Environment\nIdentity Environment\nThe on-premises network contains an Active Directory Domain Services (AD DS) forest named corp.adatum.com that syncs with a Microsoft Entra tenant named adatum.com. All user and group management tasks are performed in corp.adatum.com. The corp.adatum.com domain contains a group named Group1 that syncs with adatum.com.\nLicensing Status\nAll the users at Adatum are assigned a Microsoft 365 E5 license and a Microsoft Entra ID P2 license.\nCloud Environment\nThe cloud environment contains a Microsoft 365 subscription, an Azure subscription linked to the adatum.com tenant, and the resources shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/9453a467-55f0-4472-848e-ff2d47a866dc.jpg]\n\nOn-premises Environment\nThe on-premises network contains the resources shown in the following table.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/e8e19623-4a40-45e9-b60d-2e093bb22eef.jpg]\n\nRequirements\nPlanned changes\nAdatum plans to perform the following changes:\n-Implement a query named rulequery1 that will include the following KQL query.\n\n[EXHIBIT:https://www.exam-dumps.net/images/exams/SC-200/75c172ba-4f4e-47e6-abd5-9674650c785c.jpg]\n\n-Implement a Microsoft Sentinel scheduled rule that generates incidents based on rulequery1.\nMicrosoft Defender for Cloud Requirements\nAdatum identifies the following Microsoft Defender for Cloud requirements:\n-The members of Group1 must be able to enable Defender for Cloud plans and apply regulatory compliance initiatives.\n-Microsoft Defender for Servers Plan 2 must be enabled on all the Azure virtual machines.\n-Server2 must be excluded from agentless scanning.\nMicrosoft Sentinel Requirements\nAdatum identifies the following Microsoft Sentinel requirements:\n-Implement an Advanced Security Information Model (ASIM) query that will return a count of DNS requests that results in an NXDOMAIN response from Infoblox1.\n-Ensure that multiple alerts generated by rulequery1 in response to a single user launching Azure Cloud Shell multiple times are consolidated as a single incident.\n-Implement the Windows Security Events via AMA connector for Microsoft Sentinel and configure it to monitor the Security event log of Server1.\n-Ensure that incidents generated by rulequery1 are closed automatically if Azure Cloud Shell is launched by the company’s SecOps team.\n-Implement a custom Microsoft Sentinel workbook named Workbook1 that will include a query to dynamically retrieve data from Webapp1.\n-Implement a Microsoft Sentinel near-real-time (NRT) analytics rule that detects sign-ins to a designated break glass account.\n-Ensure that HuntingQuery1 runs automatically when the Hunting page of Microsoft Sentinel in the Azure portal is accessed.\n-Ensure that higher than normal volumes of password resets for corp.adatum.com user accounts are detected.\n-Minimize the overhead associated with queries that use ASIM parsers.\n-Ensure that the Group1 members can create and edit playbooks.\n-Use built-in ASIM parsers whenever possible.\nBusiness Requirements\nAdatum identifies the following business requirements:\n-Follow the principle of least privilege whenever possible.\n-Minimize administrative effort whenever possible.\n-\n\nYou need to implement the Defender for Cloud requirements.\nWhich subscription-level role should you assign to Group1?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Security Assessment Contributor"
+      },
+      {
+        "letter": "B",
+        "text": "Contributor"
+      },
+      {
+        "letter": "C",
+        "text": "Security Admin"
+      },
+      {
+        "letter": "D",
+        "text": "Owner"
+      }
+    ],
+    "correctLetters": [
+      "D"
     ],
     "answerImage": null,
     "communityTop": null,
@@ -1945,6 +2617,56 @@
       "selectedAnswer": null,
       "upvotes": null
     },
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-86-4e6f7465",
+    "number": 86,
+    "topic": "Exam Topic: Mitigate threats using Microsoft Defender for Cloud ( Question Set 5 )",
+    "type": "single-choice",
+    "text": "Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.\nAfter you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.\nYou use Azure Security Center.\nYou receive a security alert in Security Center.\nYou need to view recommendations to resolve the alert in Security Center.\nSolution: From Regulatory compliance, you download the report.\nDoes this meet the goal?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Yes"
+      },
+      {
+        "letter": "B",
+        "text": "No"
+      }
+    ],
+    "correctLetters": [
+      "B"
+    ],
+    "answerImage": null,
+    "communityTop": null,
+    "disputed": false,
+    "source": "exam-dumps.net"
+  },
+  {
+    "id": "ed-87-4e6f7465",
+    "number": 87,
+    "topic": "Exam Topic: Mitigate threats using Microsoft Defender for Cloud ( Question Set 5 )",
+    "type": "single-choice",
+    "text": "Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.\nAfter you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.\nYou use Azure Security Center.\nYou receive a security alert in Security Center.\nYou need to view recommendations to resolve the alert in Security Center.\nSolution: From Security alerts, you select the alert, select Take Action, and then expand the Mitigate the threat section.\nDoes this meet the goal?",
+    "images": [],
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Yes"
+      },
+      {
+        "letter": "B",
+        "text": "No"
+      }
+    ],
+    "correctLetters": [
+      "A"
+    ],
+    "answerImage": null,
+    "communityTop": null,
     "disputed": false,
     "source": "exam-dumps.net"
   },

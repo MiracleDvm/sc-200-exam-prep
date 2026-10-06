@@ -109,6 +109,30 @@ input[type="number"], select {
 .q-text { white-space: pre-wrap; margin-bottom: 16px; }
 .q-text img { max-width: 100%; border-radius: 6px; margin-top: 10px; display: block; }
 
+.case-study { white-space: normal; }
+.cs-details {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--panel-2); margin-bottom: 16px; padding: 4px 16px 12px;
+}
+.cs-details summary {
+  cursor: pointer; padding: 10px 0; font-weight: 600; color: var(--accent);
+  font-size: 0.9rem; list-style: none;
+}
+.cs-details summary::-webkit-details-marker { display: none; }
+.cs-details summary::before { content: '▸ '; }
+.cs-details[open] summary::before { content: '▾ '; }
+.cs-body { margin-top: 4px; }
+.cs-header {
+  margin: 16px 0 6px; font-size: 0.95rem; color: var(--accent-2);
+  border-bottom: 1px solid var(--border); padding-bottom: 4px;
+}
+.cs-header:first-child { margin-top: 0; }
+.cs-para { margin: 0 0 8px; line-height: 1.6; }
+.cs-list { margin: 0 0 10px; padding-left: 20px; }
+.cs-list li { margin-bottom: 4px; line-height: 1.5; }
+.exhibit-image { max-width: 100%; border-radius: 6px; margin: 10px 0; display: block; border: 1px solid var(--border); }
+.cs-question { font-weight: 600; font-size: 1.02rem; padding-top: 4px; white-space: pre-wrap; }
+
 .choices { list-style: none; padding: 0; margin: 0 0 16px; display: flex; flex-direction: column; gap: 8px; }
 .choice {
   display: flex; gap: 10px; align-items: flex-start;

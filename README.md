@@ -60,3 +60,25 @@ node scraper/merge_interactive.js           # fusionne les données interactives
 ```
 
 Chaque question porte un champ `interactive` : `{"kind": "select-blanks", "segments": [...]}` pour les menus déroulants intégrés dans un texte/requête, ou `{"kind": "order-items", "pool": [...], "correctOrder": [...]}` pour les listes à ordonner. L'app affiche alors de vrais `<select>` inline ou une interface "cliquer pour ajouter dans l'ordre", avec correction automatique (plus besoin d'auto-évaluation). Les 30/30 ont été transcrites avec succès et validées (schéma cohérent, pas de doublon impossible dans les listes à ordonner).
+
+## Classement par domaine d'examen
+
+Le champ `topic` de chaque question correspond désormais à l'un des 3 domaines officiels de l'examen SC-200 (étude guide learn.microsoft.com) plutôt qu'au texte de catégorie brut du site d'origine :
+
+- Manage a security operations environment (40-45 % de l'examen)
+- Respond to security incidents (35-40 %)
+- Perform threat hunting (20-25 %)
+
+160 questions portaient déjà ce libellé exact à la source ; les 91 autres ont été classées à partir de l'énoncé et de l'explication vérifiée :
+
+```
+node scraper/merge_domains.js   # relit scraper/classify/batch_NN_output.json et met à jour topic dans app/data/questions.js
+```
+
+Le champ `source` (indiquant le site d'origine de chaque question) a été retiré des données — il n'est pas utile au fonctionnement de l'app.
+
+## Études de cas structurées
+
+Les questions precédées d'un long contexte ("Case study: ... Overview ... Existing Environment ...") sont désormais affichées avec une vraie structure (titres de section, listes à puces, bloc repliable) au lieu d'un unique bloc de texte brut. Les tableaux et schémas intégrés au contexte (ressources Azure, requêtes KQL, etc.) sont des images sur le site source ; elles sont maintenant correctement capturées et insérées au bon endroit dans le texte via un marqueur `[EXHIBIT:url]`, plutôt que d'être silencieusement perdues.
+
+`scrape_examdumps.js` avait aussi un bug de déduplication qui ne gardait qu'une seule question par étude de cas (toutes les questions d'un même scénario partagent le même texte d'introduction sur les 120 premiers caractères, utilisés à tort comme clé de dédoublonnage) : 25 questions liées à des études de cas (Fabrikam, Litware, Contoso, Adatum) avaient été perdues silencieusement et ont été récupérées.

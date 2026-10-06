@@ -47,8 +47,67 @@ function shuffle(arr) {
   return a;
 }
 
+function renderInlineExhibits(escapedLine) {
+  return escapedLine.replace(/\[EXHIBIT:(https?:\/\/[^\]]+)\]/g, '<img class="exhibit-image" src="$1" alt="exhibit">');
+}
+
+function renderCaseStudyBlock(text) {
+  const lines = text.split('\n');
+  let html = '';
+  let i = 0;
+  while (i < lines.length) {
+    const raw = lines[i];
+    const trimmed = raw.trim();
+    if (trimmed === '') { i++; continue; }
+
+    const exhibitOnly = trimmed.match(/^\[EXHIBIT:(https?:\/\/[^\]]+)\]$/);
+    if (exhibitOnly) {
+      html += `<img class="exhibit-image" src="${exhibitOnly[1]}" alt="exhibit">`;
+      i++;
+      continue;
+    }
+
+    if (/^-/.test(trimmed)) {
+      const items = [];
+      while (i < lines.length && /^-/.test(lines[i].trim())) {
+        const item = lines[i].trim().replace(/^-\s*/, '');
+        if (item) items.push(item);
+        i++;
+      }
+      if (items.length) {
+        html += `<ul class="cs-list">${items.map((it) => `<li>${renderInlineExhibits(escapeHtml(it))}</li>`).join('')}</ul>`;
+      }
+      continue;
+    }
+
+    const isHeader = trimmed.length > 0 && trimmed.length <= 60 && !/[.?!]$/.test(trimmed) && i + 1 < lines.length;
+    if (isHeader && trimmed !== 'Case study:') {
+      html += `<h4 class="cs-header">${escapeHtml(trimmed.replace(/:$/, ''))}</h4>`;
+      i++;
+      continue;
+    }
+
+    html += `<p class="cs-para">${renderInlineExhibits(escapeHtml(raw))}</p>`;
+    i++;
+  }
+  return html;
+}
+
 function renderQuestionBody(q) {
   const imgs = (q.images || []).map((src) => `<img src="${src}" alt="illustration">`).join('');
+  if (/^Case study:/.test(q.text)) {
+    const blocks = q.text.split(/\n\n+/);
+    const questionPart = blocks.pop();
+    const caseStudyPart = blocks.join('\n\n');
+    return `<div class="q-text case-study">
+      <details class="cs-details" open>
+        <summary>📋 Contexte de l'étude de cas (cliquer pour réduire)</summary>
+        <div class="cs-body">${renderCaseStudyBlock(caseStudyPart)}</div>
+      </details>
+      <div class="cs-question">${escapeHtml(questionPart).replace(/\n/g, '<br>')}</div>
+      ${imgs}
+    </div>`;
+  }
   return `<div class="q-text">${escapeHtml(q.text)}${imgs}</div>`;
 }
 

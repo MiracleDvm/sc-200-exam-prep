@@ -27,6 +27,32 @@ function cleanBlock($, el) {
   return decodeEntities(t).replace(/\r/g, '').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
 }
 
+function extractImages($, el) {
+  const urls = [];
+  el.find('img').each((_, img) => {
+    const src = $(img).attr('src');
+    if (src) urls.push(src.startsWith('http') ? src : `https://www.exam-dumps.net${src}`);
+  });
+  return urls;
+}
+
+// Like cleanBlock, but keeps embedded images (e.g. exhibit tables/screenshots inside a
+// case study) as inline `[EXHIBIT:<url>]` markers instead of discarding them.
+function cleanBlockInline($, el) {
+  const clone = el.clone();
+  clone.find('img').each((_, img) => {
+    const $img = $(img);
+    const src = $img.attr('src');
+    const url = src ? (src.startsWith('http') ? src : `https://www.exam-dumps.net${src}`) : null;
+    if (url) $img.replaceWith(`\n[EXHIBIT:${url}]\n`);
+    else $img.remove();
+  });
+  clone.find('br').replaceWith('\n');
+  clone.find('a').remove();
+  let t = clone.text();
+  return decodeEntities(t).replace(/\r/g, '').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+}
+
 function parsePage(html) {
   const $ = cheerio.load(html);
   const cards = $('.panel.panel-smart').toArray();
@@ -37,7 +63,7 @@ function parsePage(html) {
     const topic = $card.find('.panel-heading .pull-right').first().text().trim() || 'SC-200';
 
     const caseStudyEl = $card.find('[id^="examTopic_"]').first();
-    let caseStudy = caseStudyEl.length ? cleanBlock($, caseStudyEl) : '';
+    let caseStudy = caseStudyEl.length ? cleanBlockInline($, caseStudyEl) : '';
     if (/does not have a case study/i.test(caseStudy)) caseStudy = '';
 
     const leadP = $card.find('p.lead').first();
@@ -124,7 +150,7 @@ async function main() {
     const qs = parsePage(html);
     let added = 0;
     for (const q of qs) {
-      const key = q.text.slice(0, 120);
+      const key = `${q.text}::${(q.choices || []).map((c) => c.text).join('|')}`;
       if (seenStems.has(key)) continue;
       seenStems.add(key);
       all.push(q);
