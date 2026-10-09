@@ -61,6 +61,30 @@ node scraper/merge_interactive.js           # fusionne les données interactives
 
 Chaque question porte un champ `interactive` : `{"kind": "select-blanks", "segments": [...]}` pour les menus déroulants intégrés dans un texte/requête, ou `{"kind": "order-items", "pool": [...], "correctOrder": [...]}` pour les listes à ordonner. L'app affiche alors de vrais `<select>` inline ou une interface "cliquer pour ajouter dans l'ordre", avec correction automatique (plus besoin d'auto-évaluation). Les 30/30 ont été transcrites avec succès et validées (schéma cohérent, pas de doublon impossible dans les listes à ordonner).
 
+## Traduction française (sélecteur FR/EN)
+
+L'app propose un sélecteur FR/EN en haut à droite (persisté dans `localStorage`). Seul le **contenu des questions** bascule de langue — l'interface de l'app (boutons, menus) reste toujours en français. Les explications restent toujours en français aussi : elles ont été rédigées directement en français pendant la phase de recherche, il n'y a donc pas de version anglaise à proposer.
+
+```
+node scraper/split_translate_batches.js   # découpe questions.js en lots dans scraper/translate/batch_NN_input.json
+# puis, pour chaque lot : un agent traduit en français idiomatique (pas mot à mot),
+# en gardant les noms de produits Microsoft, tables/colonnes KQL et requêtes en anglais
+node scraper/merge_translations.js        # fusionne text_fr / choices[].text_fr dans app/data/questions.js
+```
+
+Les données interactives (`interactive`, menus déroulants et listes à ordonner des questions drag-drop/hotspot) restent toujours en anglais — ce sont des libellés techniques/requêtes KQL qui reflètent l'interface réelle, pas de la prose à traduire. 276/276 questions traduites, structure (lignes, puces, marqueurs `[EXHIBIT:...]`) vérifiée identique entre l'anglais et le français pour chacune.
+
+### Explications bilingues (`explanation` / `explanation_en`)
+
+En ajoutant la traduction anglaise des explications, un vrai problème de données a été découvert : 233 des 276 explications (déjà censées être en français, rédigées lors de la phase de recherche) étaient en réalité en anglais — une incohérence des tout premiers agents de recherche jamais détectée jusque-là. Corrigé en reclassant chaque explication par détection de langue (accents/mots-outils français) puis en traduisant dans le bon sens pour chaque sous-ensemble :
+
+```
+node scraper/merge_explanation_translations.js   # fusionne scraper/translate_exp_to_fr/ et translate_exp_to_en/
+node scraper/audit_dataset.js                     # audit complet : langue, structure, cohérence des choix/lettres, URLs, schéma interactive
+```
+
+`explanation` est désormais garanti en français et `explanation_en` en anglais pour les 276 questions (vérifié par heuristique de langue, 0 anomalie). L'audit a aussi révélé et corrigé deux bugs résiduels sans impact utilisateur (champs non utilisés par l'app pour les types concernés) : une icône de vote scrapée par erreur comme `answerImage` sur 13 questions à choix, et un `correctLetters` orphelin sur 28 questions drag-drop/hotspot après suppression de leur choix factice "See Explanation" — les deux corrigés dans les données et dans les scripts source (`scrape.js`, `scrape_examdumps.js`) pour ne pas revenir si le pipeline est relancé.
+
 ## Classement par domaine d'examen
 
 Le champ `topic` de chaque question correspond désormais à l'un des 3 domaines officiels de l'examen SC-200 (étude guide learn.microsoft.com) plutôt qu'au texte de catégorie brut du site d'origine :

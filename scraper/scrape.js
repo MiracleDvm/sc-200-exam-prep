@@ -138,9 +138,13 @@ function parseQuestionCard($, card) {
   }
 
   let answerImage = null;
-  const answerBlock = body.find('.question-answer').first();
-  const answerImg = answerBlock.find('img').first();
-  if (answerImg.length) answerImage = answerImg.attr('src');
+  if (choices.length === 0) {
+    // Only drag-drop/hotspot questions (no text choices) have a real answer image;
+    // for regular questions this element just holds a small vote-button icon.
+    const answerBlock = body.find('.question-answer').first();
+    const answerImg = answerBlock.find('img').first();
+    if (answerImg.length) answerImage = answerImg.attr('src');
+  }
 
   const discussionLink = body
     .parent()

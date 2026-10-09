@@ -24,6 +24,7 @@ let flaggedSet = loadFlagged();
 
 const app = document.getElementById('app');
 const timerEl = document.getElementById('examTimer');
+const langToggleEl = document.getElementById('langToggle');
 
 let state = { view: 'home' };
 let timerInterval = null;
@@ -34,8 +35,199 @@ function escapeHtml(str) {
   }[c]));
 }
 
+// ---------- Language (question content only — the app UI itself stays French) ----------
+
+let currentLang = localStorage.getItem('sc200.lang') || 'fr';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('sc200.lang', lang);
+  renderLangToggle();
+  render();
+}
+
+function renderLangToggle() {
+  langToggleEl.innerHTML = `
+    <button class="lang-btn ${currentLang === 'fr' ? 'active' : ''}" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn ${currentLang === 'en' ? 'active' : ''}" onclick="setLang('en')">EN</button>
+  `;
+}
+
+// ---------- UI strings (whole app chrome, not just question content) ----------
+
+const UI = {
+  fr: {
+    welcome: 'Bienvenue',
+    questionsAvailable: 'questions disponibles',
+    examsTaken: 'examens passés',
+    questionsFlagged: 'questions marquées',
+    startExam: 'Démarrer un examen',
+    freePractice: 'Entraînement libre',
+    recentHistory: 'Historique récent',
+    noHistory: "Aucune session d'examen enregistrée encore.",
+    questionsWord: 'questions',
+    configureExam: "Configurer l'examen",
+    questionCount: 'Nombre de questions',
+    duration: 'Durée (minutes)',
+    examConfigHint: "Valeurs par défaut alignées sur l'examen réel SC-200 (40-60 questions, 120 minutes, seuil de réussite 700/1000).",
+    start: 'Démarrer',
+    cancel: 'Annuler',
+    question: 'Question',
+    unflagBtn: '🚩 Retirer le marquage',
+    flagBtn: '🚩 Marquer à revoir',
+    dragDropNotice: (type) => `Question de type ${type === 'drag-drop' ? 'glisser-déposer' : 'zone active'} — non interactive ici. Tu l'auto-évalueras à la correction.`,
+    markSeen: 'Marquer comme vue',
+    multiAnswerHint: 'Plusieurs réponses possibles.',
+    prev: '⟵ Précédent',
+    next: 'Suivant ⟶',
+    finishExam: "Terminer l'examen",
+    confirmFinish: "Terminer l'examen maintenant ?",
+    officialAnswer: 'Réponse officielle :',
+    noAnswerImage: "(pas d'image de réponse disponible)",
+    iWasRight: "J'avais juste",
+    iWasWrong: "J'avais faux",
+    yourAnswer: '(ta réponse)',
+    sortLabel: 'Trier :',
+    sortDefault: "Ordre de l'examen",
+    sortWrongFirst: "Mauvaises réponses d'abord",
+    domainLabel: 'Domaine :',
+    all: 'Tous',
+    questionsShown: (n) => `${n} question${n === 1 ? '' : 's'} affichée${n === 1 ? '' : 's'}`,
+    correctAnswers: 'bonnes réponses',
+    passThreshold: 'seuil de réussite 700',
+    passed: '✅ Réussi',
+    failed: '❌ Échoué',
+    saveAndHome: "Enregistrer et retourner à l'accueil",
+    noMatch: 'Aucune question ne correspond à ce filtre.',
+    correctBadge: '✅ Correct',
+    incorrectBadge: '❌ Incorrect',
+    freePracticeTitle: 'Entraînement libre',
+    domainFilterLabel: 'Domaine',
+    order: 'Ordre',
+    random: 'Aléatoire',
+    byNumber: 'Par numéro',
+    flaggedOnly: (n) => `Seulement les questions marquées (${n})`,
+    showAnswer: 'Afficher la réponse',
+    validate: 'Valider',
+    youWereRight: '✅ Tu avais juste',
+    youWereWrong: '❌ Tu avais faux',
+    goodAnswer: '✅ Bonne réponse !',
+    badAnswer: '❌ Mauvaise réponse.',
+    quit: 'Quitter',
+    availableActions: 'Actions disponibles',
+    yourOrderAnswer: "Ta réponse (dans l'ordre)",
+    emptyDash: '—',
+    clickActionLeft: 'Clique une action à gauche',
+    emptyValue: '(vide)',
+    correctAnswerIs: (v) => `(bonne réponse : ${v})`,
+    yourAnswerLabel: 'Ta réponse',
+    correctAnswerLabel: 'Réponse correcte',
+    noAnswerGiven: '(aucune réponse donnée)',
+    caseStudyToggle: "📋 Contexte de l'étude de cas (cliquer pour réduire)",
+    noQuestionsLoaded: 'Aucune question chargée',
+    runScraperHint: 'Lance le scraper pour générer',
+    thenReload: 'Puis recharge cette page.',
+    explanation: 'Explication',
+    learnMore: 'En savoir plus (Microsoft Learn)',
+  },
+  en: {
+    welcome: 'Welcome',
+    questionsAvailable: 'questions available',
+    examsTaken: 'exams taken',
+    questionsFlagged: 'flagged questions',
+    startExam: 'Start an exam',
+    freePractice: 'Free practice',
+    recentHistory: 'Recent history',
+    noHistory: 'No exam session recorded yet.',
+    questionsWord: 'questions',
+    configureExam: 'Configure the exam',
+    questionCount: 'Number of questions',
+    duration: 'Duration (minutes)',
+    examConfigHint: 'Defaults match the real SC-200 exam (40-60 questions, 120 minutes, 700/1000 pass threshold).',
+    start: 'Start',
+    cancel: 'Cancel',
+    question: 'Question',
+    unflagBtn: '🚩 Remove flag',
+    flagBtn: '🚩 Flag for review',
+    dragDropNotice: (type) => `${type === 'drag-drop' ? 'Drag-and-drop' : 'Hotspot'} question — not interactive here. You'll self-grade it at review time.`,
+    markSeen: 'Mark as seen',
+    multiAnswerHint: 'Multiple answers possible.',
+    prev: '⟵ Previous',
+    next: 'Next ⟶',
+    finishExam: 'Finish exam',
+    confirmFinish: 'Finish the exam now?',
+    officialAnswer: 'Official answer:',
+    noAnswerImage: '(no answer image available)',
+    iWasRight: 'I got it right',
+    iWasWrong: 'I got it wrong',
+    yourAnswer: '(your answer)',
+    sortLabel: 'Sort:',
+    sortDefault: 'Exam order',
+    sortWrongFirst: 'Wrong answers first',
+    domainLabel: 'Domain:',
+    all: 'All',
+    questionsShown: (n) => `${n} question${n === 1 ? '' : 's'} shown`,
+    correctAnswers: 'correct answers',
+    passThreshold: 'pass threshold 700',
+    passed: '✅ Passed',
+    failed: '❌ Failed',
+    saveAndHome: 'Save and return home',
+    noMatch: 'No question matches this filter.',
+    correctBadge: '✅ Correct',
+    incorrectBadge: '❌ Incorrect',
+    freePracticeTitle: 'Free practice',
+    domainFilterLabel: 'Domain',
+    order: 'Order',
+    random: 'Random',
+    byNumber: 'By number',
+    flaggedOnly: (n) => `Flagged questions only (${n})`,
+    showAnswer: 'Show answer',
+    validate: 'Submit',
+    youWereRight: '✅ You were right',
+    youWereWrong: '❌ You were wrong',
+    goodAnswer: '✅ Correct answer!',
+    badAnswer: '❌ Wrong answer.',
+    quit: 'Quit',
+    availableActions: 'Available actions',
+    yourOrderAnswer: 'Your answer (in order)',
+    emptyDash: '—',
+    clickActionLeft: 'Click an action on the left',
+    emptyValue: '(empty)',
+    correctAnswerIs: (v) => `(correct answer: ${v})`,
+    yourAnswerLabel: 'Your answer',
+    correctAnswerLabel: 'Correct answer',
+    noAnswerGiven: '(no answer given)',
+    caseStudyToggle: '📋 Case study context (click to collapse)',
+    noQuestionsLoaded: 'No questions loaded',
+    runScraperHint: 'Run the scraper to generate',
+    thenReload: 'Then reload this page.',
+    explanation: 'Explanation',
+    learnMore: 'Learn more (Microsoft Learn)',
+  },
+};
+function t(key, ...args) {
+  const entry = UI[currentLang][key];
+  return typeof entry === 'function' ? entry(...args) : entry;
+}
+
+function qText(q) {
+  return currentLang === 'fr' && q.text_fr ? q.text_fr : q.text;
+}
+
+function qChoiceText(c) {
+  return currentLang === 'fr' && c.text_fr ? c.text_fr : c.text;
+}
+
+const DOMAIN_LABELS_FR = {
+  'Manage a security operations environment': 'Gérer un environnement d’opérations de sécurité',
+  'Respond to security incidents': 'Répondre aux incidents de sécurité',
+  'Perform threat hunting': 'Effectuer une chasse aux menaces',
+};
+
 function topicLabel(t) {
-  return typeof t === 'number' ? `Topic ${t}` : t;
+  if (typeof t === 'number') return `Topic ${t}`;
+  if (currentLang === 'fr' && DOMAIN_LABELS_FR[t]) return DOMAIN_LABELS_FR[t];
+  return t;
 }
 
 function shuffle(arr) {
@@ -95,30 +287,37 @@ function renderCaseStudyBlock(text) {
 
 function renderQuestionBody(q) {
   const imgs = (q.images || []).map((src) => `<img src="${src}" alt="illustration">`).join('');
+  const displayText = qText(q);
+  // Case-study-ness is detected from the (always-present) English text, not the
+  // possibly-missing French translation.
   if (/^Case study:/.test(q.text)) {
-    const blocks = q.text.split(/\n\n+/);
+    const blocks = displayText.split(/\n\n+/);
     const questionPart = blocks.pop();
     const caseStudyPart = blocks.join('\n\n');
     return `<div class="q-text case-study">
       <details class="cs-details" open>
-        <summary>📋 Contexte de l'étude de cas (cliquer pour réduire)</summary>
+        <summary>${t('caseStudyToggle')}</summary>
         <div class="cs-body">${renderCaseStudyBlock(caseStudyPart)}</div>
       </details>
       <div class="cs-question">${escapeHtml(questionPart).replace(/\n/g, '<br>')}</div>
       ${imgs}
     </div>`;
   }
-  return `<div class="q-text">${escapeHtml(q.text)}${imgs}</div>`;
+  return `<div class="q-text">${escapeHtml(displayText)}${imgs}</div>`;
+}
+
+function qExplanation(q) {
+  return currentLang === 'en' && q.explanation_en ? q.explanation_en : q.explanation;
 }
 
 function renderCommunityBlock(q) {
   if (!q.explanation) return '';
   const link = q.referenceUrl
-    ? `<div class="ref-link"><a href="${escapeHtml(q.referenceUrl)}" target="_blank" rel="noopener">En savoir plus (Microsoft Learn) ↗</a></div>`
+    ? `<div class="ref-link"><a href="${escapeHtml(q.referenceUrl)}" target="_blank" rel="noopener">${t('learnMore')} ↗</a></div>`
     : '';
   return `<div class="community-comment">
-      <div class="meta">📝 Explication</div>
-      ${escapeHtml(q.explanation)}
+      <div class="meta">📝 ${t('explanation')}</div>
+      ${escapeHtml(qExplanation(q))}
       ${link}
     </div>`;
 }
@@ -211,8 +410,8 @@ function renderInteractiveEditable(qid, interactive, answer) {
       `<li class="order-item">${pos + 1}. ${escapeHtml(interactive.pool[idx])} <button class="order-remove" onclick="event.stopPropagation(); removeOrderItem('${qid}', ${pos})">✕</button></li>`
     ).join('');
     return `<div class="order-container">
-      <div class="order-col"><strong>Actions disponibles</strong><ul class="pool-list">${poolHtml || '<li class="empty">—</li>'}</ul></div>
-      <div class="order-col"><strong>Ta réponse (dans l'ordre)</strong><ul class="order-list">${orderHtml || '<li class="empty">Clique une action à gauche</li>'}</ul></div>
+      <div class="order-col"><strong>${t('availableActions')}</strong><ul class="pool-list">${poolHtml || `<li class="empty">${t('emptyDash')}</li>`}</ul></div>
+      <div class="order-col"><strong>${t('yourOrderAnswer')}</strong><ul class="order-list">${orderHtml || `<li class="empty">${t('clickActionLeft')}</li>`}</ul></div>
     </div>`;
   }
   return '';
@@ -225,8 +424,8 @@ function renderInteractiveRevealed(interactive, answer) {
       if (seg.type === 'text') return escapeHtml(seg.value);
       const val = blanks[seg.id] || '';
       const isCorrect = val === seg.correct;
-      const shown = val ? escapeHtml(val) : '(vide)';
-      const note = isCorrect ? '' : ` <span class="blank-correct-answer">(bonne réponse : ${escapeHtml(seg.correct)})</span>`;
+      const shown = val ? escapeHtml(val) : t('emptyValue');
+      const note = isCorrect ? '' : ` <span class="blank-correct-answer">${escapeHtml(t('correctAnswerIs', seg.correct))}</span>`;
       return `<span class="blank-value ${isCorrect ? 'blank-correct' : 'blank-incorrect'}">${shown}</span>${note}`;
     }).join('');
     return `<pre class="interactive-query">${body}</pre>`;
@@ -235,11 +434,11 @@ function renderInteractiveRevealed(interactive, answer) {
     const order = (answer && answer.order) || [];
     const given = order.map((idx) => interactive.pool[idx]);
     const allCorrect = JSON.stringify(given) === JSON.stringify(interactive.correctOrder);
-    const givenHtml = given.length ? given.map((t, i) => `<li>${i + 1}. ${escapeHtml(t)}</li>`).join('') : '<li class="empty">(aucune réponse donnée)</li>';
-    const correctHtml = interactive.correctOrder.map((t, i) => `<li>${i + 1}. ${escapeHtml(t)}</li>`).join('');
+    const givenHtml = given.length ? given.map((val, i) => `<li>${i + 1}. ${escapeHtml(val)}</li>`).join('') : `<li class="empty">${t('noAnswerGiven')}</li>`;
+    const correctHtml = interactive.correctOrder.map((val, i) => `<li>${i + 1}. ${escapeHtml(val)}</li>`).join('');
     return `<div class="order-container">
-      <div class="order-col"><strong>Ta réponse</strong><ul class="order-list ${allCorrect ? 'all-correct' : 'all-incorrect'}">${givenHtml}</ul></div>
-      <div class="order-col"><strong>Réponse correcte</strong><ul class="order-list all-correct">${correctHtml}</ul></div>
+      <div class="order-col"><strong>${t('yourAnswerLabel')}</strong><ul class="order-list ${allCorrect ? 'all-correct' : 'all-incorrect'}">${givenHtml}</ul></div>
+      <div class="order-col"><strong>${t('correctAnswerLabel')}</strong><ul class="order-list all-correct">${correctHtml}</ul></div>
     </div>`;
   }
   return '';
@@ -267,29 +466,30 @@ function goHome() {
 
 function renderHome() {
   const history = loadHistory();
+  const locale = currentLang === 'fr' ? 'fr-FR' : 'en-US';
   const historyHtml = history.length
     ? `<ul class="history-list">${history.slice(0, 10).map((h) => `
         <li>
-          <span>${new Date(h.date).toLocaleDateString('fr-FR')} — ${h.questionCount} questions</span>
+          <span>${new Date(h.date).toLocaleDateString(locale)} — ${h.questionCount} ${t('questionsWord')}</span>
           <span class="${h.passed ? 'badge-pass' : 'badge-fail'}">${h.score}/1000 ${h.passed ? '✅' : '❌'}</span>
         </li>`).join('')}</ul>`
-    : `<p style="color:var(--text-dim)">Aucune session d'examen enregistrée encore.</p>`;
+    : `<p style="color:var(--text-dim)">${t('noHistory')}</p>`;
 
   app.innerHTML = `
     <div class="card">
-      <h2>Bienvenue</h2>
+      <h2>${t('welcome')}</h2>
       <div class="stat-row">
-        <div class="stat"><div class="num">${QUESTIONS.length}</div><div class="label">questions disponibles</div></div>
-        <div class="stat"><div class="num">${history.length}</div><div class="label">examens passés</div></div>
-        <div class="stat"><div class="num">${flaggedSet.size}</div><div class="label">questions marquées</div></div>
+        <div class="stat"><div class="num">${QUESTIONS.length}</div><div class="label">${t('questionsAvailable')}</div></div>
+        <div class="stat"><div class="num">${history.length}</div><div class="label">${t('examsTaken')}</div></div>
+        <div class="stat"><div class="num">${flaggedSet.size}</div><div class="label">${t('questionsFlagged')}</div></div>
       </div>
       <div class="btn-row">
-        <button class="primary" onclick="goExamConfig()">Démarrer un examen</button>
-        <button onclick="goPracticeConfig()">Entraînement libre</button>
+        <button class="primary" onclick="goExamConfig()">${t('startExam')}</button>
+        <button onclick="goPracticeConfig()">${t('freePractice')}</button>
       </div>
     </div>
     <div class="card">
-      <h2>Historique récent</h2>
+      <h2>${t('recentHistory')}</h2>
       ${historyHtml}
     </div>
   `;
@@ -305,17 +505,17 @@ function goExamConfig() {
 function renderExamConfig() {
   app.innerHTML = `
     <div class="card">
-      <h2>Configurer l'examen</h2>
+      <h2>${t('configureExam')}</h2>
       <div class="grid-2">
-        <div><label>Nombre de questions</label><input id="cfgCount" type="number" min="5" max="${QUESTIONS.length}" value="54"></div>
-        <div><label>Durée (minutes)</label><input id="cfgDuration" type="number" min="5" max="240" value="120"></div>
+        <div><label>${t('questionCount')}</label><input id="cfgCount" type="number" min="5" max="${QUESTIONS.length}" value="54"></div>
+        <div><label>${t('duration')}</label><input id="cfgDuration" type="number" min="5" max="240" value="120"></div>
       </div>
       <p style="color:var(--text-dim);font-size:0.85rem;margin-top:10px;">
-        Valeurs par défaut alignées sur l'examen réel SC-200 (40-60 questions, 120 minutes, seuil de réussite 700/1000).
+        ${t('examConfigHint')}
       </p>
       <div class="btn-row">
-        <button class="primary" onclick="startExam()">Démarrer</button>
-        <button class="ghost" onclick="goHome()">Annuler</button>
+        <button class="primary" onclick="startExam()">${t('start')}</button>
+        <button class="ghost" onclick="goHome()">${t('cancel')}</button>
       </div>
     </div>`;
 }
@@ -389,9 +589,9 @@ function renderExam() {
     bodyHtml = `
       ${renderQuestionBody(q)}
       <p style="color:var(--text-dim);font-size:0.85rem;">
-        Question de type ${q.type === 'drag-drop' ? 'glisser-déposer' : 'zone active'} — non interactive ici. Tu l'auto-évalueras à la correction.
+        ${t('dragDropNotice', q.type)}
       </p>
-      <div class="btn-row"><button onclick="markVisited('${q.id}')">Marquer comme vue</button></div>
+      <div class="btn-row"><button onclick="markVisited('${q.id}')">${t('markSeen')}</button></div>
     `;
   } else {
     const multi = q.type === 'multi-select';
@@ -400,11 +600,11 @@ function renderExam() {
       const isSel = selected.includes(c.letter);
       return `<li class="choice ${isSel ? 'selected' : ''}" onclick="toggleChoice('${q.id}','${c.letter}', ${multi})">
         <input type="${multi ? 'checkbox' : 'radio'}" ${isSel ? 'checked' : ''} readonly>
-        <span class="letter">${c.letter}.</span><span>${escapeHtml(c.text)}</span>
+        <span class="letter">${c.letter}.</span><span>${escapeHtml(qChoiceText(c))}</span>
       </li>`;
     }).join('');
     bodyHtml = `${renderQuestionBody(q)}
-      ${multi ? `<p style="color:var(--text-dim);font-size:0.85rem;">Plusieurs réponses possibles.</p>` : ''}
+      ${multi ? `<p style="color:var(--text-dim);font-size:0.85rem;">${t('multiAnswerHint')}</p>` : ''}
       <ul class="choices">${choicesHtml}</ul>`;
   }
 
@@ -412,14 +612,14 @@ function renderExam() {
     <div class="card">
       <div class="toolbar">
         <span class="topic-pill">${topicLabel(q.topic)}</span>
-        <span class="topic-pill">Question ${ex.index + 1} / ${ex.questions.length}</span>
-        <button class="ghost" onclick="toggleFlag('${q.id}')">${flaggedSet.has(q.id) ? '🚩 Retirer le marquage' : '🚩 Marquer à revoir'}</button>
+        <span class="topic-pill">${t('question')} ${ex.index + 1} / ${ex.questions.length}</span>
+        <button class="ghost" onclick="toggleFlag('${q.id}')">${flaggedSet.has(q.id) ? t('unflagBtn') : t('flagBtn')}</button>
       </div>
       ${bodyHtml}
       <div class="btn-row">
-        <button onclick="gotoQuestion(${ex.index - 1})" ${ex.index === 0 ? 'disabled' : ''}>⟵ Précédent</button>
-        <button onclick="gotoQuestion(${ex.index + 1})" ${ex.index === ex.questions.length - 1 ? 'disabled' : ''}>Suivant ⟶</button>
-        <button class="primary" style="margin-left:auto" onclick="confirmFinishExam()">Terminer l'examen</button>
+        <button onclick="gotoQuestion(${ex.index - 1})" ${ex.index === 0 ? 'disabled' : ''}>${t('prev')}</button>
+        <button onclick="gotoQuestion(${ex.index + 1})" ${ex.index === ex.questions.length - 1 ? 'disabled' : ''}>${t('next')}</button>
+        <button class="primary" style="margin-left:auto" onclick="confirmFinishExam()">${t('finishExam')}</button>
       </div>
     </div>
     <div class="card">
@@ -449,7 +649,7 @@ function toggleFlag(qid) {
   render();
 }
 function confirmFinishExam() {
-  if (confirm("Terminer l'examen maintenant ?")) finishExam();
+  if (confirm(t('confirmFinish'))) finishExam();
 }
 function finishExam() {
   if (timerInterval) clearInterval(timerInterval);
@@ -494,19 +694,19 @@ function renderReview() {
 
   const filterHtml = `
     <div class="toolbar">
-      <label style="color:var(--text-dim);font-size:0.85rem;">Trier :
+      <label style="color:var(--text-dim);font-size:0.85rem;">${t('sortLabel')}
         <select onchange="setReviewSort(this.value)">
-          <option value="default" ${filter.sort === 'default' ? 'selected' : ''}>Ordre de l'examen</option>
-          <option value="wrongFirst" ${filter.sort === 'wrongFirst' ? 'selected' : ''}>Mauvaises réponses d'abord</option>
+          <option value="default" ${filter.sort === 'default' ? 'selected' : ''}>${t('sortDefault')}</option>
+          <option value="wrongFirst" ${filter.sort === 'wrongFirst' ? 'selected' : ''}>${t('sortWrongFirst')}</option>
         </select>
       </label>
-      <label style="color:var(--text-dim);font-size:0.85rem;">Domaine :
+      <label style="color:var(--text-dim);font-size:0.85rem;">${t('domainLabel')}
         <select onchange="setReviewTopicFilter(this.value)">
-          <option value="all" ${filter.topic === 'all' ? 'selected' : ''}>Tous</option>
-          ${topics.map((t) => `<option value="${escapeHtml(String(t))}" ${filter.topic === t ? 'selected' : ''}>${escapeHtml(topicLabel(t))}</option>`).join('')}
+          <option value="all" ${filter.topic === 'all' ? 'selected' : ''}>${t('all')}</option>
+          ${topics.map((d) => `<option value="${escapeHtml(String(d))}" ${filter.topic === d ? 'selected' : ''}>${escapeHtml(topicLabel(d))}</option>`).join('')}
         </select>
       </label>
-      <span class="topic-pill">${indexed.length} question${indexed.length === 1 ? '' : 's'} affichée${indexed.length === 1 ? '' : 's'}</span>
+      <span class="topic-pill">${t('questionsShown', indexed.length)}</span>
     </div>
   `;
 
@@ -516,16 +716,16 @@ function renderReview() {
       const isCorrect = interactiveIsCorrect(q.interactive, ex.interactiveAnswers[q.id]);
       answerBlock = `
         ${renderInteractiveRevealed(q.interactive, ex.interactiveAnswers[q.id])}
-        <p class="${isCorrect ? 'badge-pass' : 'badge-fail'}" style="margin-top:8px;">${isCorrect ? '✅ Correct' : '❌ Incorrect'}</p>
+        <p class="${isCorrect ? 'badge-pass' : 'badge-fail'}" style="margin-top:8px;">${isCorrect ? t('correctBadge') : t('incorrectBadge')}</p>
       `;
     } else if (q.type === 'drag-drop' || q.type === 'hotspot') {
       const grade = ex.selfGrades[q.id];
       answerBlock = `
-        <p style="color:var(--text-dim);font-size:0.85rem;">Réponse officielle :</p>
-        ${q.answerImage ? `<img src="${q.answerImage}" style="max-width:100%;border-radius:6px;">` : '<p>(pas d\'image de réponse disponible)</p>'}
+        <p style="color:var(--text-dim);font-size:0.85rem;">${t('officialAnswer')}</p>
+        ${q.answerImage ? `<img src="${q.answerImage}" style="max-width:100%;border-radius:6px;">` : `<p>${t('noAnswerImage')}</p>`}
         <div class="btn-row">
-          <button class="${grade === 'correct' ? 'primary' : ''}" onclick="setSelfGrade('${q.id}','correct')">J'avais juste</button>
-          <button class="${grade === 'incorrect' ? 'primary' : ''}" onclick="setSelfGrade('${q.id}','incorrect')">J'avais faux</button>
+          <button class="${grade === 'correct' ? 'primary' : ''}" onclick="setSelfGrade('${q.id}','correct')">${t('iWasRight')}</button>
+          <button class="${grade === 'incorrect' ? 'primary' : ''}" onclick="setSelfGrade('${q.id}','incorrect')">${t('iWasWrong')}</button>
         </div>`;
     } else {
       const sel = ex.answers[q.id] || [];
@@ -534,12 +734,12 @@ function renderReview() {
         const wasSelected = sel.includes(c.letter);
         const isOfficial = off.includes(c.letter);
         const cls = isOfficial ? 'correct' : (wasSelected ? 'incorrect' : '');
-        return `<li class="choice ${cls}"><span class="letter">${c.letter}.</span><span>${escapeHtml(c.text)}</span>${wasSelected ? ' <strong>(ta réponse)</strong>' : ''}</li>`;
+        return `<li class="choice ${cls}"><span class="letter">${c.letter}.</span><span>${escapeHtml(qChoiceText(c))}</span>${wasSelected ? ` <strong>${t('yourAnswer')}</strong>` : ''}</li>`;
       }).join('')}</ul>`;
     }
 
     return `<div class="review-item">
-      <div class="q-meta">Question ${i + 1} — ${topicLabel(q.topic)}</div>
+      <div class="q-meta">${t('question')} ${i + 1} — ${topicLabel(q.topic)}</div>
       ${renderQuestionBody(q)}
       ${answerBlock}
       ${renderCommunityBlock(q)}
@@ -549,13 +749,13 @@ function renderReview() {
   app.innerHTML = `
     <div class="card">
       <div class="score-big ${passed ? 'pass' : 'fail'}">${score} / 1000</div>
-      <div class="result-sub">${correct} / ${total} bonnes réponses — seuil de réussite 700 — ${passed ? '✅ Réussi' : '❌ Échoué'}</div>
+      <div class="result-sub">${correct} / ${total} ${t('correctAnswers')} — ${t('passThreshold')} — ${passed ? t('passed') : t('failed')}</div>
       <div class="btn-row" style="justify-content:center;">
-        <button class="primary" onclick="saveAndGoHome()">Enregistrer et retourner à l'accueil</button>
+        <button class="primary" onclick="saveAndGoHome()">${t('saveAndHome')}</button>
       </div>
     </div>
     <div class="card">${filterHtml}</div>
-    <div class="card">${itemsHtml || '<p style="color:var(--text-dim)">Aucune question ne correspond à ce filtre.</p>'}</div>
+    <div class="card">${itemsHtml || `<p style="color:var(--text-dim)">${t('noMatch')}</p>`}</div>
   `;
 }
 
@@ -578,23 +778,23 @@ function renderPracticeConfig() {
   const topics = [...new Set(QUESTIONS.map((q) => q.topic))].sort((a, b) => String(a).localeCompare(String(b)));
   app.innerHTML = `
     <div class="card">
-      <h2>Entraînement libre</h2>
+      <h2>${t('freePracticeTitle')}</h2>
       <div class="grid-2">
         <div>
-          <label>Topic</label>
-          <select id="pTopic"><option value="all">Tous</option>${topics.map((t) => `<option value="${escapeHtml(String(t))}">${escapeHtml(topicLabel(t))}</option>`).join('')}</select>
+          <label>${t('domainFilterLabel')}</label>
+          <select id="pTopic"><option value="all">${t('all')}</option>${topics.map((d) => `<option value="${escapeHtml(String(d))}">${escapeHtml(topicLabel(d))}</option>`).join('')}</select>
         </div>
         <div>
-          <label>Ordre</label>
-          <select id="pOrder"><option value="random">Aléatoire</option><option value="sequential">Par numéro</option></select>
+          <label>${t('order')}</label>
+          <select id="pOrder"><option value="random">${t('random')}</option><option value="sequential">${t('byNumber')}</option></select>
         </div>
       </div>
       <label style="margin-top:14px;display:flex;align-items:center;gap:8px;">
-        <input type="checkbox" id="pFlaggedOnly" style="width:auto;"> Seulement les questions marquées (${flaggedSet.size})
+        <input type="checkbox" id="pFlaggedOnly" style="width:auto;"> ${t('flaggedOnly', flaggedSet.size)}
       </label>
       <div class="btn-row">
-        <button class="primary" onclick="startPractice()">Démarrer</button>
-        <button class="ghost" onclick="goHome()">Annuler</button>
+        <button class="primary" onclick="startPractice()">${t('start')}</button>
+        <button class="ghost" onclick="goHome()">${t('cancel')}</button>
       </div>
     </div>`;
 }
@@ -608,7 +808,7 @@ function startPractice() {
     (topic === 'all' || String(q.topic) === topic) &&
     (!flaggedOnly || flaggedSet.has(q.id))
   );
-  if (!pool.length) { alert('Aucune question ne correspond à ce filtre.'); return; }
+  if (!pool.length) { alert(t('noMatch')); return; }
   pool = order === 'random' ? shuffle(pool) : [...pool].sort((a, b) => (a.number || 0) - (b.number || 0));
 
   state = {
@@ -631,13 +831,13 @@ function renderPractice() {
       ${revealed
         ? renderInteractiveRevealed(q.interactive, iAns)
         : `${renderInteractiveEditable(q.id, q.interactive, iAns)}
-           <div class="btn-row"><button class="primary" onclick="revealAnswer('${q.id}')" ${interactiveHasAnswer(iAns) ? '' : 'disabled'}>Valider</button></div>`}
+           <div class="btn-row"><button class="primary" onclick="revealAnswer('${q.id}')" ${interactiveHasAnswer(iAns) ? '' : 'disabled'}>${t('validate')}</button></div>`}
     `;
   } else if (q.type === 'drag-drop' || q.type === 'hotspot') {
     bodyHtml = `${renderQuestionBody(q)}
       ${revealed
-        ? `<p style="color:var(--text-dim);font-size:0.85rem;">Réponse officielle :</p>${q.answerImage ? `<img src="${q.answerImage}" style="max-width:100%;border-radius:6px;">` : ''}`
-        : `<div class="btn-row"><button class="primary" onclick="revealAnswer('${q.id}')">Afficher la réponse</button></div>`}
+        ? `<p style="color:var(--text-dim);font-size:0.85rem;">${t('officialAnswer')}</p>${q.answerImage ? `<img src="${q.answerImage}" style="max-width:100%;border-radius:6px;">` : ''}`
+        : `<div class="btn-row"><button class="primary" onclick="revealAnswer('${q.id}')">${t('showAnswer')}</button></div>`}
     `;
   } else {
     const multi = q.type === 'multi-select';
@@ -652,13 +852,13 @@ function renderPractice() {
       const clickHandler = revealed ? '' : `onclick="practiceToggleChoice('${q.id}','${c.letter}', ${multi})"`;
       return `<li class="choice ${cls}" ${clickHandler}>
         <input type="${multi ? 'checkbox' : 'radio'}" ${isSel ? 'checked' : ''} readonly>
-        <span class="letter">${c.letter}.</span><span>${escapeHtml(c.text)}</span>
+        <span class="letter">${c.letter}.</span><span>${escapeHtml(qChoiceText(c))}</span>
       </li>`;
     }).join('');
     bodyHtml = `${renderQuestionBody(q)}
-      ${multi ? `<p style="color:var(--text-dim);font-size:0.85rem;">Plusieurs réponses possibles.</p>` : ''}
+      ${multi ? `<p style="color:var(--text-dim);font-size:0.85rem;">${t('multiAnswerHint')}</p>` : ''}
       <ul class="choices">${choicesHtml}</ul>
-      ${!revealed ? `<div class="btn-row"><button class="primary" onclick="revealAnswer('${q.id}')" ${sel.length === 0 ? 'disabled' : ''}>Valider</button></div>` : ''}
+      ${!revealed ? `<div class="btn-row"><button class="primary" onclick="revealAnswer('${q.id}')" ${sel.length === 0 ? 'disabled' : ''}>${t('validate')}</button></div>` : ''}
     `;
   }
 
@@ -676,12 +876,12 @@ function renderPractice() {
     let selfGradeHtml = '';
     if (!q.interactive && (q.type === 'drag-drop' || q.type === 'hotspot')) {
       selfGradeHtml = pr.selfGraded[q.id]
-        ? `<p>${pr.selfGraded[q.id] === 'correct' ? "✅ Tu avais juste" : "❌ Tu avais faux"}</p>`
-        : `<div class="btn-row"><button onclick="practiceSelfGrade('${q.id}',true)">J'avais juste</button><button onclick="practiceSelfGrade('${q.id}',false)">J'avais faux</button></div>`;
+        ? `<p>${pr.selfGraded[q.id] === 'correct' ? t('youWereRight') : t('youWereWrong')}</p>`
+        : `<div class="btn-row"><button onclick="practiceSelfGrade('${q.id}',true)">${t('iWasRight')}</button><button onclick="practiceSelfGrade('${q.id}',false)">${t('iWasWrong')}</button></div>`;
     }
 
     feedbackHtml = `<div class="feedback-box ${isCorrect === true ? 'ok' : (isCorrect === false ? 'ko' : '')}">
-      ${isCorrect === true ? '✅ Bonne réponse !' : (isCorrect === false ? '❌ Mauvaise réponse.' : '')}
+      ${isCorrect === true ? t('goodAnswer') : (isCorrect === false ? t('badAnswer') : '')}
       ${renderCommunityBlock(q)}
       ${selfGradeHtml}
     </div>`;
@@ -691,16 +891,16 @@ function renderPractice() {
     <div class="card">
       <div class="toolbar">
         <span class="topic-pill">${topicLabel(q.topic)}</span>
-        <span class="topic-pill">Question ${pr.index + 1} / ${pr.pool.length}</span>
+        <span class="topic-pill">${t('question')} ${pr.index + 1} / ${pr.pool.length}</span>
         <span class="topic-pill">✅ ${pr.correctCount} / ❌ ${pr.wrongCount}</span>
-        <button class="ghost" onclick="toggleFlag('${q.id}')">${flaggedSet.has(q.id) ? '🚩 Retirer le marquage' : '🚩 Marquer à revoir'}</button>
+        <button class="ghost" onclick="toggleFlag('${q.id}')">${flaggedSet.has(q.id) ? t('unflagBtn') : t('flagBtn')}</button>
       </div>
       ${bodyHtml}
       ${feedbackHtml}
       <div class="btn-row">
-        <button onclick="gotoPracticeQuestion(${pr.index - 1})" ${pr.index === 0 ? 'disabled' : ''}>⟵ Précédent</button>
-        <button onclick="gotoPracticeQuestion(${pr.index + 1})" ${pr.index === pr.pool.length - 1 ? 'disabled' : ''}>Suivant ⟶</button>
-        <button class="ghost" onclick="goHome()" style="margin-left:auto">Quitter</button>
+        <button onclick="gotoPracticeQuestion(${pr.index - 1})" ${pr.index === 0 ? 'disabled' : ''}>${t('prev')}</button>
+        <button onclick="gotoPracticeQuestion(${pr.index + 1})" ${pr.index === pr.pool.length - 1 ? 'disabled' : ''}>${t('next')}</button>
+        <button class="ghost" onclick="goHome()" style="margin-left:auto">${t('quit')}</button>
       </div>
     </div>
   `;
@@ -747,13 +947,14 @@ function gotoPracticeQuestion(i) {
 // ---------- Init ----------
 
 document.addEventListener('DOMContentLoaded', () => {
+  renderLangToggle();
   if (typeof QUESTIONS === 'undefined' || !QUESTIONS.length) {
-    app.innerHTML = `<div class="card"><h2>Aucune question chargée</h2>
-      <p>Lance le scraper pour générer <code>app/data/questions.js</code> :</p>
+    app.innerHTML = `<div class="card"><h2>${t('noQuestionsLoaded')}</h2>
+      <p>${t('runScraperHint')} <code>app/data/questions.js</code>:</p>
       <pre style="background:var(--panel-2);padding:10px;border-radius:8px;">cd scraper
 npm install
 node scrape.js</pre>
-      <p>Puis recharge cette page.</p></div>`;
+      <p>${t('thenReload')}</p></div>`;
     return;
   }
   goHome();

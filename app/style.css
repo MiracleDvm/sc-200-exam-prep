@@ -39,6 +39,16 @@ body {
 
 .topbar h1 { font-size: 1.1rem; margin: 0; font-weight: 600; color: var(--accent); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
+.topbar-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
+.lang-toggle { display: flex; border: 1px solid var(--border); border-radius: 999px; overflow: hidden; }
+.lang-btn {
+  border: none; border-radius: 0; background: var(--panel-2); color: var(--text-dim);
+  padding: 5px 12px; font-size: 0.8rem; font-weight: 700; min-height: auto; letter-spacing: 0.02em;
+}
+.lang-btn.active { background: var(--accent); color: #fff; }
+.lang-btn:hover { border-color: transparent; }
+
 .timer {
   font-size: 1.3rem;
   font-weight: 700;
@@ -219,7 +229,7 @@ input[type="number"], select {
 .q-text, .cs-para, .cs-list li, .community-comment, .interactive-query { word-break: break-word; overflow-wrap: break-word; }
 
 /* ---------- Mobile ---------- */
-@media (max-width: 4000px) {
+@media (max-width: 640px) {
   .topbar { padding: 10px 14px; gap: 8px; }
   .topbar h1 { font-size: 0.98rem; }
   .timer { font-size: 1.05rem; padding: 4px 10px; }
@@ -257,7 +267,7 @@ input[type="number"], select {
   .history-list li { flex-wrap: wrap; gap: 4px; }
 }
 
-@media (max-width: 1px) {
+@media (max-width: 380px) {
   .nav-grid button { width: 28px; height: 28px; min-height: 28px; font-size: 0.72rem; }
   .score-big { font-size: 1.9rem; }
 }

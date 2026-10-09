@@ -96,7 +96,7 @@ function parsePage(html) {
     });
 
     const isPlaceholder = choices.length === 1 && /see explanation/i.test(choices[0].text);
-    if (isPlaceholder) choices.length = 0;
+    if (isPlaceholder) { choices.length = 0; correctLetters.length = 0; }
     if (choices.length > 1 && correctLetters.length > 1 && type === 'single-choice') type = 'multi-select';
 
     const answerBlock = $card.find('[id^="answerQ"]').first();
