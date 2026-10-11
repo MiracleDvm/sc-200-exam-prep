@@ -239,6 +239,17 @@ function shuffle(arr) {
   return a;
 }
 
+// Returns a copy of q with its choices (and correctLetters) randomized into a fresh
+// A/B/C/... order, so the correct answer isn't always at the same position across sessions.
+function shuffleChoices(q) {
+  if (!q.choices || q.choices.length < 2) return q;
+  const correctSet = new Set(q.correctLetters || []);
+  const shuffled = shuffle(q.choices);
+  const choices = shuffled.map((c, i) => ({ ...c, letter: String.fromCharCode(65 + i) }));
+  const correctLetters = choices.filter((c, i) => correctSet.has(shuffled[i].letter)).map((c) => c.letter);
+  return { ...q, choices, correctLetters };
+}
+
 function renderInlineExhibits(escapedLine) {
   return escapedLine.replace(/\[EXHIBIT:(https?:\/\/[^\]]+)\]/g, '<img class="exhibit-image" src="$1" alt="exhibit">');
 }
@@ -523,7 +534,7 @@ function renderExamConfig() {
 function startExam() {
   const count = Math.min(Math.max(Number(document.getElementById('cfgCount').value) || 54, 1), QUESTIONS.length);
   const durationMin = Math.max(Number(document.getElementById('cfgDuration').value) || 120, 1);
-  const pool = shuffle(QUESTIONS).slice(0, count);
+  const pool = shuffle(QUESTIONS).slice(0, count).map(shuffleChoices);
 
   state = {
     view: 'exam',
@@ -810,6 +821,7 @@ function startPractice() {
   );
   if (!pool.length) { alert(t('noMatch')); return; }
   pool = order === 'random' ? shuffle(pool) : [...pool].sort((a, b) => (a.number || 0) - (b.number || 0));
+  pool = pool.map(shuffleChoices);
 
   state = {
     view: 'practice',
