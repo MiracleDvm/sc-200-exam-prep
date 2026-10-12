@@ -4,7 +4,7 @@ Simulateur d'examen local pour le Microsoft SC-200, avec mode "Examen" chronomé
 
 ## Utiliser l'application
 
-Aucune installation requise : ouvrir `app/index.html` directement dans un navigateur (double-clic). Les 251 questions sont déjà intégrées dans `app/data/questions.js`, chacune avec une réponse vérifiée, une explication et un lien Microsoft Learn (voir section suivante). L'historique des scores et les questions marquées sont sauvegardés dans le `localStorage` du navigateur (propre à cette machine/ce profil).
+Aucune installation requise : ouvrir `app/index.html` directement dans un navigateur (double-clic). Les 253 questions sont déjà intégrées dans `app/data/questions.js`, chacune avec une réponse vérifiée, une explication et un lien Microsoft Learn (voir section suivante). L'historique des scores et les questions marquées sont sauvegardés dans le `localStorage` du navigateur (propre à cette machine/ce profil).
 
 ## Régénérer la base de questions
 
@@ -106,3 +106,15 @@ Le champ `source` (indiquant le site d'origine de chaque question) a été retir
 Les questions precédées d'un long contexte ("Case study: ... Overview ... Existing Environment ...") sont désormais affichées avec une vraie structure (titres de section, listes à puces, bloc repliable) au lieu d'un unique bloc de texte brut. Les tableaux et schémas intégrés au contexte (ressources Azure, requêtes KQL, etc.) sont des images sur le site source ; elles sont maintenant correctement capturées et insérées au bon endroit dans le texte via un marqueur `[EXHIBIT:url]`, plutôt que d'être silencieusement perdues.
 
 `scrape_examdumps.js` avait aussi un bug de déduplication qui ne gardait qu'une seule question par étude de cas (toutes les questions d'un même scénario partagent le même texte d'introduction sur les 120 premiers caractères, utilisés à tort comme clé de dédoublonnage) : 25 questions liées à des études de cas (Fabrikam, Litware, Contoso, Adatum) avaient été perdues silencieusement et ont été récupérées.
+
+## Politique zéro doublon
+
+Pendant un examen ou une session d'entraînement libre, chaque question n'apparaît jamais deux fois : `startExam()`/`startPractice()` tirent leurs questions sans remise dans `QUESTIONS` (`app/app.js`), et la navigation précédent/suivant est bornée (pas de retour en boucle sur une question déjà passée).
+
+Cette garantie ne valait toutefois rien si la base de données contenait deux fiches différentes pour la même vraie question — exactement ce qui se produisait : ExamTopics et exam-dumps.net scrapent indépendamment le même examen, et exam-dumps.net republie parfois une question déjà présente avec une terminologie Microsoft mise à jour (ex. « Azure AD Identity Protection » → « Microsoft Entra ID Protection »). Un audit de similarité (texte + choix/structure interactive, en excluant le texte de contexte partagé des études de cas qui faussait les premières mesures) a identifié 23 doublons inter-sites parmi les 276 questions :
+
+```
+node scraper/dedupe_cross_source.js
+```
+
+Pour chaque doublon confirmé, la version la plus à jour a été conservée (généralement la version exam-dumps.net, avec les noms de produits actuels), sauf dans 2 cas où la version ExamTopics s'est avérée plus fiable (une réponse interactive exam-dumps.net contredisait sa propre explication ; une autre aplatissait une correspondance utilisateur→rôle en une simple liste ordonnée, perdant l'information). Base finale : 253 questions uniques, 0 anomalie à l'audit (`node scraper/audit_dataset.js`).
