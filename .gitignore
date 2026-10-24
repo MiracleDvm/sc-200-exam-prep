@@ -1,7 +1,7 @@
 # Dependencies
 node_modules/
 
-# Secrets (scrape.js reads credentials from env vars, never from a file — but just in case)
+# Local secrets
 .env
 .env.*
 
@@ -13,6 +13,3 @@ desktop.ini
 
 # Logs
 *.log
-
-# scraper
-scraper/

@@ -3,13 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
 <title>SC-200 Exam Prep</title>
+<script>
+  try {
+    const savedTheme = localStorage.getItem('sc200.theme');
+    document.documentElement.dataset.theme =
+      savedTheme === 'light' || savedTheme === 'dark'
+        ? savedTheme
+        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  } catch {
+    document.documentElement.dataset.theme =
+      window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="topbar">
   <h1>SC-200 Exam Prep</h1>
   <div class="topbar-right">
+    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Activer le thème sombre" title="Activer le thème sombre"></button>
     <div id="langToggle" class="lang-toggle"></div>
     <div id="examTimer" class="timer hidden"></div>
   </div>
